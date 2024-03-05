@@ -1,8 +1,10 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import RandomFact from "@/components/randomFact";
-import TodayFact from "@/components/todayFact";
+
+import TodayFact from "@/components/TodayFact";
+import RandomFact from "@/components/RandomFact";
+import styles from "@/styles/Home.module.css";
 
 export type Fact = {
 	id: string;
@@ -11,7 +13,10 @@ export type Fact = {
 
 type FactType = "random" | "today";
 
-export default function Home() {
+import { FcFolder } from "react-icons/fc";
+import Image from "next/image";
+
+export default function HomePage() {
 	const [randomfact, setRandomFacts] = useState<Fact[]>([]);
 	const [todayfact, setTodayFacts] = useState<Fact[]>([]);
 	const [language, setLanguage] = useState<string>("en");
@@ -40,6 +45,39 @@ export default function Home() {
 	const getRandomFact = () => {
 		getFact({ factType: "random" });
 	};
+
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	const handleToggleDropdown = () => {
+		setDropdownVisible(!dropdownVisible);
+	};
+
+	const [dropdownVisible, setDropdownVisible] = useState(false);
+
+	const deutschImg = "/de.svg";
+	const englishImg = "/en.svg";
+
+	useEffect(() => {
+		const handleClickOutsideDropdown = (e: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(e.target as Node)
+			) {
+				setDropdownVisible(false);
+			}
+		};
+
+		const handleClick = (e: MouseEvent) => {
+			handleClickOutsideDropdown(e);
+		};
+
+		document.addEventListener("mousedown", handleClick);
+
+		return () => {
+			document.removeEventListener("mousedown", handleClick);
+		};
+	}, []);
+
 	return (
 		<>
 			<Head>
@@ -48,18 +86,51 @@ export default function Home() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main>
-				<select
-					onChange={(e) => setLanguage(e.target.value)}
-					defaultValue={language}
-				>
-					<option value="en">English</option>
-					<option value="de">Deutsch</option>
-				</select>
-
-				<RandomFact randomfact={randomfact} getRandomFact={getRandomFact} />
-
+			<header className={styles.banner}>
+				<button className={styles.button}>
+					<FcFolder /> Saved Facts
+				</button>
 				<TodayFact todayfact={todayfact} getTodayFact={getTodayFact} />
+
+				<div className={`${styles.langMenu} ${styles.showLeft}`}>
+					<button onClick={handleToggleDropdown} className={styles.langButton}>
+						<Image
+							className={styles.langImg}
+							src={language === "en" ? englishImg : deutschImg}
+							alt="Deutsch"
+							width={50}
+							height={50}
+						/>
+					</button>
+					<div
+						ref={dropdownRef}
+						id="dropdown"
+						className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""}
+        }`}
+					>
+						<button
+							onClick={() => {
+								setLanguage("en");
+								setDropdownVisible(false);
+							}}
+						>
+							<Image src={englishImg} alt="English" width={20} height={20} />
+							English
+						</button>
+						<button
+							onClick={() => {
+								setLanguage("de");
+								setDropdownVisible(false);
+							}}
+						>
+							<Image src={deutschImg} alt="Deutsch" width={20} height={20} />
+							Deutsch
+						</button>
+					</div>
+				</div>
+			</header>
+			<main className={styles.main}>
+				<RandomFact randomfact={randomfact} getRandomFact={getRandomFact} />
 			</main>
 		</>
 	);

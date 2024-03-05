@@ -1,4 +1,7 @@
 import { Fact } from "@/pages";
+import { FcPlanner } from "react-icons/fc";
+import styles from "./TodayFact.module.css";
+import { useState } from "react";
 
 type TodayFactProps = {
 	getTodayFact: () => void;
@@ -6,22 +9,36 @@ type TodayFactProps = {
 };
 
 const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, todayfact }) => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<>
-			<button onClick={getTodayFact} className="fact-button">
-				Get Fact of the Day
+			<button
+				onClick={() => {
+					getTodayFact();
+					openModal();
+				}}
+				className={styles.button}
+			>
+				<FcPlanner /> Fact of the Day
 			</button>
 
-			{todayfact.length > 0 && (
-				<div>
-					<h1>Fact of the Day</h1>
-					<ul>
-						{todayfact.length > 0 ? (
-							todayfact.map((fact) => <li key={fact.id}>{fact.text}</li>)
-						) : (
-							<li>No Fact of the Day</li>
-						)}
-					</ul>
+			{isModalOpen && (
+				<div className={styles.modal}>
+					<div className={styles.modalContent}>
+						<span className={styles.close} onClick={closeModal}>
+							&times;
+						</span>
+						{todayfact.length > 0 &&
+							todayfact.map((fact) => <p key={fact.id}>{fact.text}</p>)}
+					</div>
 				</div>
 			)}
 		</>

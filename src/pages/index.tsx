@@ -15,6 +15,8 @@ type FactType = "random" | "today";
 
 import { FcFolder } from "react-icons/fc";
 import Image from "next/image";
+import AuthContext from "@/lib/AuthContext";
+import Link from "next/link";
 
 export default function HomePage() {
 	const [randomfact, setRandomFacts] = useState<Fact[]>([]);
@@ -57,6 +59,9 @@ export default function HomePage() {
 	const deutschImg = "/de.svg";
 	const englishImg = "/en.svg";
 
+	const [userId, setUserId] = useState("");
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 	useEffect(() => {
 		const handleClickOutsideDropdown = (e: MouseEvent) => {
 			if (
@@ -86,52 +91,83 @@ export default function HomePage() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<header className={styles.banner}>
-				<button className={styles.button}>
-					<FcFolder /> Saved Facts
-				</button>
-				<TodayFact todayfact={todayfact} getTodayFact={getTodayFact} />
+			<AuthContext.Provider
+				value={{ userId, setUserId, isLoggedIn, setIsLoggedIn }}
+			>
+				{isLoggedIn ? (
+					<>
+						<header className={styles.banner}>
+							<button className={styles.button}>
+								<FcFolder /> Saved Facts
+							</button>
+							<TodayFact todayfact={todayfact} getTodayFact={getTodayFact} />
 
-				<div className={`${styles.langMenu} ${styles.showLeft}`}>
-					<button onClick={handleToggleDropdown} className={styles.langButton}>
-						<Image
-							className={styles.langImg}
-							src={language === "en" ? englishImg : deutschImg}
-							alt="Deutsch"
-							width={50}
-							height={50}
-						/>
-					</button>
-					<div
-						ref={dropdownRef}
-						id="dropdown"
-						className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""}
-        }`}
-					>
-						<button
-							onClick={() => {
-								setLanguage("en");
-								setDropdownVisible(false);
-							}}
-						>
-							<Image src={englishImg} alt="English" width={20} height={20} />
-							English
-						</button>
-						<button
-							onClick={() => {
-								setLanguage("de");
-								setDropdownVisible(false);
-							}}
-						>
-							<Image src={deutschImg} alt="Deutsch" width={20} height={20} />
-							Deutsch
-						</button>
+							<div className={`${styles.langMenu} ${styles.showLeft}`}>
+								<button
+									onClick={handleToggleDropdown}
+									className={styles.langButton}
+								>
+									<Image
+										className={styles.langImg}
+										src={language === "en" ? englishImg : deutschImg}
+										alt="Deutsch"
+										width={50}
+										height={50}
+									/>
+								</button>
+								<div
+									ref={dropdownRef}
+									id="dropdown"
+									className={`${styles.dropdown} ${
+										dropdownVisible ? styles.show : ""
+									}
+    }`}
+								>
+									<button
+										onClick={() => {
+											setLanguage("en");
+											setDropdownVisible(false);
+										}}
+									>
+										<Image
+											src={englishImg}
+											alt="English"
+											width={20}
+											height={20}
+										/>
+										English
+									</button>
+									<button
+										onClick={() => {
+											setLanguage("de");
+											setDropdownVisible(false);
+										}}
+									>
+										<Image
+											src={deutschImg}
+											alt="Deutsch"
+											width={20}
+											height={20}
+										/>
+										Deutsch
+									</button>
+								</div>
+							</div>
+						</header>
+						<main className={styles.main}>
+							<RandomFact
+								randomfact={randomfact}
+								getRandomFact={getRandomFact}
+							/>
+						</main>
+					</>
+				) : (
+					<div>
+						You are not logged in. Please login to continue.{" "}
+						<Link href="/login">Login</Link>
 					</div>
-				</div>
-			</header>
-			<main className={styles.main}>
-				<RandomFact randomfact={randomfact} getRandomFact={getRandomFact} />
-			</main>
+				)}
+			</AuthContext.Provider>
 		</>
 	);
 }

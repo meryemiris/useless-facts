@@ -1,8 +1,10 @@
 import Head from "next/head";
 import { useState } from "react";
 import axios from "axios";
+import RandomFact from "@/components/randomFact";
+import TodayFact from "@/components/todayFact";
 
-type Fact = {
+export type Fact = {
 	id: string;
 	text: string;
 };
@@ -54,32 +56,10 @@ export default function Home() {
 					<option value="en">English</option>
 					<option value="de">Deutsch</option>
 				</select>
-				<button onClick={getTodayFact} className="fact-button">
-					Get Fact of the Day
-				</button>
-				<button onClick={getRandomFact} className="fact-button">
-					Get Random Fact
-				</button>
 
-				<div>
-					<h1>Random Fact</h1>
-					<ul>
-						{randomfact.map((fact) => (
-							<li key={fact.id}>{fact.text}</li>
-						))}
-					</ul>
-				</div>
+				<RandomFact randomfact={randomfact} getRandomFact={getRandomFact} />
 
-				<div>
-					<h1>Fact of the Day</h1>
-					<ul>
-						{todayfact.length > 0 ? (
-							todayfact.map((fact) => <li key={fact.id}>{fact.text}</li>)
-						) : (
-							<li>No Fact of the Day</li>
-						)}
-					</ul>
-				</div>
+				<TodayFact todayfact={todayfact} getTodayFact={getTodayFact} />
 			</main>
 		</>
 	);

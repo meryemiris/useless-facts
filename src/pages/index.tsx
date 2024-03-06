@@ -13,15 +13,25 @@ export type Fact = {
 
 type FactType = "random" | "today";
 
-import { FcFolder } from "react-icons/fc";
 import Image from "next/image";
 import AuthContext from "@/lib/AuthContext";
 import Link from "next/link";
+import FactBasket from "@/components/saved-facts/FactBasket";
+import Alert, { alertMessage } from "@/components/Alert";
 
 export default function HomePage() {
 	const [randomfact, setRandomFacts] = useState<Fact[]>([]);
 	const [todayfact, setTodayFacts] = useState<Fact[]>([]);
 	const [language, setLanguage] = useState<string>("en");
+
+	const [factBasket, setFactBasket] = useState<Fact[]>([]);
+
+	const [alert, setAlert] = useState<alertMessage | null>(null);
+
+	const showAlert = (type: string, title: string, message: string) => {
+		setAlert({ title, message, type });
+		setTimeout(() => setAlert(null), 5000);
+	};
 
 	const getFact = async ({ factType = "random" }: { factType?: FactType }) => {
 		try {
@@ -60,7 +70,24 @@ export default function HomePage() {
 	const englishImg = "/en.svg";
 
 	const [userId, setUserId] = useState("");
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+	const handleAddToBasket = (fact: Fact) => {
+		if (factBasket.includes(fact)) {
+			showAlert(
+				"warning",
+				"Uh-oh!",
+				"This fact is already in your basket! Please choose another one."
+			);
+
+			return;
+		}
+		setFactBasket((prev) => [...prev, fact]);
+	};
+
+	const handleRemoveFromBasket = (id: string) => {
+		setFactBasket((prev) => [...prev.filter((fact) => fact.id !== id)]);
+	};
 
 	useEffect(() => {
 		const handleClickOutsideDropdown = (e: MouseEvent) => {
@@ -96,11 +123,24 @@ export default function HomePage() {
 			>
 				{isLoggedIn ? (
 					<>
+						{alert && (
+							<Alert
+								title={alert.title}
+								message={alert.message}
+								type={alert.type}
+								onClose={() => setAlert(null)}
+							/>
+						)}
 						<header className={styles.banner}>
-							<button className={styles.button}>
-								<FcFolder /> Saved Facts
-							</button>
-							<TodayFact todayfact={todayfact} getTodayFact={getTodayFact} />
+							<FactBasket
+								facts={factBasket}
+								onRemove={handleRemoveFromBasket}
+							/>
+							<TodayFact
+								todayfact={todayfact}
+								getTodayFact={getTodayFact}
+								onBasket={handleAddToBasket}
+							/>
 
 							<div className={`${styles.langMenu} ${styles.showLeft}`}>
 								<button
@@ -158,6 +198,7 @@ export default function HomePage() {
 							<RandomFact
 								randomfact={randomfact}
 								getRandomFact={getRandomFact}
+								onBasket={handleAddToBasket}
 							/>
 						</main>
 					</>

@@ -1,0 +1,211 @@
+.button {
+    padding: 1.25em 1em;
+    font-weight: 400;
+    color: #382b22;
+    width: 3rem;
+    background: #fff0f0;
+    border: 2px solid #b18597;
+    align-self: center;
+    border-radius: 0.75em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.button::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f9c4d2;
+    border-radius: inherit;
+    -webkit-transform: translate3d(0, 0.75em, -1em);
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1), -webkit-box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.button:hover {
+    background: #ffe9e9;
+    -webkit-transform: translate(0, 0.25em);
+    transform: translate(0, 0.25em);
+}
+
+.button:hover::before {
+    -webkit-transform: translate3d(0, 0.5em, -1em);
+    transform: translate3d(0, 0.5em, -1em);
+}
+
+.button:active {
+    background: #ffe9e9;
+    -webkit-transform: translate(0em, 0.75em);
+    transform: translate(0em, 0.75em);
+}
+
+.button:active::before {
+    -webkit-transform: translate3d(0, 0, -1em);
+    transform: translate3d(0, 0, -1em);
+    /* box-shadow: 0 0 0 0.4em rgba(0, 0, 0, 0.15); */
+}
+
+
+.factBasket {
+    position: absolute;
+}
+
+
+
+
+.showRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+
+}
+
+
+
+.dropdown {
+    background-color: #fff;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: none;
+    width: 21rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    overflow: auto;
+    z-index: 1;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-height: 80vh;
+
+
+}
+
+
+
+.show {
+    display: block;
+}
+
+.facts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.fact {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1rem 0.5rem;
+    align-items: first baseline
+}
+
+.fact p {
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 15rem;
+
+
+}
+
+
+
+.binButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: rgb(255, 95, 95);
+    cursor: pointer;
+    border: 2px solid rgb(255, 201, 201);
+    transition-duration: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.binBottom {
+    width: 15px;
+    z-index: 2;
+}
+
+.binTop {
+    width: 1rem;
+    transform-origin: right;
+    transition-duration: 0.5s;
+    z-index: 2;
+}
+
+.binButton:hover .bin-top {
+    transform: rotate(45deg);
+}
+
+.binButton:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.binButton:active {
+    transform: scale(0.9);
+}
+
+.garbage {
+    position: absolute;
+    width: 1rem;
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.binButton:hover .garbage {
+    animation: throw 0.4s linear;
+}
+
+@keyframes throw {
+    from {
+        transform: translate(-400%, -700%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+}
+
+.scrollable {
+    flex-direction: column;
+    padding: 0.5rem 1rem 0 0;
+    margin: 0.3rem 0;
+}
+
+.dropdown::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+
+
+.dropdown::-webkit-scrollbar-thumb {
+    background-color: #9db4c0;
+
+}
+
+.dropdown::-webkit-scrollbar-track {
+    background-color: inherit;
+}
+
+.saveButton {
+    background-color: #382b22;
+}

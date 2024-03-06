@@ -6,9 +6,14 @@ import { useState } from "react";
 type TodayFactProps = {
 	getTodayFact: () => void;
 	todayfact: Fact[];
+	onBasket: (fact: Fact) => void;
 };
 
-const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, todayfact }) => {
+const TodayFact: React.FC<TodayFactProps> = ({
+	getTodayFact,
+	todayfact,
+	onBasket,
+}) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const openModal = () => {
@@ -38,6 +43,9 @@ const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, todayfact }) => {
 						</span>
 						{todayfact.length > 0 &&
 							todayfact.map((fact) => <p key={fact.id}>{fact.text}</p>)}
+						<button onClick={() => onBasket(todayfact[0])}>
+							Add to basket
+						</button>
 					</div>
 				</div>
 			)}

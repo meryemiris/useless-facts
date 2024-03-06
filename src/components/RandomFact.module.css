@@ -63,7 +63,6 @@
     box-shadow: #b18597 5px 10px 5px, #ffe3e2 -1px 0px 2px;
     display: flex;
     color: black;
-
     justify-content: center;
     position: relative;
     flex-direction: column;
@@ -72,7 +71,7 @@
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     align-self: center;
-    padding: 1.5rem 1rem;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .card:hover {
@@ -89,16 +88,30 @@
 
 
 .saveIcon {
-    font-size: 20px;
+    font-size: 2rem;
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 1rem;
+    top: 0;
     transition: all 0.3s ease-in-out;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    color: #b18597;
+    border-radius: 50%;
+
 }
 
-.card:hover>.saveIcon {
-    font-size: 23px;
+
+.saveIcon:hover {
+    color: #382b22;
 }
+
+
+.saveIcon.clicked svg path {
+    fill: aquamarine;
+}
+
+
 
 .nextButton {
     background-color: #ffe3e2;

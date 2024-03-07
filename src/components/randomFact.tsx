@@ -1,7 +1,8 @@
+import { useState } from "react";
+
 import styles from "./RandomFact.module.css";
 
 import { Fact } from "@/pages";
-import { useState } from "react";
 
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { GrCaretNext } from "react-icons/gr";

@@ -1,10 +1,20 @@
-import Head from "next/head";
-import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 
+import { useContext, useEffect, useState } from "react";
+
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import AuthContext from "@/lib/AuthContext";
+
+import styles from "@/styles/Home.module.css";
+
+import Alert, { alertMessage } from "@/components/Alert";
 import TodayFact from "@/components/TodayFact";
 import RandomFact from "@/components/RandomFact";
-import styles from "@/styles/Home.module.css";
+import FactBasket from "@/components/FactBasket";
+import Language from "@/components/Language";
 
 export type Fact = {
 	id: string;
@@ -13,32 +23,26 @@ export type Fact = {
 
 type FactType = "random" | "today";
 
-import Image from "next/image";
-import AuthContext from "@/lib/AuthContext";
-import Link from "next/link";
-import FactBasket from "@/components/FactBasket";
-import Alert, { alertMessage } from "@/components/Alert";
-import { supabase } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
-import Language from "@/components/Language";
-
 export default function HomePage() {
 	const router = useRouter();
-	const [randomfact, setRandomFacts] = useState<Fact[]>([]);
-	const [todayfact, setTodayFacts] = useState<Fact[]>([]);
-	const [language, setLanguage] = useState<string>("en");
 
+	const [randomfact, setRandomFact] = useState<Fact[]>([]);
+	const [todayfact, setTodayFact] = useState<Fact[]>([]);
 	const [factBasket, setFactBasket] = useState<Fact[]>([]);
 
+	const [language, setLanguage] = useState<string>("en");
 	const [alert, setAlert] = useState<alertMessage | null>(null);
 
-	const { userId, setUserId, isLoggedIn, setIsLoggedIn } =
-		useContext(AuthContext);
+	const { isLoggedIn } = useContext(AuthContext);
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
 		setTimeout(() => setAlert(null), 5000);
 	};
+
+	useEffect(() => {
+		isLoggedIn ? false : router.push("/login");
+	}, [isLoggedIn, router]);
 
 	const getFact = async ({ factType = "random" }: { factType?: FactType }) => {
 		try {
@@ -47,9 +51,9 @@ export default function HomePage() {
 			);
 
 			if (factType === "random") {
-				setRandomFacts([response.data]);
+				setRandomFact([response.data]);
 			} else {
-				setTodayFacts([response.data]);
+				setTodayFact([response.data]);
 			}
 			console.log(response.data);
 		} catch (error) {
@@ -78,10 +82,6 @@ export default function HomePage() {
 		setFactBasket((prev) => [...prev, fact]);
 	};
 
-	const handleRemoveFromBasket = (id: string) => {
-		setFactBasket((prev) => [...prev.filter((fact) => fact.id !== id)]);
-	};
-
 	return (
 		<>
 			<Head>
@@ -91,7 +91,7 @@ export default function HomePage() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			{isLoggedIn ? (
+			{isLoggedIn && (
 				<>
 					{alert && (
 						<Alert
@@ -101,13 +101,9 @@ export default function HomePage() {
 							onClose={() => setAlert(null)}
 						/>
 					)}
-					<header className={styles.banner}>
+					<nav className={styles.banner}>
 						<Link href="/saved">Go Saved</Link>
-						<FactBasket
-							facts={factBasket}
-							setFactBasket={setFactBasket}
-							onRemove={handleRemoveFromBasket}
-						/>
+						<FactBasket facts={factBasket} setFactBasket={setFactBasket} />
 						<TodayFact
 							todayfact={todayfact}
 							getTodayFact={getTodayFact}
@@ -115,7 +111,7 @@ export default function HomePage() {
 						/>
 
 						<Language language={language} setLanguage={setLanguage} />
-					</header>
+					</nav>
 					<main className={styles.main}>
 						<RandomFact
 							randomfact={randomfact}
@@ -124,11 +120,6 @@ export default function HomePage() {
 						/>
 					</main>
 				</>
-			) : (
-				<div>
-					You are not logged in. Please login to continue.{" "}
-					<Link href="/login">Login</Link>
-				</div>
 			)}
 		</>
 	);

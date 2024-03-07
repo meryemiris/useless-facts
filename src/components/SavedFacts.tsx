@@ -1,8 +1,9 @@
-import { supabase } from "@/lib/supabase";
-
 import { useContext, useEffect, useState } from "react";
 
+import { supabase } from "@/lib/supabase";
+
 import styles from "./FactBasket.module.css";
+
 import AuthContext from "@/lib/AuthContext";
 
 type SavedFacts = {
@@ -12,11 +13,9 @@ type SavedFacts = {
 }[];
 
 const SavedFacts = () => {
-	const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
-	console.log("saved", savedFacts);
-
 	const { userId } = useContext(AuthContext);
-	console.log(" saved page userId", userId);
+
+	const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
 
 	useEffect(() => {
 		const getSavedFacts = async () => {

@@ -1,7 +1,10 @@
-import { Fact } from "@/pages";
-import { FcPlanner } from "react-icons/fc";
-import styles from "./TodayFact.module.css";
 import { useState } from "react";
+
+import styles from "./TodayFact.module.css";
+
+import { Fact } from "@/pages";
+
+import { FcPlanner } from "react-icons/fc";
 
 type TodayFactProps = {
 	getTodayFact: () => void;

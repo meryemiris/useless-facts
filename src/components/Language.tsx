@@ -1,6 +1,8 @@
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
 import styles from "./Language.module.css";
+
+import Image from "next/image";
 
 type Props = {
 	language: string;
@@ -10,6 +12,13 @@ type Props = {
 const Language: React.FC<Props> = ({ language, setLanguage }) => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
+
+	const deutschImg = "/de.svg";
+	const englishImg = "/en.svg";
+
+	const handleToggleDropdown = () => {
+		setDropdownVisible(!dropdownVisible);
+	};
 
 	useEffect(() => {
 		const handleClickOutsideDropdown = (e: MouseEvent) => {
@@ -32,12 +41,6 @@ const Language: React.FC<Props> = ({ language, setLanguage }) => {
 		};
 	}, []);
 
-	const handleToggleDropdown = () => {
-		setDropdownVisible(!dropdownVisible);
-	};
-
-	const deutschImg = "/de.svg";
-	const englishImg = "/en.svg";
 	return (
 		<div className={`${styles.langMenu} ${styles.showLeft}`}>
 			<button onClick={handleToggleDropdown} className={styles.langButton}>

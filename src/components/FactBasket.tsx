@@ -1,33 +1,28 @@
-import { FaBasketShopping } from "react-icons/fa6";
+import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./FactBasket.module.css";
-import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
-import { Fact } from "@/pages";
 
 import AuthContext from "@/lib/AuthContext";
 import { supabase } from "@/lib/supabase";
 
+import { Fact } from "@/pages";
+
+import { FaBasketShopping } from "react-icons/fa6";
+
 type FactBasketProps = {
 	facts: Fact[];
-	onRemove: (id: string) => void;
 	setFactBasket: React.Dispatch<SetStateAction<Fact[]>>;
 };
 
-const FactBasket: React.FC<FactBasketProps> = ({
-	facts,
-	onRemove,
-	setFactBasket,
-}) => {
-	console.log(facts);
+const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
+	const dropdownRef = useRef<HTMLDivElement>(null);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
-	const dropdownRef = useRef<HTMLDivElement>(null);
+	const { userId } = useContext(AuthContext);
 
 	const handleToggleDropdown = () => {
 		setDropdownVisible(!dropdownVisible);
 	};
-
-	const { userId } = useContext(AuthContext);
 
 	useEffect(() => {
 		const handleClickOutsideDropdown = (e: MouseEvent) => {
@@ -49,6 +44,10 @@ const FactBasket: React.FC<FactBasketProps> = ({
 			document.removeEventListener("mousedown", handleClick);
 		};
 	}, []);
+
+	const handleRemoveFromBasket = (id: string) => {
+		setFactBasket((prev) => [...prev.filter((fact) => fact.id !== id)]);
+	};
 
 	const handleSaveData = async () => {
 		const insertArray = facts.map((fact) => ({
@@ -84,7 +83,7 @@ const FactBasket: React.FC<FactBasketProps> = ({
 							<p> {fact.text}</p>
 							<button
 								className={styles.binButton}
-								onClick={() => onRemove(fact.id)}
+								onClick={() => handleRemoveFromBasket(fact.id)}
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"

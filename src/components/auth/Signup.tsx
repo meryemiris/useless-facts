@@ -5,8 +5,11 @@ import styles from "./Login.module.css";
 
 import Alert, { alertMessage } from "../Alert";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+	const router = useRouter();
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -21,7 +24,7 @@ export default function Signup() {
 		e.preventDefault();
 
 		const emailCheck = await supabase
-			.from("users")
+			.from("user")
 			.select("email")
 			.eq("email", email);
 
@@ -69,9 +72,6 @@ export default function Signup() {
 			} = await supabase.auth.signUp({
 				email,
 				password,
-				options: {
-					emailRedirectTo: "http://localhost:3000/login",
-				},
 			});
 
 			if (!error) {
@@ -79,7 +79,7 @@ export default function Signup() {
 
 				if (user) {
 					const { data, error: insertError } = await supabase
-						.from("users")
+						.from("user")
 						.insert([
 							{
 								id: user.id,

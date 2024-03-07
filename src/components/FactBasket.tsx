@@ -1,16 +1,24 @@
 import { FaBasketShopping } from "react-icons/fa6";
 
 import styles from "./FactBasket.module.css";
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
 import { Fact } from "@/pages";
-import { MdDelete } from "react-icons/md";
+
+import AuthContext from "@/lib/AuthContext";
+import { supabase } from "@/lib/supabase";
 
 type FactBasketProps = {
 	facts: Fact[];
 	onRemove: (id: string) => void;
+	setFactBasket: React.Dispatch<SetStateAction<Fact[]>>;
 };
 
-const FactBasket: React.FC<FactBasketProps> = ({ facts, onRemove }) => {
+const FactBasket: React.FC<FactBasketProps> = ({
+	facts,
+	onRemove,
+	setFactBasket,
+}) => {
+	console.log(facts);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
 	const dropdownRef = useRef<HTMLDivElement>(null);
@@ -18,6 +26,8 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, onRemove }) => {
 	const handleToggleDropdown = () => {
 		setDropdownVisible(!dropdownVisible);
 	};
+
+	const { userId } = useContext(AuthContext);
 
 	useEffect(() => {
 		const handleClickOutsideDropdown = (e: MouseEvent) => {
@@ -39,6 +49,24 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, onRemove }) => {
 			document.removeEventListener("mousedown", handleClick);
 		};
 	}, []);
+
+	const handleSaveData = async () => {
+		const insertArray = facts.map((fact) => ({
+			content: fact.text,
+			user_id: userId,
+		}));
+
+		try {
+			const { data, error } = await supabase
+				.from("facts")
+				.insert(insertArray)
+				.select();
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setFactBasket([]);
+		}
+	};
 	return (
 		<div className={`${styles.factBasket} ${styles.showRight}`}>
 			<button className={styles.button} onClick={handleToggleDropdown}>
@@ -111,7 +139,9 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, onRemove }) => {
 							</button>
 						</li>
 					))}
-					<button className={styles.saveButton}> Save Permanently</button>
+					<button onClick={handleSaveData} className={styles.saveButton}>
+						Save Permanently
+					</button>
 				</ul>
 			</div>
 		</div>

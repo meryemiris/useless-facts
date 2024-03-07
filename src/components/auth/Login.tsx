@@ -1,9 +1,10 @@
 import { supabase } from "@/lib/supabase";
 import styles from "./Login.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Alert, { alertMessage } from "../Alert";
 import Link from "next/link";
+import AuthContext from "@/lib/AuthContext";
 
 export default function Login() {
 	const router = useRouter();
@@ -11,6 +12,7 @@ export default function Login() {
 	const [password, setPassword] = useState("");
 	const [alert, setAlert] = useState<alertMessage | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
@@ -66,9 +68,9 @@ export default function Login() {
 						"Something went wrong while signing in. Please try again later."
 					);
 				}
+				return;
 			} else {
 				showAlert("success", "Welcome back!", "You've signed in successfully.");
-
 				router.push("/");
 			}
 		} catch (error) {

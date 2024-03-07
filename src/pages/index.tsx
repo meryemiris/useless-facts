@@ -15,6 +15,7 @@ import TodayFact from "@/components/TodayFact";
 import RandomFact from "@/components/RandomFact";
 import FactBasket from "@/components/FactBasket";
 import Language from "@/components/Language";
+import { FcFolder, FcHome } from "react-icons/fc";
 
 export type Fact = {
 	id: string;
@@ -101,18 +102,25 @@ export default function HomePage() {
 							onClose={() => setAlert(null)}
 						/>
 					)}
-					<nav className={styles.banner}>
-						<Link href="/saved">Go Saved</Link>
+					<nav className={styles.navbar}>
 						<FactBasket facts={factBasket} setFactBasket={setFactBasket} />
+
+						<Link className={styles.goPage} href="/saved">
+							<FcFolder className={styles.icon} />
+						</Link>
+						<button className={styles.goPage}>
+							<FcHome className={styles.icon} />
+						</button>
+
+						<Language language={language} setLanguage={setLanguage} />
+					</nav>
+					<main className={styles.main}>
 						<TodayFact
 							todayfact={todayfact}
 							getTodayFact={getTodayFact}
 							onBasket={handleAddToBasket}
 						/>
 
-						<Language language={language} setLanguage={setLanguage} />
-					</nav>
-					<main className={styles.main}>
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}

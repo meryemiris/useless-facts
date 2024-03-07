@@ -1,4 +1,17 @@
 .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcd5ce;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    border: none;
+    font-size: 2rem;
+}
+
+
+
+/* .button {
     padding: 1.25em 1em;
     font-weight: 400;
     color: #382b22;
@@ -50,8 +63,7 @@
     -webkit-transform: translate3d(0, 0, -1em);
     transform: translate3d(0, 0, -1em);
     /* box-shadow: 0 0 0 0.4em rgba(0, 0, 0, 0.15); */
-}
-
+/* } */
 
 .factBasket {
     position: absolute;

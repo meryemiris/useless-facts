@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 
 import { Fact } from "@/pages";
 
-import { FaBasketShopping } from "react-icons/fa6";
+import { FcBookmark } from "react-icons/fc";
 
 type FactBasketProps = {
 	facts: Fact[];
@@ -69,7 +69,7 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
 	return (
 		<div className={`${styles.factBasket} ${styles.showRight}`}>
 			<button className={styles.button} onClick={handleToggleDropdown}>
-				<FaBasketShopping />
+				<FcBookmark />
 			</button>
 
 			<div

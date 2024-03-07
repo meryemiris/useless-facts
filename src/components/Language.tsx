@@ -48,8 +48,8 @@ const Language: React.FC<Props> = ({ language, setLanguage }) => {
 					className={styles.langImg}
 					src={language === "en" ? englishImg : deutschImg}
 					alt="Deutsch"
-					width={50}
-					height={50}
+					width={40}
+					height={40}
 				/>
 			</button>
 			<div

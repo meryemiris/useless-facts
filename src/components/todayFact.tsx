@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./TodayFact.module.css";
 
@@ -8,18 +8,14 @@ import Image from "next/image";
 
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import FactContext from "@/lib/FactContext";
 
 type TodayFactProps = {
 	getTodayFact: () => void;
-	todayfact: Fact[];
 	onBasket: (fact: Fact) => void;
 };
 
-const TodayFact: React.FC<TodayFactProps> = ({
-	getTodayFact,
-	todayfact,
-	onBasket,
-}) => {
+const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, onBasket }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const openModal = () => {
@@ -32,6 +28,8 @@ const TodayFact: React.FC<TodayFactProps> = ({
 	const [isSaved, setIsSaved] = useState(false);
 
 	const modalRef = useRef<HTMLDivElement>(null);
+
+	const { todayFact } = useContext(FactContext);
 
 	useEffect(() => {
 		const handleClickOutsideModal = (e: MouseEvent) => {
@@ -84,13 +82,13 @@ const TodayFact: React.FC<TodayFactProps> = ({
 							height={40}
 							alt={"fact modal image"}
 						/>
-						{todayfact.length > 0 &&
-							todayfact.map((fact) => <p key={fact.id}>{fact.text}</p>)}
+						{todayFact.length > 0 &&
+							todayFact.map((fact: Fact) => <p key={fact.id}>{fact.text}</p>)}
 						<button
 							className={`${styles.addButton} ${isSaved ? styles.saved : ""}`}
 							onClick={() => {
 								setIsSaved(true);
-								onBasket(todayfact[0]);
+								onBasket(todayFact[0]);
 							}}
 						>
 							{isSaved ? <FaBookmark /> : <CiBookmark />}

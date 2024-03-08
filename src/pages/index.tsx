@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 
 import AuthContext from "@/lib/AuthContext";
+import FactContext from "@/lib/FactContext";
 
 import Alert, { alertMessage } from "@/components/Alert";
-import TodayFact from "@/components/TodayFact";
 import RandomFact from "@/components/RandomFact";
 import Layout from "@/components/Layout";
 
@@ -23,13 +23,13 @@ export default function HomePage() {
 	const router = useRouter();
 
 	const [randomfact, setRandomFact] = useState<Fact[]>([]);
-	const [todayfact, setTodayFact] = useState<Fact[]>([]);
-	const [factBasket, setFactBasket] = useState<Fact[]>([]);
 
-	const [language, setLanguage] = useState<string>("en");
 	const [alert, setAlert] = useState<alertMessage | null>(null);
 
 	const { isLoggedIn } = useContext(AuthContext);
+
+	const { setTodayFact, factBasket, setFactBasket, language } =
+		useContext(FactContext);
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
@@ -46,10 +46,12 @@ export default function HomePage() {
 				`https://uselessfacts.jsph.pl/${factType}.json?language=${language}`
 			);
 
+			const fact = response.data as Fact;
+
 			if (factType === "random") {
-				setRandomFact([response.data]);
+				setRandomFact([fact]);
 			} else {
-				setTodayFact([response.data]);
+				setTodayFact([fact]);
 			}
 			console.log(response.data);
 		} catch (error) {
@@ -97,15 +99,7 @@ export default function HomePage() {
 							onClose={() => setAlert(null)}
 						/>
 					)}
-					<Layout
-						language={language}
-						setLanguage={setLanguage}
-						factBasket={factBasket}
-						setFactBasket={setFactBasket}
-						todayfact={todayfact}
-						getTodayFact={getTodayFact}
-						onBasket={handleAddToBasket}
-					>
+					<Layout getTodayFact={getTodayFact} onBasket={handleAddToBasket}>
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}

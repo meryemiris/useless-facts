@@ -1,17 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./Language.module.css";
 
 import Image from "next/image";
 
-type Props = {
-	language: string;
-	setLanguage: (language: string) => void;
-};
+import FactContext from "@/lib/FactContext";
 
-const Language: React.FC<Props> = ({ language, setLanguage }) => {
+const Language = () => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
+
+	const { language, setLanguage } = useContext(FactContext);
 
 	const deutschImg = "/de.svg";
 	const englishImg = "/en.svg";
@@ -55,8 +54,7 @@ const Language: React.FC<Props> = ({ language, setLanguage }) => {
 			<div
 				ref={dropdownRef}
 				id="dropdown"
-				className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""}
-}`}
+				className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""}`}
 			>
 				<button
 					onClick={() => {

@@ -1,24 +1,22 @@
-import { SetStateAction, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./FactBasket.module.css";
 
 import AuthContext from "@/lib/AuthContext";
+import FactContext from "@/lib/FactContext";
 import { supabase } from "@/lib/supabase";
 
 import { Fact } from "@/pages";
 
 import { FcBookmark, FcFolder } from "react-icons/fc";
 
-type FactBasketProps = {
-	facts: Fact[];
-	setFactBasket: React.Dispatch<SetStateAction<Fact[]>>;
-};
-
-const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
+const FactBasket = () => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
+
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
 	const { userId } = useContext(AuthContext);
+	const { factBasket: facts, setFactBasket } = useContext(FactContext);
 
 	const handleToggleDropdown = () => {
 		setDropdownVisible(!dropdownVisible);
@@ -46,7 +44,9 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
 	}, []);
 
 	const handleRemoveFromBasket = (id: string) => {
-		setFactBasket((prev) => [...prev.filter((fact) => fact.id !== id)]);
+		setFactBasket((prev: Fact[]) => [
+			...prev.filter((fact: Fact) => fact.id !== id),
+		]);
 	};
 
 	const handleSaveData = async () => {

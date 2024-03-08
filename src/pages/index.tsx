@@ -11,6 +11,7 @@ import FactContext from "@/lib/FactContext";
 import Alert, { alertMessage } from "@/components/Alert";
 import RandomFact from "@/components/RandomFact";
 import Layout from "@/components/Layout";
+import TodayFact from "@/components/TodayFact";
 
 export type Fact = {
 	id: string;
@@ -99,7 +100,8 @@ export default function HomePage() {
 							onClose={() => setAlert(null)}
 						/>
 					)}
-					<Layout getTodayFact={getTodayFact} onBasket={handleAddToBasket}>
+					<Layout>
+						<TodayFact getTodayFact={getTodayFact} onBasket={getTodayFact} />
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}

@@ -1,12 +1,16 @@
 .button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-weight: 600;
+    font-size: 2rem;
     color: #382b22;
-    width: 9rem;
     text-transform: uppercase;
-    padding: 1.25em 2em;
+    text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
+
+    padding: 1rem 1.3rem 1rem 0;
     background: #fff0f0;
     border: 2px solid #b18597;
-    align-self: center;
     border-radius: 0.75em;
     margin-bottom: 2rem;
     -webkit-transform-style: preserve-3d;
@@ -56,22 +60,18 @@
 
 
 .card {
-    width: 20rem;
-    height: fit-content;
-    background: #b18597;
-    border-radius: 15px;
-    box-shadow: #b18597 5px 10px 5px, #ffe3e2 -1px 0px 2px;
     display: flex;
-    color: black;
-    justify-content: center;
-    position: relative;
     flex-direction: column;
-    background: linear-gradient(to right, #b18597, #ffe3e2);
-    cursor: pointer;
+    background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 90vw;
+    max-width: 600px;
+    height: fit-content;
+    border-radius: .8rem;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
-    align-self: center;
     padding: 0 1rem 1rem 1rem;
+    margin: 0 1rem;
 }
 
 .card:hover {
@@ -81,16 +81,13 @@
 
 .fact {
     font-size: 1.5rem;
-    margin: 1rem
+    margin-bottom: .5rem;
 }
 
 
-
 .saveIcon {
+    align-self: flex-end;
     font-size: 2rem;
-    position: absolute;
-    right: 1rem;
-    top: 0;
     transition: all 0.3s ease-in-out;
     background-color: inherit;
     border: none;
@@ -101,8 +98,12 @@
 }
 
 
-.saveIcon:hover {
-    color: #382b22;
+.saveIcon:hover:not(.saved) {
+    transform: scale(1.1);
+}
+
+.saved {
+    color: #b18597;
 }
 
 
@@ -113,16 +114,26 @@
 
 
 .nextButton {
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    gap: .5rem;
     background-color: #ffe3e2;
+    border-radius: .8rem;
     border: none;
-    color: #b18597;
-    font-weight: 400;
-    width: 100%;
+    font-size: 1rem;
     padding: 0.5rem;
-    align-self: center;
+    align-self: flex-end;
+    color: #382b22;
+
 }
 
 .nextButton:hover {
     background-color: #b18597;
     color: #ffe3e2;
+}
+
+
+.owlImg {
+    padding: 0
 }

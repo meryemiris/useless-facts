@@ -1,0 +1,31 @@
+.navbar {
+    background-color: #fae1dd;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+
+}
+
+.goPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcd5ce;
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    border: none;
+}
+
+
+.icon {
+    font-size: 2rem;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+}

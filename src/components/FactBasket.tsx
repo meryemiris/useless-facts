@@ -69,7 +69,7 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
 	return (
 		<div className={`${styles.factBasket} ${styles.showRight}`}>
 			<button className={styles.button} onClick={handleToggleDropdown}>
-				<FcBookmark />
+				<FcBookmark className={styles.icon} />
 			</button>
 
 			<div

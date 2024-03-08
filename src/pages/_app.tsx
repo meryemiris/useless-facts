@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [userId, setUserId] = useState("");
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 	supabase.auth.onAuthStateChange((event, session) => {
 		setIsLoggedIn(!!session);

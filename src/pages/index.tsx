@@ -1,21 +1,16 @@
 import axios from "axios";
 
 import { useContext, useEffect, useState } from "react";
-
-import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import AuthContext from "@/lib/AuthContext";
+import Head from "next/head";
 
-import styles from "@/styles/Home.module.css";
+import AuthContext from "@/lib/AuthContext";
 
 import Alert, { alertMessage } from "@/components/Alert";
 import TodayFact from "@/components/TodayFact";
 import RandomFact from "@/components/RandomFact";
-import FactBasket from "@/components/FactBasket";
-import Language from "@/components/Language";
-import { FcFolder, FcHome } from "react-icons/fc";
+import Layout from "@/components/Layout";
 
 export type Fact = {
 	id: string;
@@ -102,31 +97,23 @@ export default function HomePage() {
 							onClose={() => setAlert(null)}
 						/>
 					)}
-					<nav className={styles.navbar}>
-						<FactBasket facts={factBasket} setFactBasket={setFactBasket} />
-
-						<Link className={styles.goPage} href="/saved">
-							<FcFolder className={styles.icon} />
-						</Link>
-						<button className={styles.goPage}>
-							<FcHome className={styles.icon} />
-						</button>
-
-						<Language language={language} setLanguage={setLanguage} />
-					</nav>
-					<main className={styles.main}>
+					<Layout
+						language={language}
+						setLanguage={setLanguage}
+						factBasket={factBasket}
+						setFactBasket={setFactBasket}
+					>
 						<TodayFact
 							todayfact={todayfact}
 							getTodayFact={getTodayFact}
 							onBasket={handleAddToBasket}
 						/>
-
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}
 							onBasket={handleAddToBasket}
 						/>
-					</main>
+					</Layout>
 				</>
 			)}
 		</>

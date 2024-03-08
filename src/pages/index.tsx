@@ -102,12 +102,10 @@ export default function HomePage() {
 						setLanguage={setLanguage}
 						factBasket={factBasket}
 						setFactBasket={setFactBasket}
+						todayfact={todayfact}
+						getTodayFact={getTodayFact}
+						onBasket={handleAddToBasket}
 					>
-						<TodayFact
-							todayfact={todayfact}
-							getTodayFact={getTodayFact}
-							onBasket={handleAddToBasket}
-						/>
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}

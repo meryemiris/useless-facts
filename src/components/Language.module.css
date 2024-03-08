@@ -8,10 +8,9 @@
     align-items: center;
     justify-content: center;
     border: none;
-    background-color: #fcd5ce;
+    background-color: #ffe5d9;
     padding: 0.5rem;
     border-radius: 0.8rem;
-
 }
 
 
@@ -40,15 +39,15 @@
 
 
 .dropdown {
-    background-color: #fff0f0;
+    background-color: #f8edeb;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
     display: none;
-    width: 120px;
+    width: 140px;
     padding: 0.5rem;
     border-radius: 10px;
-    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     overflow: auto;
     z-index: 1;
     font-size: 1rem;
@@ -65,10 +64,11 @@
     font-size: 1rem;
     cursor: pointer;
     transition: 0.2s;
+    gap: .5rem;
 }
 
 .dropdown button:hover {
-    background-color: #b18597;
+    transform: scale(1.1);
 }
 
 

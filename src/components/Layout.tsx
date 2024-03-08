@@ -26,14 +26,12 @@ const Layout: React.FC<Props> = ({
 }) => {
 	return (
 		<div className={styles.layout}>
-			<main className={styles.main}>
-				<TodayFact
-					todayfact={todayfact}
-					getTodayFact={getTodayFact}
-					onBasket={onBasket}
-				/>
-				{children}
-			</main>
+			<TodayFact
+				todayfact={todayfact}
+				getTodayFact={getTodayFact}
+				onBasket={onBasket}
+			/>
+			<main className={styles.main}>{children}</main>
 
 			<Navbar
 				language={language}

@@ -83,7 +83,6 @@
     width: 80%;
     max-width: 500px;
     z-index: 2;
-    font-family: var(--font-sans);
     gap: 1rem;
     display: flex;
     flex-direction: column;

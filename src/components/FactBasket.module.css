@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fcd5ce;
+    background-color: #ffe5d9;
     padding: 0.5rem;
     border-radius: 0.8rem;
     border: none;
@@ -21,8 +21,6 @@
 }
 
 
-
-
 .showRight {
     display: flex;
     flex-direction: column;
@@ -31,25 +29,24 @@
 
 }
 
-
-
 .dropdown {
-    background-color: #fff;
+    background-color: #f8edeb;
     position: absolute;
-    top: 1rem;
-    left: 1rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
     display: none;
-    width: 21rem;
     padding: 0.5rem;
     border-radius: 10px;
-    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     overflow: auto;
     z-index: 1;
     font-size: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-height: 80vh;
-
-
+    width: 80vw;
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 
@@ -76,9 +73,9 @@
 .fact p {
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 15rem;
-
-
+    max-width: 80%;
+    text-align: left;
+    margin: 0;
 }
 
 
@@ -91,7 +88,7 @@
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
-    background-color: rgb(255, 95, 95);
+    background-color: #f08080;
     cursor: pointer;
     border: 2px solid rgb(255, 201, 201);
     transition-duration: 0.4s;
@@ -116,7 +113,7 @@
 }
 
 .binButton:hover {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(255, 95, 95);
 }
 
 .binButton:active {
@@ -148,21 +145,23 @@
     }
 }
 
-.scrollable {
-    flex-direction: column;
-    padding: 0.5rem 1rem 0 0;
-    margin: 0.3rem 0;
-}
+
 
 .dropdown::-webkit-scrollbar {
-    width: 0.3rem;
+
+    width: 0.5rem;
+
 }
 
 
 
 .dropdown::-webkit-scrollbar-thumb {
-    background-color: #9db4c0;
+    background-color: rgba(157, 180, 192, 0.5);
+    border-radius: 2rem;
+}
 
+.dropdown::-webkit-scrollbar-thumb:hover {
+    background-color: #9db4c0;
 }
 
 .dropdown::-webkit-scrollbar-track {
@@ -170,6 +169,28 @@
 }
 
 .saveButton {
-    background-color: #fff;
-    color: black;
+    display: flex;
+    align-self: flex-end;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.8rem;
+    border: none;
+    background-color: #e8e8e4;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition-duration: 0.4s;
+    width: fit-content;
+}
+
+.saveButton:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+
+}
+
+.emptyBasket {
+    padding: 1rem;
+    color: #b18597;
+    font-size: 1rem;
 }

@@ -78,7 +78,7 @@ const FactBasket: React.FC<FactBasketProps> = ({ facts, setFactBasket }) => {
 				id="dropdown"
 				className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""} `}
 			>
-				{facts.length > 0 ? (
+				{facts?.length > 0 ? (
 					<ul className={styles.facts}>
 						{facts.map((fact) => (
 							<li className={styles.fact} key={fact.id}>

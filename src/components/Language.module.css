@@ -8,9 +8,14 @@
     align-items: center;
     justify-content: center;
     border: none;
-    background-color: #ffe5d9;
+    background-color: inherit;
     padding: 0.5rem;
-    border-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
+}
+
+.onPage {
+    background-color: #b18597;
 }
 
 

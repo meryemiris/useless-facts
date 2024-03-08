@@ -1,17 +1,16 @@
 .facts {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     overflow-y: auto;
-    max-height: 80vh;
-    margin: 1rem;
+    height: 748px;
+    gap: 1rem;
+    margin: 1rem 1rem 0 1rem;
 }
 
 .fact {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 1rem 0.5rem;
     align-items: first baseline
 }
 
@@ -20,7 +19,7 @@
     font-family: Arial, Helvetica, sans-serif;
     max-width: 80%;
     text-align: left;
-    margin: 0;
+
 }
 
 

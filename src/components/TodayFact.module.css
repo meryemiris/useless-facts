@@ -17,7 +17,8 @@
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
-    margin: 1rem 1rem 0 0;
+    margin: 1rem;
+
 }
 
 .button:active {
@@ -130,10 +131,4 @@
 .addButton:active {
     transform: scale(0.9);
     transition: all 100ms
-}
-
-.modalImg {
-
-
-    object-fit: cover;
 }

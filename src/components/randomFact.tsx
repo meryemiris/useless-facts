@@ -23,7 +23,7 @@ const RandomFact: React.FC<RandomFactProps> = ({
 }) => {
 	const [isSaved, setIsSaved] = useState(false);
 	return (
-		<>
+		<div className={styles.scrollable}>
 			{randomfact.length > 0 ? (
 				<div className={styles.card}>
 					<button
@@ -63,7 +63,7 @@ const RandomFact: React.FC<RandomFactProps> = ({
 					Random Fact
 				</button>
 			)}
-		</>
+		</div>
 	);
 };
 

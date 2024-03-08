@@ -1,23 +1,25 @@
 .navbar {
     background-color: #fae1dd;
-    /* margin: 0.5rem; */
-    /* border-radius: 0.5rem; */
-    padding: 0.5rem;
+    padding: 0 1rem 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 2rem;
-
 }
 
 .goPage {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fcd5ce;
+    background-color: inherit;
     padding: 0.5rem;
-    border-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
     border: none;
+}
+
+.onPage {
+    background-color: #b18597;
 }
 
 

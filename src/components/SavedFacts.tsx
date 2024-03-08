@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 
 import { supabase } from "@/lib/supabase";
 
-import styles from "./FactBasket.module.css";
+// import styles from "./FactBasket.module.css";
+import styles from "./SavedFacts.module.css";
 
 import AuthContext from "@/lib/AuthContext";
 

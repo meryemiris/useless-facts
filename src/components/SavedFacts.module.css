@@ -7,11 +7,32 @@
     margin: 1rem 1rem 0 1rem;
 }
 
+.facts::-webkit-scrollbar {
+    width: 0.4rem;
+}
+
+
+
+.facts::-webkit-scrollbar-thumb {
+    background-color: rgba(157, 180, 192, 0.5);
+    border-radius: 2rem;
+}
+
+.facts::-webkit-scrollbar-thumb:hover {
+    background-color: #9db4c0;
+}
+
+.facts::-webkit-scrollbar-track {
+    background-color: inherit;
+}
+
+
 .fact {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    align-items: first baseline
+    align-items: first baseline;
+    padding-right: 1rem;
 }
 
 .fact p {
@@ -86,5 +107,11 @@
     to {
         transform: translate(0%, 0%);
         opacity: 1;
+    }
+}
+
+@media screen and (min-width:400px) and (max-width: 768px) {
+    .facts {
+        height: 480px;
     }
 }

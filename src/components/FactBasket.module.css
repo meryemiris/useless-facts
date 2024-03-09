@@ -4,8 +4,8 @@
     justify-content: center;
     background-color: inherit;
     padding: 0.5rem;
-    border-bottom-left-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
+    border-bottom-left-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
     font-size: 2rem;
     border: none;
     cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: 0.2s;
 }
 
@@ -153,9 +153,7 @@
 
 
 .dropdown::-webkit-scrollbar {
-
     width: 0.5rem;
-
 }
 
 
@@ -198,4 +196,24 @@
     padding: 1rem;
     color: #b18597;
     font-size: 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+
+    .dropdown {
+        top: 1.2rem;
+        left: 1.5rem;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: .4rem;
+        min-height: 120px;
+        max-height: 350px;
+
+    }
+
+    .icon {
+        font-size: 3rem;
+    }
+
+
+
 }

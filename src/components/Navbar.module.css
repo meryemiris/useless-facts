@@ -13,8 +13,8 @@
     justify-content: center;
     background-color: inherit;
     padding: 0.5rem;
-    border-bottom-left-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
+    border-bottom-left-radius: .4rem;
+    border-bottom-right-radius: .4rem;
     border: none;
 }
 
@@ -30,4 +30,23 @@
 .icon:hover {
     transform: scale(1.2);
     transition: 0.2s;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .goPage {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0.4rem;
+        border-top-left-radius: 0.4rem;
+    }
+
+    .icon {
+        font-size: 3rem;
+    }
+
 }

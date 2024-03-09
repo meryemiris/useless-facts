@@ -3,6 +3,7 @@
     flex-direction: column;
     overflow-y: auto;
     height: 748px;
+    width: 350px;
     gap: 1rem;
     margin: 1rem 1rem 0 1rem;
 }
@@ -110,8 +111,23 @@
     }
 }
 
-@media screen and (min-width:400px) and (max-width: 768px) {
+@media screen and (min-width: 400px) and (max-width: 768px) {
     .facts {
-        height: 480px;
+        height: 470px;
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .facts {
+        height: auto;
+        width: 800px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .facts {
+        height: auto;
+        width: 900px;
     }
 }

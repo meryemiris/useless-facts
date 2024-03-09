@@ -3,12 +3,12 @@ import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./FactBasket.module.css";
 
 import AuthContext from "@/lib/AuthContext";
-import FactContext from "@/lib/FactContext";
 import { supabase } from "@/lib/supabase";
 
 import { Fact } from "@/pages";
 
 import { FcBookmark, FcFolder } from "react-icons/fc";
+import { useFactContext } from "@/lib/FactContext";
 
 const FactBasket = () => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
@@ -16,7 +16,7 @@ const FactBasket = () => {
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
 	const { userId } = useContext(AuthContext);
-	const { factBasket: facts, setFactBasket } = useContext(FactContext);
+	const { factBasket: facts, setFactBasket } = useFactContext();
 
 	const handleToggleDropdown = () => {
 		setDropdownVisible(!dropdownVisible);

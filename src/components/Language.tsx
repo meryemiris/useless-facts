@@ -4,13 +4,13 @@ import styles from "./Language.module.css";
 
 import Image from "next/image";
 
-import FactContext from "@/lib/FactContext";
+import { useFactContext } from "@/lib/FactContext";
 
 const Language = () => {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 	const [dropdownVisible, setDropdownVisible] = useState(false);
 
-	const { language, setLanguage } = useContext(FactContext);
+	const { language, setLanguage } = useFactContext();
 
 	const deutschImg = "/de.svg";
 	const englishImg = "/en.svg";

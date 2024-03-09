@@ -10,14 +10,14 @@ import Language from "./Language";
 
 import { FcFolder, FcHome } from "react-icons/fc";
 import { IoLogOut } from "react-icons/io5";
-import FactContext from "@/lib/FactContext";
+import { useFactContext } from "@/lib/FactContext";
 
 async function signOut() {
 	const { error } = await supabase.auth.signOut();
 }
 
 const Navbar = () => {
-	const { activePage, setActivePage } = useContext(FactContext);
+	const { activePage, setActivePage } = useFactContext();
 
 	return (
 		<nav className={styles.navbar}>

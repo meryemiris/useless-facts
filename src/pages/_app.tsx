@@ -1,42 +1,31 @@
 import AuthContext from "@/lib/AuthContext";
-import FactContext from "@/lib/FactContext";
+import { FactProvider } from "@/lib/FactContext";
 import { supabase } from "@/lib/supabase";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fact } from ".";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [userId, setUserId] = useState("");
-
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-	const [factBasket, setFactBasket] = useState<Fact[]>([]);
-	const [language, setLanguage] = useState<string>("en");
+	useEffect(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, session) => {
+			setIsLoggedIn(!!session);
+			setUserId(session?.user?.id || "");
+		});
 
-	const [activePage, setActivePage] = useState<"home" | "saved">("home");
-
-	supabase.auth.onAuthStateChange((event, session) => {
-		setIsLoggedIn(!!session);
-		setUserId(session?.user?.id || "");
-	});
+		return data.subscription.unsubscribe;
+	}, []);
 
 	return (
 		<AuthContext.Provider
 			value={{ userId, setUserId, isLoggedIn, setIsLoggedIn }}
 		>
-			<FactContext.Provider
-				value={{
-					language,
-					setLanguage,
-					factBasket,
-					setFactBasket,
-					activePage,
-					setActivePage,
-				}}
-			>
+			<FactProvider>
 				<Component {...pageProps} />
-			</FactContext.Provider>
+			</FactProvider>
 		</AuthContext.Provider>
 	);
 }

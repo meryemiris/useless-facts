@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 
 import AuthContext from "@/lib/AuthContext";
-import FactContext from "@/lib/FactContext";
+import { useFactContext } from "@/lib/FactContext";
 
 import Alert, { alertMessage } from "../components/Alert";
 import RandomFact from "../components/RandomFact";
@@ -31,7 +31,7 @@ export default function HomePage() {
 
 	const [todayFact, setTodayFact] = useState<Fact[]>([]);
 
-	const { factBasket, setFactBasket, language } = useContext(FactContext);
+	const { factBasket, setFactBasket, language } = useFactContext();
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
@@ -79,7 +79,7 @@ export default function HomePage() {
 
 			return;
 		}
-		setFactBasket((prev) => [...prev, fact]);
+		setFactBasket((prev: Fact[]) => [...prev, fact]);
 	};
 
 	return (

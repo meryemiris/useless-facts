@@ -29,8 +29,9 @@ export default function HomePage() {
 
 	const { isLoggedIn } = useContext(AuthContext);
 
-	const { setTodayFact, factBasket, setFactBasket, language } =
-		useContext(FactContext);
+	const [todayFact, setTodayFact] = useState<Fact[]>([]);
+
+	const { factBasket, setFactBasket, language } = useContext(FactContext);
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
@@ -101,7 +102,11 @@ export default function HomePage() {
 						/>
 					)}
 					<Layout>
-						<TodayFact getTodayFact={getTodayFact} onBasket={getTodayFact} />
+						<TodayFact
+							getTodayFact={getTodayFact}
+							todayFact={todayFact}
+							onBasket={handleAddToBasket}
+						/>
 						<RandomFact
 							randomfact={randomfact}
 							getRandomFact={getRandomFact}

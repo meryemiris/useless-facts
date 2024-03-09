@@ -8,14 +8,18 @@ import Image from "next/image";
 
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-import FactContext from "@/lib/FactContext";
 
 type TodayFactProps = {
+	todayFact: Fact[];
 	getTodayFact: () => void;
 	onBasket: (fact: Fact) => void;
 };
 
-const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, onBasket }) => {
+const TodayFact: React.FC<TodayFactProps> = ({
+	getTodayFact,
+	onBasket,
+	todayFact,
+}) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const openModal = () => {
@@ -28,8 +32,6 @@ const TodayFact: React.FC<TodayFactProps> = ({ getTodayFact, onBasket }) => {
 	const [isSaved, setIsSaved] = useState(false);
 
 	const modalRef = useRef<HTMLDivElement>(null);
-
-	const { todayFact } = useContext(FactContext);
 
 	useEffect(() => {
 		const handleClickOutsideModal = (e: MouseEvent) => {

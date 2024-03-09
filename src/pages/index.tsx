@@ -8,10 +8,10 @@ import Head from "next/head";
 import AuthContext from "@/lib/AuthContext";
 import FactContext from "@/lib/FactContext";
 
-import Alert, { alertMessage } from "../components/Alert.tsx";
-import RandomFact from "../components/RandomFact.tsx";
-import Layout from "../components/Layout.tsx";
-import TodayFact from "../components/TodayFact.tsx";
+import Alert, { alertMessage } from "../components/Alert";
+import RandomFact from "../components/RandomFact";
+import Layout from "../components/Layout";
+import TodayFact from "../components/TodayFact";
 
 export type Fact = {
 	id: string;

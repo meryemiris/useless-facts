@@ -10,9 +10,6 @@ const FactContext = createContext({
 
 	todayFact: [] as Fact[],
 	setTodayFact: (fact: Fact[] | ((prev: Fact[]) => Fact[])) => {},
-
-	activePage: "saved" || "home",
-	setActivePage: (activePage: "saved" | "home") => {},
 });
 
 export default FactContext;

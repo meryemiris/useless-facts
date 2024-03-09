@@ -1,23 +1,23 @@
-import { useContext } from "react";
+import { useState } from "react";
 
 import styles from "./Navbar.module.css";
+
+import { supabase } from "@/lib/supabase";
 
 import Link from "next/link";
 import FactBasket from "./FactBasket";
 import Language from "./Language";
 
-import FactContext from "@/lib/FactContext";
-
 import { FcFolder, FcHome } from "react-icons/fc";
 import { IoLogOut } from "react-icons/io5";
-import { supabase } from "@/lib/supabase";
 
 async function signOut() {
 	const { error } = await supabase.auth.signOut();
 }
 
 const Navbar = () => {
-	const { activePage, setActivePage } = useContext(FactContext);
+	const [activePage, setActivePage] = useState<"home" | "saved">("home");
+
 	return (
 		<nav className={styles.navbar}>
 			<FactBasket />

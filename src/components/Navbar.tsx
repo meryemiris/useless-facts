@@ -1,11 +1,20 @@
-import Link from "next/link";
-import FactBasket from "./FactBasket";
-import { FcFolder, FcHome } from "react-icons/fc";
-import Language from "./Language";
+import { useContext } from "react";
 
 import styles from "./Navbar.module.css";
-import { useContext, useState } from "react";
+
+import Link from "next/link";
+import FactBasket from "./FactBasket";
+import Language from "./Language";
+
 import FactContext from "@/lib/FactContext";
+
+import { FcFolder, FcHome } from "react-icons/fc";
+import { IoLogOut } from "react-icons/io5";
+import { supabase } from "@/lib/supabase";
+
+async function signOut() {
+	const { error } = await supabase.auth.signOut();
+}
 
 const Navbar = () => {
 	const { activePage, setActivePage } = useContext(FactContext);
@@ -35,6 +44,9 @@ const Navbar = () => {
 			</button>
 
 			<Language />
+			<button onClick={signOut} className={styles.goPage}>
+				<IoLogOut style={{ color: " #ED2939" }} className={styles.icon} />
+			</button>
 		</nav>
 	);
 };

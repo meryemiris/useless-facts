@@ -8,11 +8,15 @@ import { Fact } from ".";
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [userId, setUserId] = useState("");
+	console.log("user", userId);
+
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 	const [todayFact, setTodayFact] = useState<Fact[]>([]);
 	const [factBasket, setFactBasket] = useState<Fact[]>([]);
 	const [language, setLanguage] = useState<string>("en");
+
+	const [activePage, setActivePage] = useState<"home" | "saved">("home");
 
 	supabase.auth.onAuthStateChange((event, session) => {
 		setIsLoggedIn(!!session);
@@ -31,6 +35,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					setFactBasket,
 					todayFact,
 					setTodayFact,
+					activePage,
+					setActivePage,
 				}}
 			>
 				<Component {...pageProps} />

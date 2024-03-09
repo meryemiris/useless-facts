@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import styles from "./Navbar.module.css";
 
@@ -10,13 +10,14 @@ import Language from "./Language";
 
 import { FcFolder, FcHome } from "react-icons/fc";
 import { IoLogOut } from "react-icons/io5";
+import FactContext from "@/lib/FactContext";
 
 async function signOut() {
 	const { error } = await supabase.auth.signOut();
 }
 
 const Navbar = () => {
-	const [activePage, setActivePage] = useState<"home" | "saved">("home");
+	const { activePage, setActivePage } = useContext(FactContext);
 
 	return (
 		<nav className={styles.navbar}>

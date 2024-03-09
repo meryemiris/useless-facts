@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import styles from "./SavedFacts.module.css";
 
 import AuthContext from "@/lib/AuthContext";
+import FactContext from "@/lib/FactContext";
 
 type SavedFacts = {
 	id: number;
@@ -17,23 +18,26 @@ const SavedFacts = () => {
 	const { userId } = useContext(AuthContext);
 
 	const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
+	const { setActivePage } = useContext(FactContext);
 
 	useEffect(() => {
-		const getSavedFacts = async () => {
-			try {
-				let { data, error } = await supabase
-					.from("facts")
-					.select("*")
-					.eq("user_id", userId);
+		if (userId) {
+			const getSavedFacts = async () => {
+				try {
+					let { data, error } = await supabase
+						.from("facts")
+						.select("*")
+						.eq("user_id", userId);
 
-				setSavedFacts(data as SavedFacts);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		getSavedFacts();
-	}, [userId]);
+					setSavedFacts(data as SavedFacts);
+				} catch (error) {
+					console.log(error);
+				}
+			};
+			getSavedFacts();
+		}
+		setActivePage("saved");
+	}, [userId, setActivePage]);
 
 	const handleDeleteFact = async (id: number) => {
 		try {

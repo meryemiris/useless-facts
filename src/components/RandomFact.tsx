@@ -4,47 +4,48 @@ import styles from "./RandomFact.module.css";
 
 import { Fact } from "@/pages";
 
-import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import { GrCaretNext } from "react-icons/gr";
 import { FaBookmark } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import Image from "next/image";
+import { fetchFact } from "@/lib/api";
+import { useFactContext } from "@/lib/FactContext";
 
-type RandomFactProps = {
-  randomfact: Fact[];
-  getRandomFact: () => void;
-  onBasket: (fact: Fact) => void;
-};
+const RandomFact = () => {
+  const [randomFact, setRandomFact] = useState<Fact>();
+  const { language, addToBasket, factBasket } = useFactContext();
 
-const RandomFact: React.FC<RandomFactProps> = ({
-  randomfact,
-  getRandomFact,
-  onBasket,
-}) => {
-  const [isSaved, setIsSaved] = useState(false);
+  const fetchRandomFact = async () => {
+    // todo handle loading and error
+    const data = await fetchFact({
+      factType: "random",
+      language: language,
+    });
+
+    setRandomFact(data);
+  };
+
+  const isInBasket = !!factBasket.find((fact) => fact.id === randomFact?.id);
+
   return (
     <div className={styles.scrollable}>
-      {randomfact.length > 0 ? (
+      {randomFact ? (
         <div className={styles.card}>
           <button
-            className={`${styles.saveIcon} ${isSaved ? styles.saved : ""}`}
+            className={`${styles.saveIcon} ${isInBasket ? styles.inBasket : ""}`}
             onClick={() => {
-              onBasket(randomfact[0]);
-              setIsSaved(true);
+              addToBasket(randomFact);
             }}
           >
-            {isSaved ? <FaBookmark /> : <CiBookmark />}
+            {isInBasket ? <FaBookmark /> : <CiBookmark />}
           </button>
-          {randomfact.map((fact) => (
-            <span key={fact.id} className={styles.fact}>
-              {fact.text}
-            </span>
-          ))}
+          <span key={randomFact.id} className={styles.fact}>
+            {randomFact.text}
+          </span>
 
           <button
             onClick={() => {
-              getRandomFact();
-              setIsSaved(false);
+              fetchRandomFact();
             }}
             className={styles.nextButton}
           >
@@ -52,7 +53,7 @@ const RandomFact: React.FC<RandomFactProps> = ({
           </button>
         </div>
       ) : (
-        <button className={styles.button} onClick={getRandomFact}>
+        <button className={styles.button} onClick={fetchRandomFact}>
           <Image
             className={styles.owlImg}
             src="/randomFact.svg"

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./TodayFact.module.css";
 
@@ -8,19 +8,13 @@ import Image from "next/image";
 
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
+import { fetchFact } from "@/lib/api";
+import { useFactContext } from "@/lib/FactContext";
 
-type TodayFactProps = {
-  todayFact: Fact[];
-  getTodayFact: () => void;
-  onBasket: (fact: Fact) => void;
-};
-
-const TodayFact: React.FC<TodayFactProps> = ({
-  getTodayFact,
-  onBasket,
-  todayFact,
-}) => {
+const TodayFact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [todayFact, setTodayFact] = useState<Fact>();
+  const { factBasket, addToBasket, language } = useFactContext();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -29,9 +23,16 @@ const TodayFact: React.FC<TodayFactProps> = ({
     setIsModalOpen(false);
   };
 
-  const [isSaved, setIsSaved] = useState(false);
-
   const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetchFact({
+      factType: "today",
+      language: language,
+    }).then((data) => {
+      setTodayFact(data);
+    });
+  }, [language]);
 
   useEffect(() => {
     const handleClickOutsideModal = (e: MouseEvent) => {
@@ -51,12 +52,13 @@ const TodayFact: React.FC<TodayFactProps> = ({
     };
   }, []);
 
+  const isInBasket = !!factBasket.find((fact) => fact.id === todayFact?.id);
+
   return (
     <>
       <button
         className={styles.button}
         onClick={() => {
-          getTodayFact();
           openModal();
         }}
       >
@@ -84,17 +86,21 @@ const TodayFact: React.FC<TodayFactProps> = ({
               height={40}
               alt={"fact modal image"}
             />
-            {todayFact.length > 0 &&
-              todayFact.map((fact: Fact) => <p key={fact.id}>{fact.text}</p>)}
-            <button
-              className={`${styles.addButton} ${isSaved ? styles.saved : ""}`}
-              onClick={() => {
-                setIsSaved(true);
-                onBasket(todayFact[0]);
-              }}
-            >
-              {isSaved ? <FaBookmark /> : <CiBookmark />}
-            </button>
+            {/* add spinner for loading  */}
+            {todayFact ? (
+              <>
+                <p key={todayFact.id}>{todayFact.text}</p>
+
+                <button
+                  className={`${styles.addButton} ${isInBasket ? styles.inBasket : ""}`}
+                  onClick={() => {
+                    addToBasket(todayFact);
+                  }}
+                >
+                  {isInBasket ? <FaBookmark /> : <CiBookmark />}
+                </button>
+              </>
+            ) : null}
           </div>
         </div>
       )}

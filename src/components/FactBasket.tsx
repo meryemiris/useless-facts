@@ -5,8 +5,6 @@ import styles from "./FactBasket.module.css";
 import AuthContext from "@/lib/AuthContext";
 import { supabase } from "@/lib/supabase";
 
-import { Fact } from "@/pages";
-
 import { FcBookmark, FcFolder } from "react-icons/fc";
 import { useFactContext } from "@/lib/FactContext";
 
@@ -16,7 +14,7 @@ const FactBasket = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const { userId } = useContext(AuthContext);
-  const { factBasket: facts, setFactBasket } = useFactContext();
+  const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
   const handleToggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -43,12 +41,6 @@ const FactBasket = () => {
     };
   }, []);
 
-  const handleRemoveFromBasket = (id: string) => {
-    setFactBasket((prev: Fact[]) => [
-      ...prev.filter((fact: Fact) => fact.id !== id),
-    ]);
-  };
-
   const handleSaveData = async () => {
     const insertArray = facts.map((fact) => ({
       content: fact.text,
@@ -63,7 +55,7 @@ const FactBasket = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      setFactBasket([]);
+      clearBasket();
       setDropdownVisible(false);
     }
   };
@@ -85,7 +77,7 @@ const FactBasket = () => {
                 <p> {fact.text}</p>
                 <button
                   className={styles.binButton}
-                  onClick={() => handleRemoveFromBasket(fact.id)}
+                  onClick={() => removeFromBasket(fact.id)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -13,43 +13,43 @@ import { IoLogOut } from "react-icons/io5";
 import { useFactContext } from "@/lib/FactContext";
 
 async function signOut() {
-	const { error } = await supabase.auth.signOut();
+  const { error } = await supabase.auth.signOut();
 }
 
 const Navbar = () => {
-	const { activePage, setActivePage } = useFactContext();
+  const { activePage, setActivePage } = useFactContext();
 
-	return (
-		<nav className={styles.navbar}>
-			<FactBasket />
+  return (
+    <nav className={styles.navbar}>
+      <FactBasket />
 
-			<button
-				onClick={() => setActivePage("saved")}
-				className={`${styles.goPage} ${
-					activePage === "saved" ? styles.onPage : ""
-				}`}
-			>
-				<Link href="/saved">
-					<FcFolder className={styles.icon} />
-				</Link>
-			</button>
-			<button
-				onClick={() => setActivePage("home")}
-				className={`${styles.goPage} ${
-					activePage === "home" ? styles.onPage : ""
-				}`}
-			>
-				<Link href="/">
-					<FcHome className={styles.icon} />
-				</Link>
-			</button>
+      <button
+        onClick={() => setActivePage("saved")}
+        className={`${styles.goPage} ${
+          activePage === "saved" ? styles.onPage : ""
+        }`}
+      >
+        <Link href="/saved">
+          <FcFolder className={styles.icon} />
+        </Link>
+      </button>
+      <button
+        onClick={() => setActivePage("home")}
+        className={`${styles.goPage} ${
+          activePage === "home" ? styles.onPage : ""
+        }`}
+      >
+        <Link href="/">
+          <FcHome className={styles.icon} />
+        </Link>
+      </button>
 
-			<Language />
-			<button onClick={signOut} className={styles.goPage}>
-				<IoLogOut style={{ color: " #ED2939" }} className={styles.icon} />
-			</button>
-		</nav>
-	);
+      <Language />
+      <button onClick={signOut} className={styles.goPage}>
+        <IoLogOut style={{ color: " #ED2939" }} className={styles.icon} />
+      </button>
+    </nav>
+  );
 };
 
 export default Navbar;

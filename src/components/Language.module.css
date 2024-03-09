@@ -1,101 +1,91 @@
 .langMenu {
-    position: absolute;
-
+  position: absolute;
 }
 
 .langButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: inherit;
-    padding: 0.5rem;
-    border-bottom-left-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: inherit;
+  padding: 0.5rem;
+  border-bottom-left-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
 }
 
 .onPage {
-    background-color: #b18597;
+  background-color: #b18597;
 }
 
-
-
-
 .langImg {
-    width: 1.8rem;
-    height: 1.8rem;
-    cursor: pointer;
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
 }
 
 .langImg:hover {
-    transform: scale(1.2);
-    transition: 0.2s;
+  transform: scale(1.2);
+  transition: 0.2s;
 }
-
 
 .showLeft {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    position: relative;
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
 }
 
-
-
 .dropdown {
-    background-color: #f8edeb;
-    position: absolute;
-    top: 1.2rem;
-    right: 1.2rem;
-    display: none;
-    width: 140px;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border-top-right-radius: 0;
-    overflow: auto;
-    z-index: 1;
-    font-size: 1rem;
+  background-color: #f8edeb;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  display: none;
+  width: 140px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  overflow: auto;
+  z-index: 1;
+  font-size: 1rem;
 }
 
 .dropdown button {
-    display: flex;
-    background-color: inherit;
-    border: none;
-    padding: 0.5rem 0.2rem;
-    width: 100%;
-    text-align: left;
-    text-decoration: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.2s;
-    gap: .5rem;
+  display: flex;
+  background-color: inherit;
+  border: none;
+  padding: 0.5rem 0.2rem;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+  gap: 0.5rem;
 }
 
 .dropdown button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-
 .dropdown button:active {
-    transform: scale(1.05);
-    transition: 0.2s;
+  transform: scale(1.05);
+  transition: 0.2s;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 @media only screen and (min-width: 768px) {
-    .dropdown {
-        left: 1.5rem;
-        border-top-left-radius: 0;
-        border-top-right-radius: .4rem;
-    }
+  .dropdown {
+    left: 1.5rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.4rem;
+  }
 
-    .langImg {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
+  .langImg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }

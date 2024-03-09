@@ -7,25 +7,25 @@ import { useEffect, useState } from "react";
 import { Fact } from ".";
 
 export default function App({ Component, pageProps }: AppProps) {
-	const [userId, setUserId] = useState("");
-	const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [userId, setUserId] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-	useEffect(() => {
-		const { data } = supabase.auth.onAuthStateChange((event, session) => {
-			setIsLoggedIn(!!session);
-			setUserId(session?.user?.id || "");
-		});
+  useEffect(() => {
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session);
+      setUserId(session?.user?.id || "");
+    });
 
-		return data.subscription.unsubscribe;
-	}, []);
+    return data.subscription.unsubscribe;
+  }, []);
 
-	return (
-		<AuthContext.Provider
-			value={{ userId, setUserId, isLoggedIn, setIsLoggedIn }}
-		>
-			<FactProvider>
-				<Component {...pageProps} />
-			</FactProvider>
-		</AuthContext.Provider>
-	);
+  return (
+    <AuthContext.Provider
+      value={{ userId, setUserId, isLoggedIn, setIsLoggedIn }}
+    >
+      <FactProvider>
+        <Component {...pageProps} />
+      </FactProvider>
+    </AuthContext.Provider>
+  );
 }

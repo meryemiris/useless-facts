@@ -1,134 +1,128 @@
 .button {
-    align-self: flex-end;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    color: #b18597;
-    text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
-    text-transform: uppercase;
-    cursor: pointer;
-    border: solid 2px #b18597;
-    letter-spacing: 1px;
-    font-weight: 600;
-    font-size: 17px;
-    background-color: #d8e2dc;
-    border-radius: 1rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease;
-    margin: 1rem;
-
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #b18597;
+  text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
+  text-transform: uppercase;
+  cursor: pointer;
+  border: solid 2px #b18597;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 17px;
+  background-color: #d8e2dc;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  margin: 1rem;
 }
 
 .button:active {
-    transform: scale(0.9);
-    transition: all 100ms ease;
+  transform: scale(0.9);
+  transition: all 100ms ease;
 }
 
 .image {
-    transition: all 0.5s ease;
-    z-index: 1;
+  transition: all 0.5s ease;
+  z-index: 1;
 }
 
-
 .daily {
-    transition: transform 0.3s ease;
-    transform: translateX(0);
+  transition: transform 0.3s ease;
+  transform: translateX(0);
 }
 
 .button:hover .image {
-    transform: scale(3) translate(70%);
+  transform: scale(3) translate(70%);
 }
 
 .fact {
-    position: absolute;
-    left: 0;
-    transform: translateX(-100%);
-    transition: all 0.3s ease;
-    z-index: 2;
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
 .button:hover .fact {
-    transform: translateX(10px);
-    transition-delay: 300ms;
+  transform: translateX(10px);
+  transition-delay: 300ms;
 }
 
 .button:hover .daily {
-    transform: translateX(200%);
-    transition-delay: 100ms;
+  transform: translateX(200%);
+  transition-delay: 100ms;
 }
 
-
-
-
 .modal {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .modalContent {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    width: 80%;
-    max-width: 500px;
-    z-index: 2;
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
-
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 80%;
+  max-width: 500px;
+  z-index: 2;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .close {
-    position: absolute;
-    top: -5px;
-    right: 10px;
-    font-size: 2rem;
-    cursor: pointer;
+  position: absolute;
+  top: -5px;
+  right: 10px;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .close:hover {
-    color: #b18597;
+  color: #b18597;
 }
 
 .close:active {
-    transform: scale(0.9);
-    transition: all 100ms ease;
+  transform: scale(0.9);
+  transition: all 100ms ease;
 }
 
 .addButton {
-    align-self: flex-end;
-    justify-self: flex-end;
-    display: flex;
-    align-items: center;
-    background-color: inherit;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
+  align-self: flex-end;
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
 }
 
 .saved {
-    color: #b18597;
+  color: #b18597;
 }
 
 .addButton:hover {
-    color: #b18597;
-    transition: all 100ms ease;
+  color: #b18597;
+  transition: all 100ms ease;
 }
 
 .addButton:active {
-    transform: scale(0.9);
-    transition: all 100ms
+  transform: scale(0.9);
+  transition: all 100ms;
 }

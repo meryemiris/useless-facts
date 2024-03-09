@@ -1,52 +1,48 @@
 .navbar {
-    background-color: #fae1dd;
-    padding: .5rem 0 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 2rem;
+  background-color: #fae1dd;
+  padding: 0.5rem 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
 }
 
 .goPage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: inherit;
-    padding: 0.5rem;
-    border-top-left-radius: .4rem;
-    border-top-right-radius: .4rem;
-    border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: inherit;
+  padding: 0.5rem;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+  border: none;
 }
 
 .onPage {
-    background-color: #b18597;
+  background-color: #b18597;
 }
 
-
 .icon {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .icon:hover {
-    transform: scale(1.2);
-    transition: 0.2s;
+  transform: scale(1.2);
+  transition: 0.2s;
 }
 
-
-
 @media only screen and (min-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        padding-left: .5rem;
-    }
+  .navbar {
+    flex-direction: column;
+    padding-left: 0.5rem;
+  }
 
-    .goPage {
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 0.4rem;
-    }
+  .goPage {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.4rem;
+  }
 
-    .icon {
-        font-size: 3rem;
-    }
-
+  .icon {
+    font-size: 3rem;
+  }
 }

@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
+import { useRouter } from "next/navigation";
 import Head from "next/head";
 
-import AuthContext from "@/lib/AuthContext";
+import { useAuthContext } from "@/lib/AuthContext";
 
 import Alert, { alertMessage } from "../components/Alert";
 import RandomFact from "../components/RandomFact";
@@ -16,9 +16,10 @@ export type Fact = {
 };
 
 export default function HomePage() {
-  const [alert, setAlert] = useState<alertMessage | null>(null);
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useAuthContext();
   const router = useRouter();
+
+  const [alert, setAlert] = useState<alertMessage | null>(null);
 
   useEffect(() => {
     isLoggedIn ? false : router.push("/login");

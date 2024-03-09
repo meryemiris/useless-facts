@@ -1,15 +1,18 @@
 import { useState } from "react";
 
+import Image from "next/image";
+
 import styles from "./RandomFact.module.css";
 
+import { fetchFact } from "@/lib/api";
+
 import { Fact } from "@/pages";
+
+import { useFactContext } from "@/lib/FactContext";
 
 import { GrCaretNext } from "react-icons/gr";
 import { FaBookmark } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
-import Image from "next/image";
-import { fetchFact } from "@/lib/api";
-import { useFactContext } from "@/lib/FactContext";
 
 const RandomFact = () => {
   const [randomFact, setRandomFact] = useState<Fact>();

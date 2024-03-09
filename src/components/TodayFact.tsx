@@ -1,20 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 
+import Image from "next/image";
+
 import styles from "./TodayFact.module.css";
+
+import { fetchFact } from "@/lib/api";
+
+import { useFactContext } from "@/lib/FactContext";
 
 import { Fact } from "@/pages";
 
-import Image from "next/image";
-
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-import { fetchFact } from "@/lib/api";
-import { useFactContext } from "@/lib/FactContext";
 
 const TodayFact = () => {
+  const { factBasket, addToBasket, language } = useFactContext();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todayFact, setTodayFact] = useState<Fact>();
-  const { factBasket, addToBasket, language } = useFactContext();
 
   const openModal = () => {
     setIsModalOpen(true);

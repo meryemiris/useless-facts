@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
-
-import styles from "./Language.module.css";
+import { useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
+
+import styles from "./Language.module.css";
 
 import { useFactContext } from "@/lib/FactContext";
 

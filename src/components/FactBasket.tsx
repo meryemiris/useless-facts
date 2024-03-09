@@ -1,20 +1,20 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "./FactBasket.module.css";
 
-import AuthContext from "@/lib/AuthContext";
+import { useAuthContext } from "@/lib/AuthContext";
+import { useFactContext } from "@/lib/FactContext";
+
 import { supabase } from "@/lib/supabase";
 
 import { FcBookmark, FcFolder } from "react-icons/fc";
-import { useFactContext } from "@/lib/FactContext";
 
 const FactBasket = () => {
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { userId } = useAuthContext();
+  const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  const { userId } = useContext(AuthContext);
-  const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleToggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);

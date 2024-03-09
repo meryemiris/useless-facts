@@ -1,12 +1,15 @@
+import { useEffect } from "react";
+
+import { useRouter } from "next/router";
+import Head from "next/head";
+
+import { useAuthContext } from "@/lib/AuthContext";
+
 import Layout from "@/components/Layout";
 import SavedFacts from "@/components/SavedFacts";
-import AuthContext from "@/lib/AuthContext";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
 
 export default function SavedFactsPage() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useAuthContext();
 
   const router = useRouter();
 

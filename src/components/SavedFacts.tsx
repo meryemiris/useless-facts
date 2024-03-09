@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { supabase } from "@/lib/supabase";
 
-// import styles from "./FactBasket.module.css";
 import styles from "./SavedFacts.module.css";
 
-import AuthContext from "@/lib/AuthContext";
+import { useAuthContext } from "@/lib/AuthContext";
 import { useFactContext } from "@/lib/FactContext";
 
 type SavedFacts = {
@@ -15,10 +14,10 @@ type SavedFacts = {
 }[];
 
 const SavedFacts = () => {
-  const { userId } = useContext(AuthContext);
+  const { userId } = useAuthContext();
+  const { setActivePage } = useFactContext();
 
   const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
-  const { setActivePage } = useFactContext();
 
   useEffect(() => {
     if (userId) {

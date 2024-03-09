@@ -1,5 +1,3 @@
-import { useContext, useState } from "react";
-
 import styles from "./Navbar.module.css";
 
 import { supabase } from "@/lib/supabase";

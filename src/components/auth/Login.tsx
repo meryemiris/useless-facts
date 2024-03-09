@@ -1,10 +1,13 @@
-import { supabase } from "@/lib/supabase";
-import styles from "./Login.module.css";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
-import Alert, { alertMessage } from "../Alert";
+
 import Link from "next/link";
-import AuthContext from "@/lib/AuthContext";
+
+import { supabase } from "@/lib/supabase";
+
+import styles from "./Login.module.css";
+
+import Alert, { alertMessage } from "../Alert";
 
 export default function Login() {
 	const router = useRouter();
@@ -12,7 +15,6 @@ export default function Login() {
 	const [password, setPassword] = useState("");
 	const [alert, setAlert] = useState<alertMessage | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
 	const showAlert = (type: string, title: string, message: string) => {
 		setAlert({ title, message, type });
@@ -96,53 +98,59 @@ export default function Login() {
 					onClose={() => setAlert(null)}
 				/>
 			)}
-			<form
-				className={styles.form}
-				onSubmit={(e) => {
-					e.preventDefault();
-					handleLogin();
-				}}
-			>
-				<h1>Welcome!</h1>
-				<h2>Ready to Sign In?</h2>
-				<div className={styles.inputGroup}>
-					<input
-						id="email"
-						type="text"
-						name="email"
-						autoComplete="off"
-						className={styles.input}
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-					/>
-					<label className={styles.userLabel} htmlFor="email">
-						Email
-					</label>
-				</div>
-				<div className={styles.inputGroup}>
-					<input
-						id="password"
-						type="password"
-						name="password"
-						autoComplete="off"
-						className={styles.input}
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-					<label className={styles.userLabel} htmlFor="password">
-						Password
-					</label>
-				</div>
-				<p className={styles.forgotPassword}>Forgot password?</p>
-				<button className={styles.button} type="submit">
-					Login
-				</button>
+			<div className={styles.container}>
+				<form
+					className={styles.form}
+					onSubmit={(e) => {
+						e.preventDefault();
+						handleLogin();
+					}}
+				>
+					<header>
+						<h1>Welcome!</h1>
+						<h2>Ready to Sign In?</h2>
+					</header>
+					<main className={styles.main}>
+						<div className={styles.inputGroup}>
+							<input
+								id="email"
+								type="text"
+								name="email"
+								autoComplete="off"
+								className={styles.input}
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+							<label className={styles.userLabel} htmlFor="email">
+								Email
+							</label>
+						</div>
+						<div className={styles.inputGroup}>
+							<input
+								id="password"
+								type="password"
+								name="password"
+								autoComplete="off"
+								className={styles.input}
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+							<label className={styles.userLabel} htmlFor="password">
+								Password
+							</label>
+						</div>
+						<p className={styles.forgotPassword}>Forgot password?</p>
+						<button className={styles.button} type="submit">
+							Login
+						</button>
 
-				<div className={styles.link}>
-					<i>No account?</i>
-					<Link href="/signup">Sign Up</Link>
-				</div>
-			</form>
+						<div className={styles.link}>
+							<i>No account?</i>
+							<Link href="/signup">Sign Up</Link>
+						</div>
+					</main>
+				</form>
+			</div>
 		</>
 	);
 }

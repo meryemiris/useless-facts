@@ -8,8 +8,8 @@ type Props = {
 const Layout: React.FC<Props> = ({ children }) => {
 	return (
 		<div className={styles.layout}>
-			<main className={styles.main}>{children}</main>
 			<Navbar />
+			<main className={styles.main}>{children}</main>
 		</div>
 	);
 };

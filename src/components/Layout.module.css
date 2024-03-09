@@ -17,6 +17,6 @@
 
 @media only screen and (min-width: 768px) {
     .layout {
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 }

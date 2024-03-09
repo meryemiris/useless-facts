@@ -1,6 +1,6 @@
 .navbar {
     background-color: #fae1dd;
-    padding: 0 0 .5rem 0;
+    padding: .5rem 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,8 +13,8 @@
     justify-content: center;
     background-color: inherit;
     padding: 0.5rem;
-    border-bottom-left-radius: .4rem;
-    border-bottom-right-radius: .4rem;
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
     border: none;
 }
 
@@ -37,12 +37,12 @@
 @media only screen and (min-width: 768px) {
     .navbar {
         flex-direction: column;
+        padding-left: .5rem;
     }
 
     .goPage {
-        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
         border-bottom-left-radius: 0.4rem;
-        border-top-left-radius: 0.4rem;
     }
 
     .icon {

@@ -11,9 +11,7 @@
     cursor: pointer;
 }
 
-.onPage {
-    background-color: #b18597;
-}
+
 
 .icon:hover {
     transform: scale(1.1);

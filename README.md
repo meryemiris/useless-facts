@@ -36,8 +36,7 @@ Save facts:
 -  Options to clear and save basket.
 -  Save button inserts facts into the database.
 
-  
-   b. Saved facts
+  b. Saved facts
 -  Retrieves facts from the database.
 -  Permanent storage.
 -  Allows removal of saved facts from the database.

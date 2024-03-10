@@ -1,40 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Useless Facts Viewer
 
-## Getting Started
+A simple single-page application uses Useless Facts API, and built with Next.js, Axios, and Supabase.
 
-First, run the development server:
+## Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Check out the live demo: [Useless Facts Viewer Demo](https://useless-facts-two.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Sample User Data
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+To demonstrate the functionality of the app feel free to sign in or here's an existed user credantials:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+**Email:** test@gmail.com
+**Passport:** test123
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
 
-## Learn More
+Fact viewer:
 
-To learn more about Next.js, take a look at the following resources:
+-  Fetches random facts from the Useless Facts API using Axios.
+-  Allows users to choose their preferred language for facts.
+-  Provides both random and fact-of-the-day modes.
+-  Next fact button for seamless exploration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+User Authentication:
+- Utilizes Supabase Auth for user creation.
 
-## Deploy on Vercel
+Save facts:
+a. Fact basket
+-  Enables users to add both random and today's facts to the basket.
+-  Basket items can be deleted both from the basket and from individual fact cards.
+-  Options to clear the basket and save to files.
+-  Save button inserts facts into the Supabase data table.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  
+b. Saved facts
+-  Retrieves facts from the data table.
+-  Permanent storage.
+-  Allows removal of saved facts from the database.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Key Decision
+- **Language Change:** Users control language preferences without instant fact updates upon a change. Users decide when to fetch facts, giving a smoother experience without automatic switches. This way, users explore facts at their own pace.
+- **Context Usage:** Simplifies state management with React context through FactContext and AuthContext, and removes the prop drilling.
+For more details on effective usage of React Context, check out [How to Use React Context Effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+
+-**Axios for Fact Fetching:**
+-  This project utilizes Axios with a pre-configured instance, including a base URL and JSON format,
+
+
+## Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Supabase](https://supabase.com/)
+- [Axios](https://axios-http.com/)
+
+  ## Additional Dependency
+- [Sonner](https://sonner.emilkowal.ski/): A toast component for React.

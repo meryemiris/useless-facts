@@ -11,6 +11,8 @@ import { FcFolder } from "react-icons/fc";
 import { IoBasket } from "react-icons/io5";
 import { GrClearOption } from "react-icons/gr";
 
+import { toast } from "sonner";
+
 const FactBasket = () => {
   const { userId } = useAuthContext();
   const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
@@ -57,6 +59,7 @@ const FactBasket = () => {
     }
 
     clearBasket();
+    toast.success("Facts have been saved successfully.");
     setDropdownVisible(false);
   };
 

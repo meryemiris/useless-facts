@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 
 import { useAuthContext } from "@/lib/AuthContext";
 
-import Alert, { alertMessage } from "../components/utils/Alert";
 import RandomFact from "../components/fact/RandomFact";
 import Layout from "../components/layout/Layout";
 import TodayFact from "../components/fact/TodayFact";
@@ -19,10 +18,8 @@ export default function HomePage() {
   const { isLoggedIn } = useAuthContext();
   const router = useRouter();
 
-  const [alert, setAlert] = useState<alertMessage | null>(null);
-
   useEffect(() => {
-    isLoggedIn ? false : router.push("/login");
+    if (!isLoggedIn) router.push("/login");
   }, [isLoggedIn, router]);
 
   return (
@@ -35,20 +32,10 @@ export default function HomePage() {
       </Head>
 
       {isLoggedIn && (
-        <>
-          {alert && (
-            <Alert
-              title={alert.title}
-              message={alert.message}
-              type={alert.type}
-              onClose={() => setAlert(null)}
-            />
-          )}
-          <Layout>
-            <TodayFact />
-            <RandomFact />
-          </Layout>
-        </>
+        <Layout>
+          <TodayFact />
+          <RandomFact />
+        </Layout>
       )}
     </>
   );

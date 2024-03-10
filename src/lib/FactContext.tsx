@@ -1,6 +1,6 @@
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
-import { Fact } from "@/pages";
 import React, { createContext, useState } from "react";
+import { Fact } from "@/pages";
 
 export type FactContextType = {
   language: "de" | "en";

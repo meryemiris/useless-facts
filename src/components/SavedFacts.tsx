@@ -125,7 +125,9 @@ const SavedFacts = () => {
       ))}
     </ul>
   ) : (
-    <p className={styles.noFacts}>No facts saved yet</p>
+    <p className={styles.noFacts}>
+      Start saving some facts! You have no saved facts yet.
+    </p>
   );
 };
 

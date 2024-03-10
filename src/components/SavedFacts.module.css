@@ -124,3 +124,8 @@
     height: auto;
   }
 }
+
+.noFacts {
+  margin-top: 1rem;
+  font-weight: 500;
+}

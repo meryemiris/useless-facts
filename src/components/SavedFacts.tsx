@@ -7,6 +7,7 @@ import styles from "./SavedFacts.module.css";
 import { useAuthContext } from "@/lib/AuthContext";
 import { useFactContext } from "@/lib/FactContext";
 import Image from "next/image";
+import Loading from "./Loading";
 
 type SavedFacts = {
   id: number;
@@ -19,11 +20,13 @@ const SavedFacts = () => {
   const { setActivePage } = useFactContext();
 
   const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (userId) {
       const getSavedFacts = async () => {
         try {
+          setIsLoading(true);
           let { data, error } = await supabase
             .from("facts")
             .select("*")
@@ -49,12 +52,14 @@ const SavedFacts = () => {
       setSavedFacts((prev) => prev.filter((fact) => fact.id !== id));
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <ul className={styles.facts}>
-      {savedFacts.length > 0 ? (
+      {savedFacts?.length > 0 ? (
         savedFacts?.map((fact) => (
           <li className={styles.fact} key={fact.id}>
             <Image
@@ -122,6 +127,8 @@ const SavedFacts = () => {
             </button>
           </li>
         ))
+      ) : isLoading ? (
+        <Loading />
       ) : (
         <p>Start saving interesting facts! You have not saved any facts yet.</p>
       )}

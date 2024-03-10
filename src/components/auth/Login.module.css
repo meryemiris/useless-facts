@@ -52,8 +52,8 @@
   border: 1.5px solid;
 }
 
-.input:focus ~ .userLabel,
-.input:valid ~ .userLabel {
+.input:focus~.userLabel,
+.input:valid~.userLabel {
   transform: translateY(-50%) scale(0.8);
   background-color: #e8e8e4;
   padding: 0 0.2em;
@@ -92,19 +92,7 @@
   padding-bottom: 1px;
 }
 
-.forgotPassword {
-  position: relative;
-  font-size: 0.7rem;
-  margin-left: 1rem;
-  bottom: 0.6rem;
-  color: #382b22;
-}
 
-.forgotPassword:hover {
-  text-decoration: underline;
-  color: inherit;
-  cursor: pointer;
-}
 
 .link {
   display: flex;
@@ -113,15 +101,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
+  color: #382b22;
+
 }
 
-.link i {
-  color: #382b22;
-}
 
 .link a {
   text-decoration: none;
-  color: #382b22;
+
 }
 
 .link a:hover {

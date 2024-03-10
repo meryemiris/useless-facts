@@ -139,7 +139,6 @@ export default function Login() {
                 Password
               </label>
             </div>
-            <p className={styles.forgotPassword}>Forgot password?</p>
             <button className={styles.button} type="submit">
               Login
             </button>

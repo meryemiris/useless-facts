@@ -7,7 +7,9 @@ import { useFactContext } from "@/lib/FactContext";
 
 import { supabase } from "@/lib/supabase";
 
-import { FcBookmark, FcFolder } from "react-icons/fc";
+import { FcFolder } from "react-icons/fc";
+import { IoBasket } from "react-icons/io5";
+import { GrClear, GrClearOption } from "react-icons/gr";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();
@@ -62,7 +64,7 @@ const FactBasket = () => {
   return (
     <div className={`${styles.factBasket} ${styles.showRight}`}>
       <button className={styles.button} onClick={handleToggleDropdown}>
-        <FcBookmark className={styles.icon} />
+        <IoBasket className={styles.icon} />
       </button>
 
       <div
@@ -132,14 +134,19 @@ const FactBasket = () => {
                 </button>
               </li>
             ))}
-            <button onClick={handleSaveData} className={styles.saveButton}>
-              Save <FcFolder />
-            </button>
+            <div className={styles.actionButtons}>
+              <button onClick={clearBasket} className={styles.clearButton}>
+                Clear <GrClearOption style={{ color: " rgb(255, 95, 95)" }} />
+              </button>
+              <button onClick={handleSaveData} className={styles.saveButton}>
+                Save <FcFolder />
+              </button>
+            </div>
           </ul>
         ) : (
           <p className={styles.emptyBasket}>
-            Your basket is empty.
-            <span>Start exploring and add some interesting facts!</span>
+            Your basket is empty. Start exploring and add some interesting
+            facts!
           </p>
         )}
       </div>

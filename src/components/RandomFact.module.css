@@ -96,18 +96,19 @@
   margin-bottom: 0.5rem;
 }
 
-.saveIcon {
+.addBasket {
   align-self: flex-end;
+  margin-top: .5rem;
   font-size: 2rem;
   transition: all 0.3s ease-in-out;
   background-color: inherit;
   border: none;
   cursor: pointer;
   color: #b18597;
-  border-radius: 50%;
+
 }
 
-.saveIcon:hover:not(.saved) {
+.addBasket:hover {
   transform: scale(1.1);
 }
 

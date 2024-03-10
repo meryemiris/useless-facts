@@ -10,11 +10,11 @@ import { useFactContext } from "@/lib/FactContext";
 
 import { Fact } from "@/pages";
 
-import { CiBookmark } from "react-icons/ci";
-import { FaBookmark } from "react-icons/fa";
+import { IoBasket, IoBasketOutline } from "react-icons/io5";
 
 const TodayFact = () => {
-  const { factBasket, addToBasket, language } = useFactContext();
+  const { factBasket, addToBasket, removeFromBasket, language } =
+    useFactContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todayFact, setTodayFact] = useState<Fact>();
@@ -97,10 +97,12 @@ const TodayFact = () => {
                 <button
                   className={`${styles.addButton} ${isInBasket ? styles.inBasket : ""}`}
                   onClick={() => {
-                    addToBasket(todayFact);
+                    isInBasket
+                      ? removeFromBasket(todayFact.id)
+                      : addToBasket(todayFact);
                   }}
                 >
-                  {isInBasket ? <FaBookmark /> : <CiBookmark />}
+                  {isInBasket ? <IoBasket /> : <IoBasketOutline />}
                 </button>
               </>
             ) : null}

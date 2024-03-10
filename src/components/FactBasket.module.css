@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.icon {
+  color: #b18597;
+}
+
 .icon:hover {
   transform: scale(1.1);
   transition: 0.2s;
@@ -157,6 +161,30 @@
   background-color: inherit;
 }
 
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.clearButton {
+  display: flex;
+  align-self: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.8rem;
+  border: none;
+  background-color: rgb(255, 201, 201);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition-duration: 0.4s;
+
+}
+
 .saveButton {
   display: flex;
   align-self: flex-end;
@@ -166,16 +194,24 @@
   border-radius: 0.8rem;
   border: none;
   background-color: #e8e8e4;
-  cursor: pointer;
   font-size: 1.5rem;
   transition-duration: 0.4s;
-  width: fit-content;
+
 }
 
-.saveButton:hover {
-  transform: scale(1.2);
+.saveButton:hover,
+.clearButton:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.saveButton:active,
+.clearButton:active {
+  transform: scale(0.9);
   transition: 0.2s;
 }
+
 
 .emptyBasket {
   padding: 1rem;

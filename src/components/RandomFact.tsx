@@ -11,12 +11,12 @@ import { Fact } from "@/pages";
 import { useFactContext } from "@/lib/FactContext";
 
 import { GrCaretNext } from "react-icons/gr";
-import { FaBookmark } from "react-icons/fa";
-import { CiBookmark } from "react-icons/ci";
+import { IoBasket, IoBasketOutline } from "react-icons/io5";
 
 const RandomFact = () => {
   const [randomFact, setRandomFact] = useState<Fact>();
-  const { language, addToBasket, factBasket } = useFactContext();
+  const { language, addToBasket, removeFromBasket, factBasket } =
+    useFactContext();
 
   const fetchRandomFact = async () => {
     // todo handle loading and error
@@ -35,12 +35,14 @@ const RandomFact = () => {
       {randomFact ? (
         <div className={styles.card}>
           <button
-            className={`${styles.saveIcon} ${isInBasket ? styles.inBasket : ""}`}
+            className={`${styles.addBasket} ${isInBasket ? styles.inBasket : ""}`}
             onClick={() => {
-              addToBasket(randomFact);
+              isInBasket
+                ? removeFromBasket(randomFact.id)
+                : addToBasket(randomFact);
             }}
           >
-            {isInBasket ? <FaBookmark /> : <CiBookmark />}
+            {isInBasket ? <IoBasket /> : <IoBasketOutline />}
           </button>
           <span key={randomFact.id} className={styles.fact}>
             {randomFact.text}

@@ -40,8 +40,8 @@
 
   .navbar {
     padding: 0;
-    height: 80vh;
-    align-self: center
+    height: fit-content;
+    overflow: auto;
   }
 
 

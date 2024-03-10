@@ -3,11 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 import styles from "./TodayFact.module.css";
-
 import { fetchFact } from "@/lib/api";
-
 import { useFactContext } from "@/lib/FactContext";
-
 import { Fact } from "@/pages";
 
 import { IoBasket, IoBasketOutline } from "react-icons/io5";

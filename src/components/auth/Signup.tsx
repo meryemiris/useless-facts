@@ -6,6 +6,7 @@ import styles from "./Login.module.css";
 import Alert, { alertMessage } from "../utils/Alert";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Loading from "../utils/Loading";
 
 export default function Signup() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
 
   const [alert, setAlert] = useState<alertMessage | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const showAlert = (type: string, title: string, message: string) => {
     setAlert({ title, message, type });
@@ -23,92 +25,45 @@ export default function Signup() {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const emailCheck = await supabase
-      .from("user")
-      .select("email")
-      .eq("email", email);
+    if (!email || !password) {
+      showAlert(
+        "warning",
+        "Hey there!",
+        "Please fill in both email and password before signing in.",
+      );
+      return;
+    }
 
-    try {
-      if (!email || !password) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please fill in both email and password before signing in.",
-        );
-        return;
-      }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      showAlert("warning", "Hey there!", "Please enter a valid email address.");
+      return;
+    }
 
-      if (emailCheck.data && emailCheck.data.length > 0) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "There is already an account with this email. Please login instead.",
-        );
-        return;
-      }
+    if (password.length < 6) {
+      showAlert(
+        "warning",
+        "Hey there!",
+        "Please enter a valid password (at least 6 characters).",
+      );
 
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please enter a valid email address.",
-        );
-        return;
-      }
+      return;
+    }
 
-      if (password.length < 6) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please enter a valid password (at least 6 characters).",
-        );
-        return;
-      }
+    setIsLoading(true);
 
-      const {
-        data: { user },
-        error,
-      } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
-      if (!error) {
-        console.log("User registered successfully:", user);
+    setIsLoading(false);
 
-        if (user) {
-          try {
-            const { data, error: insertError } = await supabase
-              .from("user")
-              .insert([
-                {
-                  id: user.id,
-                  email: user.email,
-                },
-              ])
-              .select();
-
-            if (insertError) {
-              console.log("Error inserting user:", insertError);
-            } else console.log("User inserted successfully:", data);
-            showAlert(
-              "success",
-              "Welcome!",
-              "You have successfully registered.",
-            );
-            router.push("/");
-          } catch (error) {
-            console.log("Error inserting user:", error);
-          }
-        }
-      }
-    } catch (error) {
-      console.error("Error registering user:", error);
+    if (!error) {
+      showAlert("success", "Welcome!", "You have successfully registered.");
+      router.push("/login");
+    } else {
       showAlert("error", "Error", "Error registering user. Please try again.");
-    } finally {
-      setEmail("");
-      setPassword("");
     }
   };
 
@@ -122,6 +77,7 @@ export default function Signup() {
           onClose={() => setAlert(null)}
         />
       )}
+
       <div className={styles.container}>
         <form onSubmit={handleRegister} className={styles.form}>
           <header className={styles.header}>
@@ -156,7 +112,9 @@ export default function Signup() {
                 Password
               </label>
             </div>
-            <button className={styles.button}>Signup</button>
+            <button className={styles.button} disabled={isLoading}>
+              {isLoading ? <Loading size="sm" /> : "Sign Up"}
+            </button>
 
             <div className={styles.link}>
               <i>Already have an account?</i>

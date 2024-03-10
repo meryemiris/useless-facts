@@ -14,7 +14,7 @@ export default function SavedFactsPage() {
   const router = useRouter();
 
   useEffect(() => {
-    isLoggedIn ? false : router.push("/login");
+    if (!isLoggedIn) router.push("/login");
   }, [isLoggedIn, router]);
 
   return (

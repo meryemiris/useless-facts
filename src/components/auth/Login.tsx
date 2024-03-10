@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import styles from "./Login.module.css";
 
 import Alert, { alertMessage } from "../utils/Alert";
+import Loading from "../utils/Loading";
 
 export default function Login() {
   const router = useRouter();
@@ -22,69 +23,57 @@ export default function Login() {
   };
 
   const handleLogin = async () => {
-    try {
-      setIsLoading(true);
-      if (!email || !password) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please fill in both email and password before signing in.",
-        );
-        return;
-      }
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please enter a valid email address.",
-        );
-        return;
-      }
-
-      if (password.length < 6) {
-        showAlert(
-          "warning",
-          "Hey there!",
-          "Please enter a valid password (at least 6 characters).",
-        );
-        return;
-      }
-
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        if (error.message === "Invalid login credentials") {
-          showAlert(
-            "error",
-            "Oops!",
-            "User not found or incorrect password. Please double-check your credentials.",
-          );
-        } else {
-          showAlert(
-            "error",
-            "Uh-oh!",
-            "Something went wrong while signing in. Please try again later.",
-          );
-        }
-        return;
-      } else {
-        showAlert("success", "Welcome back!", "You've signed in successfully.");
-        router.push("/");
-      }
-    } catch (error) {
+    if (!email || !password) {
       showAlert(
-        "error",
-        "Uh-oh!",
-        "Something unexpected happened. Please try again later.",
+        "warning",
+        "Hey there!",
+        "Please fill in both email and password before signing in.",
       );
-    } finally {
-      setIsLoading(false);
+      return;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      showAlert("warning", "Hey there!", "Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 6) {
+      showAlert(
+        "warning",
+        "Hey there!",
+        "Please enter a valid password (at least 6 characters).",
+      );
+      return;
+    }
+    setIsLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setIsLoading(false);
+
+    if (error) {
+      if (error.message === "Invalid login credentials") {
+        showAlert(
+          "error",
+          "Oops!",
+          "User not found or incorrect password. Please double-check your credentials.",
+        );
+      } else {
+        showAlert(
+          "error",
+          "Uh-oh!",
+          "Something went wrong while signing in. Please try again later.",
+        );
+      }
+
       setEmail("");
       setPassword("");
+    } else {
+      showAlert("success", "Welcome back!", "You've signed in successfully.");
+      router.push("/");
     }
   };
 
@@ -98,6 +87,7 @@ export default function Login() {
           onClose={() => setAlert(null)}
         />
       )}
+
       <div className={styles.container}>
         <form
           className={styles.form}
@@ -139,8 +129,12 @@ export default function Login() {
                 Password
               </label>
             </div>
-            <button className={styles.button} type="submit">
-              Login
+            <button
+              className={styles.button}
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? <Loading size="sm" /> : "Login In"}
             </button>
 
             <div className={styles.link}>

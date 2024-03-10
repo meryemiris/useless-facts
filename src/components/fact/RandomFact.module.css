@@ -7,12 +7,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
+  width: 350px;
   font-weight: 600;
   font-size: 1.5rem;
   color: #382b22;
   text-transform: uppercase;
   text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
-  padding: 1rem 1.2rem 1rem 0;
+  padding: 1rem;
   margin: 1rem;
   background: #fff0f0;
   border: 2px solid #b18597;
@@ -112,13 +114,6 @@
   transform: scale(1.1);
 }
 
-.saved {
-  color: #b18597;
-}
-
-.saveIcon.clicked svg path {
-  fill: aquamarine;
-}
 
 .nextButton {
   display: flex;
@@ -137,8 +132,4 @@
 .nextButton:hover {
   background-color: #b18597;
   color: #ffe3e2;
-}
-
-.owlImg {
-  padding: 0;
 }

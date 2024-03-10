@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 
 import { FcFolder } from "react-icons/fc";
 import { IoBasket } from "react-icons/io5";
-import { GrClear, GrClearOption } from "react-icons/gr";
+import { GrClearOption } from "react-icons/gr";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();
@@ -49,18 +49,17 @@ const FactBasket = () => {
       user_id: userId,
     }));
 
-    try {
-      const { data, error } = await supabase
-        .from("facts")
-        .insert(insertArray)
-        .select();
-    } catch (err) {
-      console.log(err);
-    } finally {
-      clearBasket();
-      setDropdownVisible(false);
+    const { error } = await supabase.from("facts").insert(insertArray).select();
+
+    if (error) {
+      console.log(error);
+      return;
     }
+
+    clearBasket();
+    setDropdownVisible(false);
   };
+
   return (
     <div className={`${styles.factBasket} ${styles.showRight}`}>
       <button className={styles.button} onClick={handleToggleDropdown}>

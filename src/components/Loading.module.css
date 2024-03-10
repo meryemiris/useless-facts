@@ -1,117 +1,127 @@
-.l {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 0.s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loader {
+  margin-top: 1rem;
+  width: 5em;
+  height: 5em;
 }
 
-.o {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 0.4s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loaderEye1,
+.loaderEye2,
+.loaderMouth1,
+.loaderMouth2 {
+  animation: eye1 3s ease-in-out infinite;
 }
 
-.a {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 0.6s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loaderEye1,
+.loaderEye2 {
+  transform-origin: 64px 64px;
 }
 
-.d {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 0.8s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loaderEye2 {
+  animation-name: eye2;
 }
 
-.i {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 1s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loaderMouth1 {
+  animation-name: mouth1;
 }
 
-.n {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 1.2s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+.loaderMouth2 {
+  animation-name: mouth2;
+  visibility: hidden;
 }
 
-.g {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass 2s ease-in-out infinite;
-  animation-delay: 1.4s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
+@keyframes eye1 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
+  }
+
+  50%,
+  60% {
+    animation-timing-function: cubic-bezier(0.17, 0, 0.58, 1);
+    transform: rotate(-40deg) translate(0, -56px) scale(1);
+  }
+
+  to {
+    transform: rotate(225deg) translate(0, -56px) scale(0.35);
+  }
 }
 
-.d1 {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass1 2s ease-in-out infinite;
-  animation-delay: 1.6s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
-}
-
-.d2 {
-  font-size: 1.5rem;
-  color: black;
-  opacity: 0;
-  animation: pass1 2s ease-in-out infinite;
-  animation-delay: 2s;
-  letter-spacing: 0.5em;
-  text-shadow: 2px 2px 3px #919191;
-}
-
-@keyframes pass {
-  0% {
-    opacity: 1;
+@keyframes eye2 {
+  from {
+    transform: rotate(-260deg) translate(0, -56px);
   }
 
   50% {
-    opacity: 0;
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
   }
 
-  100% {
-    opacity: 1;
+  52.5% {
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1, 0);
+  }
+
+  55%,
+  70% {
+    animation-timing-function: cubic-bezier(0, 0, 0.28, 1);
+    transform: rotate(40deg) translate(0, -56px) rotate(-40deg) scale(1);
+  }
+
+  to {
+    transform: rotate(150deg) translate(0, -56px) scale(0.4);
   }
 }
 
-@keyframes pass1 {
-  0% {
-    opacity: 1;
+@keyframes eyeBlink {
+
+  from,
+  25%,
+  75%,
+  to {
+    transform: scaleY(1);
   }
 
   50% {
-    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+@keyframes mouth1 {
+  from {
+    animation-timing-function: ease-in;
+    stroke-dasharray: 0 351.86;
+    stroke-dashoffset: 0;
   }
 
-  100% {
-    opacity: 1;
+  25% {
+    animation-timing-function: ease-out;
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    animation-timing-function: steps(1, start);
+    stroke-dasharray: 175.93 351.86;
+    stroke-dashoffset: -175.93;
+    visibility: visible;
+  }
+
+  75%,
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes mouth2 {
+  from {
+    animation-timing-function: steps(1, end);
+    visibility: hidden;
+  }
+
+  50% {
+    animation-timing-function: ease-in-out;
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -351.86;
   }
 }

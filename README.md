@@ -48,8 +48,7 @@ Save facts:
 - **Context Usage:** Simplifies state management with React context through FactContext and AuthContext, and removes the prop drilling.
 For more details on effective usage of React Context, check out [How to Use React Context Effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
 
--  **Axios for Fact Fetching:**
--  This project utilizes Axios with a pre-configured instance, including a base URL and JSON format.
+- **Axios for Fact Fetching:** This project utilizes Axios with a pre-configured instance, including a base URL and JSON format.
 
 
 ## Technologies Used

@@ -10,8 +10,8 @@ Check out the live demo: [Useless Facts Viewer Demo](https://useless-facts-two.v
 
 To demonstrate the functionality of the app feel free to sign in or here's an existed user credantials:
 
-**Email:** test@gmail.com
-**Passport:** test123
+-  **Email:** test@gmail.com
+-  **Passport:** test123
 
 
 ## Features
@@ -25,29 +25,32 @@ Fact viewer:
 
 
 User Authentication:
+
 - Utilizes Supabase Auth for user creation.
 
 Save facts:
-a. Fact basket
+
+-  a. Fact basket
 -  Enables users to add both random and today's facts to the basket.
 -  Basket items can be deleted both from the basket and from individual fact cards.
--  Options to clear the basket and save to files.
--  Save button inserts facts into the Supabase data table.
+-  Options to clear and save basket.
+-  Save button inserts facts into the database.
 
   
-b. Saved facts
--  Retrieves facts from the data table.
+-  b. Saved facts
+-  Retrieves facts from the database.
 -  Permanent storage.
 -  Allows removal of saved facts from the database.
 
 
-## Key Decision
+## Key Decisions
 - **Language Change:** Users control language preferences without instant fact updates upon a change. Users decide when to fetch facts, giving a smoother experience without automatic switches. This way, users explore facts at their own pace.
+  
 - **Context Usage:** Simplifies state management with React context through FactContext and AuthContext, and removes the prop drilling.
 For more details on effective usage of React Context, check out [How to Use React Context Effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
 
--**Axios for Fact Fetching:**
--  This project utilizes Axios with a pre-configured instance, including a base URL and JSON format,
+-  **Axios for Fact Fetching:**
+-  This project utilizes Axios with a pre-configured instance, including a base URL and JSON format.
 
 
 ## Technologies Used

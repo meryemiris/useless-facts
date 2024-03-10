@@ -41,7 +41,8 @@
   .navbar {
     padding: 0;
     height: fit-content;
-    overflow: auto;
+    justify-content: center;
+
   }
 
 

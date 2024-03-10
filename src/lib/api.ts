@@ -1,5 +1,3 @@
-import Language from "@/components/Language";
-import { Fact } from "@/pages";
 import axios from "axios";
 
 type FetchFactParams = {

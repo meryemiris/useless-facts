@@ -3,8 +3,8 @@ import styles from "./Navbar.module.css";
 import { supabase } from "@/lib/supabase";
 
 import Link from "next/link";
-import FactBasket from "./FactBasket";
-import Language from "./Language";
+import FactBasket from "../fact/FactBasket";
+import Language from "../lang/Language";
 
 import { FcFolder, FcHome } from "react-icons/fc";
 import { IoLogOut } from "react-icons/io5";

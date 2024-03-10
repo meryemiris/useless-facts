@@ -5,8 +5,8 @@ import Head from "next/head";
 
 import { useAuthContext } from "@/lib/AuthContext";
 
-import Layout from "@/components/Layout";
-import SavedFacts from "@/components/SavedFacts";
+import Layout from "@/components/layout/Layout";
+import SavedFacts from "@/components/fact/SavedFacts";
 
 export default function SavedFactsPage() {
   const { isLoggedIn } = useAuthContext();

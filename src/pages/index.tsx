@@ -5,10 +5,10 @@ import Head from "next/head";
 
 import { useAuthContext } from "@/lib/AuthContext";
 
-import Alert, { alertMessage } from "../components/Alert";
-import RandomFact from "../components/RandomFact";
-import Layout from "../components/Layout";
-import TodayFact from "../components/TodayFact";
+import Alert, { alertMessage } from "../components/utils/Alert";
+import RandomFact from "../components/fact/RandomFact";
+import Layout from "../components/layout/Layout";
+import TodayFact from "../components/fact/TodayFact";
 
 export type Fact = {
   id: string;

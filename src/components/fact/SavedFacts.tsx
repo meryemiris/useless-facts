@@ -7,7 +7,7 @@ import styles from "./SavedFacts.module.css";
 import { useAuthContext } from "@/lib/AuthContext";
 import { useFactContext } from "@/lib/FactContext";
 import Image from "next/image";
-import Loading from "./Loading";
+import Loading from "../utils/Loading";
 
 type SavedFacts = {
   id: number;

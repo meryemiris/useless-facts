@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 
 import styles from "./Login.module.css";
 
-import Alert, { alertMessage } from "../Alert";
+import Alert, { alertMessage } from "../utils/Alert";
 
 export default function Login() {
   const router = useRouter();

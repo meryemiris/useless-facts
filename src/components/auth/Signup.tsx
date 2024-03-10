@@ -3,7 +3,7 @@ import { supabase } from "../../lib/supabase";
 
 import styles from "./Login.module.css";
 
-import Alert, { alertMessage } from "../Alert";
+import Alert, { alertMessage } from "../utils/Alert";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

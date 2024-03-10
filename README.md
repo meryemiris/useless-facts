@@ -11,7 +11,7 @@ Check out the live demo: [Useless Facts Viewer Demo](https://useless-facts-two.v
 To demonstrate the functionality of the app feel free to sign in or here's an existed user credantials:
 
 -  **Email:** test@gmail.com
--  **Passport:** test123
+-  **Password:** test123
 
 
 ## Features
@@ -30,14 +30,14 @@ User Authentication:
 
 Save facts:
 
--  a. Fact basket
+   a. Fact basket
 -  Enables users to add both random and today's facts to the basket.
 -  Basket items can be deleted both from the basket and from individual fact cards.
 -  Options to clear and save basket.
 -  Save button inserts facts into the database.
 
   
--  b. Saved facts
+   b. Saved facts
 -  Retrieves facts from the database.
 -  Permanent storage.
 -  Allows removal of saved facts from the database.

@@ -44,7 +44,7 @@ const Navbar = () => {
 
       <Language />
       <button onClick={signOut} className={styles.goPage}>
-        <IoLogOut style={{ color: " #ED2939" }} className={styles.icon} />
+        <IoLogOut className={styles.logoutIcon} />
       </button>
     </nav>
   );

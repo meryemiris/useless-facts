@@ -12,6 +12,9 @@
   flex-grow: 1;
 }
 
+
+
+
 @media only screen and (min-width: 768px) {
   .layout {
     flex-direction: row;

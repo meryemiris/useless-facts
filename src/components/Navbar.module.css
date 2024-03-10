@@ -3,7 +3,7 @@
   padding: 0.5rem 0 0 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   font-size: 2rem;
 }
 
@@ -22,6 +22,11 @@
   background-color: #b18597;
 }
 
+.logoutIcon {
+  font-size: 2.5rem;
+  color: #f08080;
+}
+
 .icon {
   font-size: 2rem;
 }
@@ -31,10 +36,20 @@
   transition: 0.2s;
 }
 
+@media only screen and (max-height: 480px) {
+
+  .navbar {
+    padding: 0;
+    height: 80vh;
+    align-self: center
+  }
+
+
+}
+
 @media only screen and (min-width: 768px) {
   .navbar {
     flex-direction: column;
-    padding-left: 0.5rem;
   }
 
   .goPage {
@@ -45,4 +60,6 @@
   .icon {
     font-size: 3rem;
   }
+
+
 }

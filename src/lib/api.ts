@@ -7,7 +7,6 @@ type FetchFactParams = {
 
 const instance = axios.create({
   baseURL: "https://uselessfacts.jsph.pl/api/v2/facts/",
-  timeout: 1000,
   headers: { Accept: "application/json" },
 });
 

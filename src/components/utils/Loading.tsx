@@ -27,8 +27,8 @@ export default function Loading() {
             ></circle>
           </clipPath>
           <linearGradient y2="1" x2="0" y1="0" x1="0" id="loader-grad">
-            <stop stop-color="#000" offset="0%"></stop>
-            <stop stop-color="#fff" offset="100%"></stop>
+            <stop stopColor="#000" offset="0%"></stop>
+            <stop stopColor="#fff" offset="100%"></stop>
           </linearGradient>
           <mask id="loader-mask">
             <rect
@@ -41,9 +41,9 @@ export default function Loading() {
           </mask>
         </defs>
         <g
-          stroke-dasharray="175.93 351.86"
-          stroke-width="12"
-          stroke-linecap="round"
+          strokeDasharray="175.93 351.86"
+          strokeWidth="12"
+          strokeLinecap="round"
         >
           <g>
             <rect

@@ -6,6 +6,7 @@ import styles from "./SavedFacts.module.css";
 
 import { useAuthContext } from "@/lib/AuthContext";
 import { useFactContext } from "@/lib/FactContext";
+import Image from "next/image";
 
 type SavedFacts = {
   id: number;
@@ -56,6 +57,13 @@ const SavedFacts = () => {
       {savedFacts.length > 0 ? (
         savedFacts?.map((fact) => (
           <li className={styles.fact} key={fact.id}>
+            <Image
+              className={styles.modalImg}
+              src={"/fact.svg"}
+              width={40}
+              height={40}
+              alt={"fact modal image"}
+            />
             <p> {fact.content}</p>
             <button
               className={styles.binButton}

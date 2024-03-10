@@ -1,12 +1,14 @@
 .facts {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   overflow-y: auto;
-  height: 748px;
+  height: 780px;
   width: 80vw;
-  max-width: 800px;
   gap: 1rem;
-  margin: 1rem 1rem 0 1rem;
+  margin: 1rem;
+  padding: 0 1rem
 }
 
 .facts::-webkit-scrollbar {
@@ -27,17 +29,23 @@
 }
 
 .fact {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: first baseline;
-  padding-right: 1rem;
+  display: grid;
+  background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.modalImg {
+  position: relative;
+  left: -.6rem;
+  top: -.8rem
 }
 
 .fact p {
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
-  max-width: 80%;
   text-align: left;
 }
 
@@ -46,6 +54,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  align-self: flex-end;
+  justify-self: flex-end;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -54,6 +64,8 @@
   border: 2px solid rgb(255, 201, 201);
   transition-duration: 0.4s;
   position: relative;
+  bottom: -.6rem;
+  right: -.6rem;
   overflow: hidden;
 }
 
@@ -103,5 +115,11 @@
   to {
     transform: translate(0%, 0%);
     opacity: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .facts {
+    height: auto;
   }
 }

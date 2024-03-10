@@ -175,6 +175,7 @@
 .clearButton {
   display: flex;
   align-self: flex-start;
+  align-items: center;
   gap: 1rem;
   padding: .7rem;
   border-radius: 0.8rem;
@@ -189,6 +190,7 @@
 .saveButton {
   display: flex;
   align-self: flex-end;
+  align-items: center;
   gap: 1rem;
   padding: .7rem;
   border-radius: 0.8rem;

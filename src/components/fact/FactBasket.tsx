@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import styles from "./FactBasket.module.css";
 
@@ -12,6 +12,7 @@ import { IoBasket } from "react-icons/io5";
 import { GrClearOption } from "react-icons/gr";
 
 import { toast } from "sonner";
+import useClickOutside from "@/lib/useClickOutside";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();
@@ -20,30 +21,9 @@ const FactBasket = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const handleToggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
+  const handleClickOutside = useCallback(() => setDropdownVisible(false), []);
 
-  useEffect(() => {
-    const handleClickOutsideDropdown = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDropdownVisible(false);
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      handleClickOutsideDropdown(e);
-    };
-
-    document.addEventListener("mousedown", handleClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
+  useClickOutside(dropdownRef, handleClickOutside, dropdownVisible);
 
   const handleSaveData = async () => {
     const insertArray = facts.map((fact) => ({
@@ -54,7 +34,9 @@ const FactBasket = () => {
     const { error } = await supabase.from("facts").insert(insertArray).select();
 
     if (error) {
-      console.log(error);
+      toast.error(
+        "Oops! Something went wrong while getting your saved tasks. Please check back in a bit.",
+      );
       return;
     }
 
@@ -65,7 +47,10 @@ const FactBasket = () => {
 
   return (
     <div className={`${styles.factBasket} ${styles.showRight}`}>
-      <button className={styles.button} onClick={handleToggleDropdown}>
+      <button
+        className={styles.button}
+        onClick={() => setDropdownVisible(!dropdownVisible)}
+      >
         <IoBasket className={styles.icon} />
       </button>
 

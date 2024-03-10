@@ -16,8 +16,9 @@ import { toast } from "sonner";
 async function signOut() {
   const { error } = await supabase.auth.signOut();
 
-  if (error)
+  if (error) {
     toast.error("Unable to sign out at the moment. Please try again later.");
+  }
 }
 
 const Navbar = () => {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 
@@ -10,6 +10,9 @@ import { useFactContext } from "@/lib/FactContext";
 import { Fact } from "@/pages";
 
 import { IoBasket, IoBasketOutline } from "react-icons/io5";
+import useClickOutside from "@/lib/useClickOutside";
+import { error } from "console";
+import { toast } from "sonner";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =
@@ -18,52 +21,32 @@ const TodayFact = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todayFact, setTodayFact] = useState<Fact>();
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = useCallback(() => setIsModalOpen(false), []);
+
+  useClickOutside(modalRef, handleClickOutside, isModalOpen);
 
   useEffect(() => {
     fetchFact({
       factType: "today",
       language: language,
-    }).then((data) => {
-      setTodayFact(data);
-    });
+    })
+      .then((data) => {
+        setTodayFact(data);
+      })
+      .catch((err) => {
+        toast.error(
+          "Oops! Something didn't quite work out. Don't worry, we're on it!",
+        );
+      });
   }, [language]);
-
-  useEffect(() => {
-    const handleClickOutsideModal = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        setIsModalOpen(false);
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      handleClickOutsideModal(e);
-    };
-
-    document.addEventListener("mousedown", handleClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
 
   const isInBasket = !!factBasket.find((fact) => fact.id === todayFact?.id);
 
   return (
     <>
-      <button
-        className={styles.button}
-        onClick={() => {
-          openModal();
-        }}
-      >
+      <button className={styles.button} onClick={() => setIsModalOpen(true)}>
         <Image
           className={styles.image}
           src={"/fact.svg"}
@@ -78,7 +61,10 @@ const TodayFact = () => {
       {isModalOpen && (
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
-            <span className={styles.close} onClick={closeModal}>
+            <span
+              className={styles.close}
+              onClick={() => setIsModalOpen(false)}
+            >
               &times;
             </span>
             <Image
@@ -88,7 +74,7 @@ const TodayFact = () => {
               height={40}
               alt={"fact modal image"}
             />
-            {/* add spinner for loading  */}
+            {/* add loading*/}
             {todayFact ? (
               <>
                 <p key={todayFact.id}>{todayFact.text}</p>

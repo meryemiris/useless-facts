@@ -7,16 +7,12 @@
   border-bottom-right-radius: 0.4rem;
   border: none;
   padding: .5rem;
-
 }
-
-
 
 .icon {
   color: #b18597;
   font-size: 2.5rem;
   cursor: pointer;
-
 }
 
 .icon:hover {

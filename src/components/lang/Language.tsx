@@ -1,48 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import Image from "next/image";
 
 import styles from "./Language.module.css";
 
 import { useFactContext } from "@/lib/FactContext";
+import useClickOutside from "@/lib/useClickOutside";
+
+const deutschImg = "/de.svg";
+const englishImg = "/en.svg";
 
 const Language = () => {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { language, setLanguage } = useFactContext();
 
-  const deutschImg = "/de.svg";
-  const englishImg = "/en.svg";
+  const handleClickOutside = useCallback(() => setIsMenuOpen(false), []);
 
-  const handleToggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
-
-  useEffect(() => {
-    const handleClickOutsideDropdown = (e: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
-      ) {
-        setDropdownVisible(false);
-      }
-    };
-
-    const handleClick = (e: MouseEvent) => {
-      handleClickOutsideDropdown(e);
-    };
-
-    document.addEventListener("mousedown", handleClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
-  }, []);
+  useClickOutside(menuRef, handleClickOutside, isMenuOpen);
 
   return (
     <div className={`${styles.langMenu} ${styles.showLeft}`}>
-      <button onClick={handleToggleDropdown} className={styles.langButton}>
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className={styles.langButton}
+      >
         <Image
           className={styles.langImg}
           src={language === "en" ? englishImg : deutschImg}
@@ -52,14 +35,14 @@ const Language = () => {
         />
       </button>
       <div
-        ref={dropdownRef}
+        ref={menuRef}
         id="dropdown"
-        className={`${styles.dropdown} ${dropdownVisible ? styles.show : ""}`}
+        className={`${styles.dropdown} ${isMenuOpen ? styles.show : ""}`}
       >
         <button
           onClick={() => {
             setLanguage("en");
-            setDropdownVisible(false);
+            setIsMenuOpen(false);
           }}
         >
           <Image src={englishImg} alt="English" width={20} height={20} />
@@ -68,7 +51,7 @@ const Language = () => {
         <button
           onClick={() => {
             setLanguage("de");
-            setDropdownVisible(false);
+            setIsMenuOpen(false);
           }}
         >
           <Image src={deutschImg} alt="Deutsch" width={20} height={20} />

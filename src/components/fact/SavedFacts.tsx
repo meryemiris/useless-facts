@@ -30,7 +30,7 @@ const SavedFacts = () => {
 
     if (userId) {
       const getSavedFacts = async () => {
-        let { data, error } = await supabase
+        const { data, error } = await supabase
           .from("facts")
           .select("*")
           .eq("user_id", userId);

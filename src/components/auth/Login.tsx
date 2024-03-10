@@ -17,7 +17,9 @@ export default function Login() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (!email || !password) {
       toast.warning(
         "Please fill in both email and password before signing in.",
@@ -61,13 +63,7 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <form
-        className={styles.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin();
-        }}
-      >
+      <form className={styles.form} onSubmit={handleLogin}>
         <header>
           <h1>Welcome!</h1>
           <h2>Ready to Sign In?</h2>

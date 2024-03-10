@@ -92,8 +92,6 @@
   padding-bottom: 1px;
 }
 
-
-
 .link {
   display: flex;
   gap: 0.5rem;
@@ -102,13 +100,10 @@
   align-items: center;
   margin-top: 0.8rem;
   color: #382b22;
-
 }
-
 
 .link a {
   text-decoration: none;
-
 }
 
 .link a:hover {

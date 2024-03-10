@@ -79,6 +79,7 @@ const RandomFact = () => {
             width={120}
             height={120}
           />
+
           {isLoading ? <Loading size="md" /> : "Random Fact"}
         </button>
       )}

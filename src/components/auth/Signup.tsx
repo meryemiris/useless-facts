@@ -78,31 +78,31 @@ export default function Signup() {
         console.log("User registered successfully:", user);
 
         if (user) {
-          const { data, error: insertError } = await supabase
-            .from("user")
-            .insert([
-              {
-                id: user.id,
-              },
-            ])
-            .select();
+          try {
+            const { data, error: insertError } = await supabase
+              .from("user")
+              .insert([
+                {
+                  id: user.id,
+                  email: user.email,
+                },
+              ])
+              .select();
 
-          router.push("/");
-
-          if (insertError) {
-            console.log("Error inserting user:", insertError);
-          } else console.log("User inserted successfully:", data);
+            if (insertError) {
+              console.log("Error inserting user:", insertError);
+            } else console.log("User inserted successfully:", data);
+            showAlert(
+              "success",
+              "Welcome!",
+              "You have successfully registered.",
+            );
+            router.push("/");
+          } catch (error) {
+            console.log("Error inserting user:", error);
+          }
         }
       }
-
-      showAlert("success", "Welcome!", "You have successfully registered.");
-
-      // email verification is closed bcs of free plan has limited quota
-      // showAlert(
-      // 	"success",
-      // 	"Welcome!",
-      // 	`\nPlease check your email (${email}) and confirm your account. `
-      // );
     } catch (error) {
       console.error("Error registering user:", error);
       showAlert("error", "Error", "Error registering user. Please try again.");

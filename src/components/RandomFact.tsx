@@ -61,7 +61,7 @@ const RandomFact = () => {
         <button className={styles.button} onClick={fetchRandomFact}>
           <Image
             className={styles.owlImg}
-            src="/randomFact.svg"
+            src="/readingOwl.png"
             alt="owl reading book"
             width={120}
             height={120}

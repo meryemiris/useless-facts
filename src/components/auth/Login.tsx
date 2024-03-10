@@ -130,7 +130,7 @@ export default function Login() {
                 id="password"
                 type="password"
                 name="password"
-                autoComplete="off"
+                autoComplete="current-password"
                 className={styles.input}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

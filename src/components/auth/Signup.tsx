@@ -136,6 +136,7 @@ export default function Signup() {
                 type="email"
                 id="email"
                 onChange={(e) => setEmail(e.currentTarget.value)}
+                autoComplete="email"
               />
               <label className={styles.userLabel} htmlFor="email">
                 Email
@@ -149,6 +150,7 @@ export default function Signup() {
                 type="password"
                 id="password"
                 onChange={(e) => setPassword(e.currentTarget.value)}
+                autoComplete="current-password"
               />
               <label className={styles.userLabel} htmlFor="password">
                 Password

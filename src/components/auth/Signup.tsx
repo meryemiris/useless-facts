@@ -53,7 +53,7 @@ export default function Signup() {
 
     toast.success("Congratulations! Registration successful. Welcome!");
     setIsLoading(false);
-    router.push("/login");
+    router.push("/");
   };
 
   return (

@@ -8,7 +8,6 @@ import { useAuthContext } from "@/lib/AuthContext";
 import RandomFact from "../components/fact/RandomFact";
 import Layout from "../components/layout/Layout";
 import TodayFact from "../components/fact/TodayFact";
-import { useFactContext } from "@/lib/FactContext";
 
 export type Fact = {
   id: string;
@@ -17,17 +16,14 @@ export type Fact = {
 
 export default function HomePage() {
   const { isLoggedIn } = useAuthContext();
-  const { activePage } = useFactContext();
+
   const router = useRouter();
 
   useEffect(() => {
     if (!isLoggedIn) {
       router.push("/login");
     }
-    if (activePage === "saved") {
-      router.push("/saved");
-    }
-  }, [isLoggedIn, router, activePage]);
+  }, [isLoggedIn, router]);
 
   return (
     <>

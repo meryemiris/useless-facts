@@ -9,8 +9,6 @@ export type FactContextType = {
   addToBasket: (fact: Fact) => void;
   removeFromBasket: (factId: string) => void;
   clearBasket: () => void;
-  activePage: "home" | "saved";
-  setActivePage: (activePage: "home" | "saved") => void;
 };
 
 const FactContext = createContext<FactContextType>({} as FactContextType);
@@ -20,7 +18,6 @@ export const FactProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [factBasket, setFactBasket] = useState<Fact[]>([]);
   const [language, setLanguage] = useState<"de" | "en">("en");
-  const [activePage, setActivePage] = useState<"home" | "saved">("home");
 
   const addToBasket = (fact: Fact) => {
     setFactBasket((prev) => {
@@ -47,8 +44,6 @@ export const FactProvider: React.FC<{ children: React.ReactNode }> = ({
     clearBasket,
     language,
     setLanguage,
-    activePage,
-    setActivePage,
   };
 
   return <FactContext.Provider value={value}>{children}</FactContext.Provider>;

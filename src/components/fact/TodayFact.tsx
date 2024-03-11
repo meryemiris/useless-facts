@@ -11,7 +11,7 @@ import { Fact } from "@/pages";
 
 import { IoBasket, IoBasketOutline } from "react-icons/io5";
 import useClickOutside from "@/lib/useClickOutside";
-import { error } from "console";
+
 import { toast } from "sonner";
 
 const TodayFact = () => {

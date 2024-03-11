@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "./Navbar.module.css";
 
 import { supabase } from "@/lib/supabase";
-import { useFactContext } from "@/lib/FactContext";
 
 import FactBasket from "../fact/FactBasket";
 import Language from "../lang/Language";
@@ -22,16 +22,14 @@ async function signOut() {
 }
 
 const Navbar = () => {
-  const { activePage, setActivePage } = useFactContext();
-
+  const router = useRouter();
   return (
     <nav className={styles.navbar}>
       <FactBasket />
 
       <button
-        onClick={() => setActivePage("saved")}
         className={`${styles.goPage} ${
-          activePage === "saved" ? styles.onPage : ""
+          router.pathname === "/saved" ? styles.onPage : ""
         }`}
       >
         <Link href="/saved">
@@ -39,9 +37,8 @@ const Navbar = () => {
         </Link>
       </button>
       <button
-        onClick={() => setActivePage("home")}
         className={`${styles.goPage} ${
-          activePage === "home" ? styles.onPage : ""
+          router.pathname === "/" ? styles.onPage : ""
         }`}
       >
         <Link href="/">

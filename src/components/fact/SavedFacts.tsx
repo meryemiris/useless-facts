@@ -6,7 +6,6 @@ import styles from "./SavedFacts.module.css";
 
 import { supabase } from "@/lib/supabase";
 import { useAuthContext } from "@/lib/AuthContext";
-import { useFactContext } from "@/lib/FactContext";
 
 import Loading from "../utils/Loading";
 
@@ -20,7 +19,6 @@ type SavedFacts = {
 
 const SavedFacts = () => {
   const { userId } = useAuthContext();
-  const { setActivePage } = useFactContext();
 
   const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +38,6 @@ const SavedFacts = () => {
           );
         } else {
           setSavedFacts(data as SavedFacts);
-          setActivePage("saved");
         }
 
         setIsLoading(false);
@@ -48,7 +45,7 @@ const SavedFacts = () => {
 
       getSavedFacts();
     }
-  }, [userId, setActivePage]);
+  }, [userId]);
 
   const handleDeleteFact = async (id: number) => {
     const { error } = await supabase.from("facts").delete().eq("id", id);

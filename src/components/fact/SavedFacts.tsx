@@ -26,8 +26,6 @@ const SavedFacts = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setActivePage("saved");
-
     if (userId) {
       const getSavedFacts = async () => {
         const { data, error } = await supabase
@@ -42,6 +40,7 @@ const SavedFacts = () => {
           );
         } else {
           setSavedFacts(data as SavedFacts);
+          setActivePage("saved");
         }
 
         setIsLoading(false);

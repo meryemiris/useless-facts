@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-
-import { useRouter } from "next/navigation";
 import Head from "next/head";
-
-import { useAuthContext } from "@/lib/AuthContext";
 
 import RandomFact from "../components/fact/RandomFact";
 import Layout from "../components/layout/Layout";
@@ -15,16 +10,6 @@ export type Fact = {
 };
 
 export default function HomePage() {
-  const { isLoggedIn } = useAuthContext();
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/login");
-    }
-  }, [isLoggedIn, router]);
-
   return (
     <>
       <Head>
@@ -34,12 +19,10 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {isLoggedIn && (
-        <Layout>
-          <TodayFact />
-          <RandomFact />
-        </Layout>
-      )}
+      <Layout>
+        <TodayFact />
+        <RandomFact />
+      </Layout>
     </>
   );
 }

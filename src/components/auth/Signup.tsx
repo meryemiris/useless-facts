@@ -46,13 +46,14 @@ export default function Signup() {
       password,
     });
 
+    setIsLoading(false);
+
     if (error) {
       toast.error("Oops! Registration failed. Please try again.");
       return;
     }
 
     toast.success("Congratulations! Registration successful. Welcome!");
-    setIsLoading(false);
     router.push("/");
   };
 

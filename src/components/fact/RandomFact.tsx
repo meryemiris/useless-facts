@@ -80,6 +80,7 @@ const RandomFact = () => {
             alt="owl reading book"
             width={120}
             height={120}
+            priority
           />
 
           {isLoading ? <Loading size="md" /> : "Random Fact"}

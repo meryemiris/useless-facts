@@ -7,8 +7,11 @@ import styles from "./Language.module.css";
 import { useFactContext } from "@/lib/FactContext";
 import useClickOutside from "@/lib/useClickOutside";
 
-import englishImg from "../../../public/en.svg";
-import deutschImg from "../../../public/de.svg";
+// import englishImg from "../../../public/en.svg";
+// import deutschImg from "../../../public/de.svg";
+
+const englishImg = "/en.svg";
+const deutschImg = "/de.svg";
 
 const Language = () => {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -45,7 +48,13 @@ const Language = () => {
             setIsMenuOpen(false);
           }}
         >
-          <Image src={englishImg} alt="British flag" width={20} height={20} />
+          <Image
+            src={englishImg}
+            alt="British flag"
+            width={20}
+            height={20}
+            priority
+          />
           English
         </button>
         <button

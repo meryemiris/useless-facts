@@ -13,10 +13,9 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Teklifim Gelsin Task</title>
+        <title>Useless Facts</title>
         <meta name="description" content="Random Fact Viewer" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Layout>

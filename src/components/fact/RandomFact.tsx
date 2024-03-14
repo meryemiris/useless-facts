@@ -15,6 +15,8 @@ import { IoBasket, IoBasketOutline } from "react-icons/io5";
 
 import { toast } from "sonner";
 
+import readingOwlImg from "../../../public/readingOwl.png";
+
 const RandomFact = () => {
   const [randomFact, setRandomFact] = useState<Fact>();
   const { language, addToBasket, removeFromBasket, factBasket } =
@@ -74,7 +76,7 @@ const RandomFact = () => {
         <button className={styles.button} onClick={fetchRandomFact}>
           <Image
             className={styles.owlImg}
-            src="/readingOwl.png"
+            src={readingOwlImg}
             alt="owl reading book"
             width={120}
             height={120}

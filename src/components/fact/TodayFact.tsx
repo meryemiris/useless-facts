@@ -14,6 +14,8 @@ import useClickOutside from "@/lib/useClickOutside";
 
 import { toast } from "sonner";
 
+import factImg from "../../../public/fact.svg";
+
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =
     useFactContext();
@@ -49,10 +51,10 @@ const TodayFact = () => {
       <button className={styles.button} onClick={() => setIsModalOpen(true)}>
         <Image
           className={styles.image}
-          src={"/fact.svg"}
+          src={factImg}
           width={30}
           height={30}
-          alt="fact"
+          alt="button's lighbulb"
         />
         <span className={styles.fact}>fact</span>
         <span className={styles.daily}>today</span>
@@ -69,12 +71,12 @@ const TodayFact = () => {
             </span>
             <Image
               className={styles.modalImg}
-              src={"/fact.svg"}
+              src={factImg}
               width={40}
               height={40}
-              alt={"fact modal image"}
+              alt="modal's lightbulb"
             />
-            {/* add loading*/}
+
             {todayFact ? (
               <>
                 <p key={todayFact.id}>{todayFact.text}</p>

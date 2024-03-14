@@ -11,6 +11,8 @@ import Loading from "../utils/Loading";
 
 import { toast } from "sonner";
 
+import factImg from "../../../public/fact.svg";
+
 type SavedFacts = {
   id: number;
   user_id: string;
@@ -69,10 +71,10 @@ const SavedFacts = () => {
         <li className={styles.fact} key={fact.id}>
           <Image
             className={styles.modalImg}
-            src={"/fact.svg"}
+            src={factImg}
             width={40}
             height={40}
-            alt={"fact modal image"}
+            alt="fact modal image"
           />
           <p> {fact.content}</p>
           <button

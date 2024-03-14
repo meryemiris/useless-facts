@@ -7,8 +7,8 @@ import styles from "./Language.module.css";
 import { useFactContext } from "@/lib/FactContext";
 import useClickOutside from "@/lib/useClickOutside";
 
-const deutschImg = "/de.svg";
-const englishImg = "/en.svg";
+import englishImg from "../../../public/en.svg";
+import deutschImg from "../../../public/de.svg";
 
 const Language = () => {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -29,7 +29,7 @@ const Language = () => {
         <Image
           className={styles.langImg}
           src={language === "en" ? englishImg : deutschImg}
-          alt="Deutsch"
+          alt="language change flag"
           width={40}
           height={40}
         />
@@ -45,7 +45,7 @@ const Language = () => {
             setIsMenuOpen(false);
           }}
         >
-          <Image src={englishImg} alt="English" width={20} height={20} />
+          <Image src={englishImg} alt="British flag" width={20} height={20} />
           English
         </button>
         <button
@@ -54,7 +54,7 @@ const Language = () => {
             setIsMenuOpen(false);
           }}
         >
-          <Image src={deutschImg} alt="Deutsch" width={20} height={20} />
+          <Image src={deutschImg} alt="Germany flag" width={20} height={20} />
           Deutsch
         </button>
       </div>

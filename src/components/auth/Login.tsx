@@ -98,7 +98,7 @@ export default function Login() {
             </label>
           </div>
           <button className={styles.button} type="submit" disabled={isLoading}>
-            {isLoading ? <Loading size="sm" /> : "Login In"}
+            {isLoading ? <Loading size="sm" /> : "Login"}
           </button>
 
           <div className={styles.link}>

@@ -1,15 +1,19 @@
+// pages/signup.tsx
+import { ReactElement } from "react";
+import AuthLayout from "@/components/layout/AuthLayout";
+import { NextPageWithLayout } from "@/components/types";
 import Login from "@/components/auth/Login";
-import Head from "next/head";
 
-export default function LoginPage() {
+const LoginPage: NextPageWithLayout = () => {
+  return <Login />;
+};
+
+LoginPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <>
-      <Head>
-        <title>Login</title>
-        <meta name="description" content="Login to your account" />
-      </Head>
-
-      <Login />
-    </>
+    <AuthLayout header="Welcome!" subheader="Ready to Start?">
+      {page}
+    </AuthLayout>
   );
-}
+};
+
+export default LoginPage;

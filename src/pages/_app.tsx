@@ -1,19 +1,26 @@
+import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
-
-import { AuthProvider } from "@/lib/AuthContext";
-import { FactProvider } from "@/lib/FactContext";
+import "@/styles/globals.css";
 
 import { Toaster } from "sonner";
 
-import "@/styles/globals.css";
+import { AuthProvider } from "@/lib/AuthContext";
+import { NextPageWithLayout } from "@/components/types";
 
-export default function App({ Component, pageProps }: AppProps) {
+export type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <AuthProvider>
-      <FactProvider>
-        <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
-        <Component {...pageProps} />
-      </FactProvider>
+      <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
+      {getLayout(<Component {...pageProps} />)}
     </AuthProvider>
   );
 }
+
+export default MyApp;

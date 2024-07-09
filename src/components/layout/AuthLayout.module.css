@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+
+}
+
+.content {
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: white;
+  margin: auto;
+
+}
+
+.headSection {
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  margin-bottom: 1rem;
+  color: #013237;
+
+}
+
+.header h1 {
+  font-weight: 500;
+}
+
+.header h2 {
+  font-weight: 400;
+  width: 180px;
+}
+
+.readingOwl {
+  position: relative;
+  left: 3.5rem;
+}

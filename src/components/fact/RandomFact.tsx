@@ -43,7 +43,7 @@ const RandomFact = () => {
     }
   };
 
-  const isInBasket = !!factBasket.find((fact) => fact.id === randomFact?.id);
+  const isInBasket = factBasket?.find((fact) => fact.id === randomFact?.id);
 
   return (
     <div className={styles.scrollable}>

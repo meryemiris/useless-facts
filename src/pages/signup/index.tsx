@@ -1,14 +1,18 @@
+import { ReactElement } from "react";
 import Signup from "@/components/auth/Signup";
-import Head from "next/head";
+import AuthLayout from "@/components/layout/AuthLayout";
+import { NextPageWithLayout } from "@/components/types";
 
-export default function SignupPage() {
+const SignupPage: NextPageWithLayout = () => {
+  return <Signup />;
+};
+
+SignupPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <>
-      <Head>
-        <title>Signup</title>
-        <meta name="description" content="Signup Page" />
-      </Head>
-      <Signup />
-    </>
+    <AuthLayout header="Start Now!" subheader="Join for free.">
+      {page}
+    </AuthLayout>
   );
-}
+};
+
+export default SignupPage;

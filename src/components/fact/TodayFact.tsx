@@ -44,7 +44,7 @@ const TodayFact = () => {
       });
   }, [language]);
 
-  const isInBasket = !!factBasket.find((fact) => fact.id === todayFact?.id);
+  const isInBasket = factBasket?.find((fact) => fact.id === todayFact?.id);
 
   return (
     <>

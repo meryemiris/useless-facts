@@ -62,51 +62,49 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleLogin}>
-        <header>
-          <h1>Welcome!</h1>
-          <h2>Ready to Sign In?</h2>
-        </header>
-        <main className={styles.main}>
-          <div className={styles.inputGroup}>
-            <input
-              id="email"
-              type="text"
-              name="email"
-              autoComplete="off"
-              className={styles.input}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label className={styles.userLabel} htmlFor="email">
-              Email
-            </label>
-          </div>
-          <div className={styles.inputGroup}>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              autoComplete="current-password"
-              className={styles.input}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label className={styles.userLabel} htmlFor="password">
-              Password
-            </label>
-          </div>
-          <button className={styles.button} type="submit" disabled={isLoading}>
-            {isLoading ? <Loading size="sm" /> : "Login"}
-          </button>
+    <form className={styles.form} onSubmit={handleLogin}>
+      <main>
+        <div className={styles.inputGroup}>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            autoComplete="off"
+            className={styles.input}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label className={styles.userLabel} htmlFor="email">
+            Email
+          </label>
+        </div>
 
-          <div className={styles.link}>
-            <i>No account?</i>
-            <Link href="/signup">Sign Up</Link>
-          </div>
-        </main>
-      </form>
-    </div>
+        <div className={styles.inputGroup}>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            className={styles.input}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            autoComplete="current-password"
+          />
+          <label className={styles.userLabel} htmlFor="password">
+            Password
+          </label>
+        </div>
+
+        <button className={styles.button} type="submit" disabled={isLoading}>
+          {isLoading ? <Loading size="sm" /> : "Login"}
+        </button>
+
+        <div className={styles.link}>
+          <i>No account?</i>
+          <Link href="/signup">Sign Up</Link>
+        </div>
+      </main>
+    </form>
   );
 }

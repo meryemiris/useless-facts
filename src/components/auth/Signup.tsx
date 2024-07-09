@@ -58,50 +58,44 @@ export default function Signup() {
   };
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleRegister} className={styles.form}>
-        <header className={styles.header}>
-          <h1>Start Now!</h1>
-          <h2>Join for Free.</h2>
-        </header>
-        <main className={styles.main}>
-          <div className={styles.inputGroup}>
-            <input
-              value={email}
-              className={styles.input}
-              type="email"
-              id="email"
-              onChange={(e) => setEmail(e.currentTarget.value)}
-              autoComplete="email"
-            />
-            <label className={styles.userLabel} htmlFor="email">
-              Email
-            </label>
-          </div>
+    <form onSubmit={handleRegister} className={styles.form}>
+      <main className={styles.main}>
+        <div className={styles.inputGroup}>
+          <input
+            value={email}
+            className={styles.input}
+            type="email"
+            id="email"
+            onChange={(e) => setEmail(e.currentTarget.value)}
+            required
+          />
+          <label className={styles.userLabel} htmlFor="email">
+            Email
+          </label>
+        </div>
 
-          <div className={styles.inputGroup}>
-            <input
-              value={password}
-              className={styles.input}
-              type="password"
-              id="password"
-              onChange={(e) => setPassword(e.currentTarget.value)}
-              autoComplete="current-password"
-            />
-            <label className={styles.userLabel} htmlFor="password">
-              Password
-            </label>
-          </div>
-          <button className={styles.button} disabled={isLoading}>
-            {isLoading ? <Loading size="sm" /> : "Sign Up"}
-          </button>
+        <div className={styles.inputGroup}>
+          <input
+            value={password}
+            className={styles.input}
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.currentTarget.value)}
+            required
+          />
+          <label className={styles.userLabel} htmlFor="password">
+            Password
+          </label>
+        </div>
+        <button className={styles.button} disabled={isLoading}>
+          {isLoading ? <Loading size="sm" /> : "Sign Up"}
+        </button>
 
-          <div className={styles.link}>
-            <i>Already have an account?</i>
-            <Link href="/login">Login</Link>
-          </div>
-        </main>
-      </form>
-    </div>
+        <div className={styles.link}>
+          <i>Already have an account?</i>
+          <Link href="/login">Login</Link>
+        </div>
+      </main>
+    </form>
   );
 }

@@ -1,49 +1,26 @@
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 3rem;
-}
-
-.form {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  background-color: #e8e8e4;
-  border-radius: 1rem;
-}
-
-.form header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.form h1 {
-  font-weight: 600;
-  align-self: center;
-}
-
-.form h2 {
-  align-self: center;
-  font-weight: 400;
-}
-
 .inputGroup {
   position: relative;
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input {
   width: 300px;
-  border: #382b22 0.5px solid;
+  border: #013237 0.5px solid;
   border-radius: 0.6rem;
   background: none;
   margin-bottom: 0.6rem;
   padding: 1rem 0.5rem;
   font-size: 1rem;
-  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.userLabel {
+  position: absolute;
+  color: #013237;
+  left: 0.5rem;
+  top: 0.7rem;
+  pointer-events: none;
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input:focus,
@@ -54,41 +31,35 @@
 
 .input:focus~.userLabel,
 .input:valid~.userLabel {
-  transform: translateY(-50%) scale(0.8);
-  background-color: #e8e8e4;
+  transform: translateY(-100%) scale(0.8);
+  background-color: white;
   padding: 0 0.2em;
-  color: #382b22;
 }
 
-.userLabel {
-  position: absolute;
-  left: 15px;
-  pointer-events: none;
-  transform: translateY(2rem);
-  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
 
 .button {
   font-size: 1.2rem;
   width: 100%;
   height: 3rem;
-  background-image: linear-gradient(to right, #fcd5ce, #d8e2dc);
-  border: #382b22 0.5px solid;
+  background-image: linear-gradient(to right, #FE979C, #FEAE96);
+  border: none;
   border-radius: 0.6rem;
   font-weight: 600;
   cursor: pointer;
   transition-duration: 0.3s;
   margin-top: 0.5rem;
+  color: white;
+  font-weight: 500;
 }
 
 .button:hover {
   transform: scale(1.05);
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 20px -10px;
+
 }
 
 .button:active {
-  transform: translate(2px, 0px);
-  box-shadow: 0px 1px 0px #382b22;
+  transform: scale(0.95);
   padding-bottom: 1px;
 }
 
@@ -99,40 +70,15 @@
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
-  color: #382b22;
+  color: #013237;
 }
 
 .link a {
   text-decoration: none;
+  color: #FE979C;
 }
 
 .link a:hover {
   text-decoration: underline;
   color: inherit;
-}
-
-@media only screen and (min-width: 720px) {
-  .form {
-    flex-direction: row;
-    max-width: 700px;
-  }
-
-  .form header {
-    justify-content: center;
-    padding-right: 1rem;
-  }
-
-  .container {
-    margin: 1rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .container {
-    margin-top: 5rem;
-  }
-
-  .form {
-    transform: scale(1.2);
-  }
 }

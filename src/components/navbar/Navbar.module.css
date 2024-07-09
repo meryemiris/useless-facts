@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .navButton {
@@ -61,9 +61,5 @@
   .goPage {
     border-top-right-radius: 0;
     border-bottom-left-radius: 0.4rem;
-  }
-
-  .icon {
-    font-size: 2rem;
   }
 }

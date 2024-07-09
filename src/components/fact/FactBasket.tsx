@@ -26,16 +26,41 @@ const FactBasket = () => {
   useClickOutside(dropdownRef, handleClickOutside, dropdownVisible);
 
   const handleSaveData = async () => {
-    const insertArray = facts.map((fact) => ({
-      content: fact.text,
-      user_id: userId,
-    }));
+    // Fetch existing facts from the database
+    const { data: existingFacts, error: fetchError } = await supabase
+      .from("facts")
+      .select("content")
+      .eq("user_id", userId);
 
-    const { error } = await supabase.from("facts").insert(insertArray).select();
-
-    if (error) {
+    if (fetchError) {
       toast.error(
-        "Oops! Something went wrong while getting your saved tasks. Please check back in a bit.",
+        "Oops! Something went wrong while fetching existing facts. Please try again later.",
+      );
+      return;
+    }
+
+    const existingFactsSet = new Set(existingFacts.map((fact) => fact.content));
+
+    const newFactsArray = facts
+      .filter((fact) => !existingFactsSet.has(fact.text)) // Filter out already existing facts
+      .map((fact) => ({
+        content: fact.text,
+        user_id: userId,
+      }));
+
+    if (newFactsArray.length === 0) {
+      toast.info("No new facts to save.");
+      return;
+    }
+
+    const { error: insertError } = await supabase
+      .from("facts")
+      .insert(newFactsArray)
+      .select();
+
+    if (insertError) {
+      toast.error(
+        "Oops! Something went wrong while saving your facts. Please try again later.",
       );
       return;
     }

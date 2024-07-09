@@ -9,12 +9,7 @@ import { useFactContext } from "@/lib/FactContext";
 
 import { Fact } from "@/pages";
 
-import {
-  IoArchive,
-  IoArchiveOutline,
-  IoBasket,
-  IoBasketOutline,
-} from "react-icons/io5";
+import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 import useClickOutside from "@/lib/useClickOutside";
 
 import { toast } from "sonner";

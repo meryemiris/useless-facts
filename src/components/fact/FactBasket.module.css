@@ -231,10 +231,6 @@
     max-height: 350px;
   }
 
-  .icon {
-    font-size: 3rem;
-  }
-
   .dropdown::-webkit-scrollbar {
     display: hidden;
   }

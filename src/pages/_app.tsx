@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 
 import { AuthProvider } from "@/lib/AuthContext";
 import { NextPageWithLayout } from "@/components/types";
+import { FactProvider } from "@/lib/FactContext";
 
 export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -17,8 +18,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <AuthProvider>
-      <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
-      {getLayout(<Component {...pageProps} />)}
+      <FactProvider>
+        <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
+        {getLayout(<Component {...pageProps} />)}
+      </FactProvider>
     </AuthProvider>
   );
 }

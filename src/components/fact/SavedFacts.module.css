@@ -1,16 +1,13 @@
 .facts {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   overflow-y: auto;
-  height: 80dvh;
-  width: 100vw;
+  height: 82dvh;
+  width: 90vw;
+  max-width: 600px;
   gap: 1rem;
   padding: 0 1rem;
 }
-
-
 
 .fact {
   display: grid;

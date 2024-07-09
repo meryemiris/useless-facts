@@ -12,7 +12,9 @@
   place-items: center;
   text-decoration: none;
   font-size: 1rem;
-  color: #f08080;
+  color: #e76f51;
+  cursor: pointer;
+
 
 }
 
@@ -23,8 +25,9 @@
   border: none;
   background-color: transparent;
   font-size: 1rem;
-  color: #f08080;
+  color: #e76f51;
   gap: 0.2rem;
+  cursor: pointer;
 }
 
 
@@ -36,8 +39,8 @@
   font-size: 2rem;
 }
 
-.icon:hover,
-.logoutIcon:hover {
+.logoutButton:hover,
+.navButton:hover {
   transform: scale(1.2);
   transition: 0.2s;
 }

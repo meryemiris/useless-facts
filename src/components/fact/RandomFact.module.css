@@ -12,14 +12,15 @@
   width: 350px;
   font-weight: 600;
   font-size: 1.5rem;
-  color: #382b22;
+  color: #013237;
   text-transform: uppercase;
   text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
   padding: 1rem;
   margin: 1rem;
   background: white;
-  border: 2px solid #d8e2dc;
   border-radius: 0.75em;
+  border: none;
+
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-transition:
@@ -52,7 +53,6 @@
 }
 
 .button:hover {
-  background: #ffe9e9;
   -webkit-transform: translate(0, 0.25em);
   transform: translate(0, 0.25em);
 }
@@ -84,14 +84,8 @@
   border-radius: 0.8rem;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  padding: 0 1rem 1rem 1rem;
-  margin: 0 1rem;
-}
-
-.card:hover {
-  box-shadow:
-    #b18597 5px 1px 5px,
-    #b18597 -5px 0px 2px;
+  padding: 1rem;
+  margin: 1rem;
 }
 
 .fact {
@@ -107,7 +101,7 @@
   background-color: inherit;
   border: none;
   cursor: pointer;
-  color: #b18597;
+  color: #FE979C;
 
 }
 
@@ -120,17 +114,17 @@
   justify-self: flex-end;
   align-items: center;
   gap: 0.5rem;
-  background-color: #ffe3e2;
+  background-color: white;
   border-radius: 0.8rem;
   border: none;
   font-size: 1rem;
-  padding: 0.5rem;
+  padding: 0.8rem;
   align-self: flex-end;
-  color: #382b22;
+  color: #013237;
 }
 
 .nextButton:hover {
-  background-color: #b18597;
+  background-color: #FE979C;
   color: #ffe3e2;
   cursor: pointer;
 }

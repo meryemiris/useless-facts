@@ -10,12 +10,8 @@
   background-color: inherit;
   font-size: 1rem;
   gap: 0.2rem;
-  color: #f08080;
+  color: #e76f51;
 
-}
-
-.onPage {
-  background-color: #b18597;
 }
 
 .langImg {
@@ -24,7 +20,7 @@
   cursor: pointer;
 }
 
-.langImg:hover {
+.langButton:hover {
   transform: scale(1.2);
   transition: 0.2s;
 }

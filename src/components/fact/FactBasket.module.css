@@ -6,16 +6,16 @@
   background-color: inherit;
   border: none;
   font-size: 1rem;
-  color: #f08080;
+  color: #e76f51;
+  cursor: pointer;
 
 }
 
 .icon {
   font-size: 2rem;
-  cursor: pointer;
 }
 
-.icon:hover {
+.button:hover {
   transform: scale(1.1);
   transition: 0.2s;
 }
@@ -87,7 +87,7 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background-color: #f08080;
+  background-color: #FE979C;
   cursor: pointer;
   border: 2px solid rgb(255, 201, 201);
   transition-duration: 0.4s;
@@ -217,7 +217,7 @@
 
 .emptyBasket {
   padding: 1rem;
-  color: #b18597;
+  color: #FE979C;
   font-size: 1rem;
 }
 

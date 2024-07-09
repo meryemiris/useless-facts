@@ -9,7 +9,12 @@ import { useFactContext } from "@/lib/FactContext";
 
 import { Fact } from "@/pages";
 
-import { IoBasket, IoBasketOutline } from "react-icons/io5";
+import {
+  IoArchive,
+  IoArchiveOutline,
+  IoBasket,
+  IoBasketOutline,
+} from "react-icons/io5";
 import useClickOutside from "@/lib/useClickOutside";
 
 import { toast } from "sonner";
@@ -52,8 +57,8 @@ const TodayFact = () => {
         <Image
           className={styles.image}
           src={factImg}
-          width={30}
-          height={30}
+          width={40}
+          height={40}
           alt="button's lighbulb"
         />
         <span className={styles.fact}>fact</span>
@@ -89,7 +94,7 @@ const TodayFact = () => {
                       : addToBasket(todayFact);
                   }}
                 >
-                  {isInBasket ? <IoBasket /> : <IoBasketOutline />}
+                  {isInBasket ? <IoArchive /> : <IoArchiveOutline />}
                 </button>
               </>
             ) : null}

@@ -51,11 +51,7 @@ const FactBasket = () => {
         className={styles.button}
         onClick={() => setDropdownVisible(!dropdownVisible)}
       >
-        {dropdownVisible ? (
-          <IoBag className={styles.icon} />
-        ) : (
-          <IoBagOutline className={styles.icon} />
-        )}
+        <IoBagOutline className={styles.icon} />
         Basket
       </button>
 

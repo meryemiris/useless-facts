@@ -1,14 +1,12 @@
 .button {
   align-self: flex-end;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  color: #b18597;
+  place-items: center;
+  color: #013237;
   text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
   text-transform: uppercase;
   cursor: pointer;
-  border: solid 2px #b18597;
+  border: none;
   letter-spacing: 1px;
   font-weight: 600;
   font-size: 17px;
@@ -18,6 +16,7 @@
   overflow: hidden;
   transition: all 0.5s ease;
   margin: 1rem;
+  padding: .5rem;
 }
 
 .button:active {
@@ -41,7 +40,7 @@
 
 .fact {
   position: absolute;
-  left: 0;
+  left: -.2rem;
   transform: translateX(-100%);
   transition: all 0.3s ease;
   z-index: 2;
@@ -94,7 +93,7 @@
 }
 
 .close:hover {
-  color: #b18597;
+  color: #FE979C;
 }
 
 .close:active {
@@ -114,11 +113,11 @@
 }
 
 .inBasket {
-  color: #b18597;
+  color: #FE979C;
 }
 
 .addButton:hover {
-  color: #b18597;
+  color: #FE979C;
   transition: all 100ms ease;
 }
 

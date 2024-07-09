@@ -11,7 +11,12 @@ import { useFactContext } from "@/lib/FactContext";
 import Loading from "../utils/Loading";
 
 import { GrCaretNext } from "react-icons/gr";
-import { IoBasket, IoBasketOutline } from "react-icons/io5";
+import {
+  IoArchive,
+  IoArchiveOutline,
+  IoBasket,
+  IoBasketOutline,
+} from "react-icons/io5";
 
 import { toast } from "sonner";
 
@@ -57,7 +62,7 @@ const RandomFact = () => {
                 : addToBasket(randomFact);
             }}
           >
-            {isInBasket ? <IoBasket /> : <IoBasketOutline />}
+            {isInBasket ? <IoArchive /> : <IoArchiveOutline />}
           </button>
           <span key={randomFact.id} className={styles.fact}>
             {randomFact.text}

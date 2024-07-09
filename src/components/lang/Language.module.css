@@ -4,13 +4,14 @@
 
 .langButton {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  place-items: center;
   border: none;
   background-color: inherit;
-  padding: 0.5rem 0.5rem 0.8rem 0.5rem;
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
+  font-size: 1rem;
+  gap: 0.2rem;
+  color: #f08080;
+
 }
 
 .onPage {
@@ -36,18 +37,24 @@
 }
 
 .dropdown {
-  background-color: #f8edeb;
+  background-color: white;
   position: absolute;
   top: 1.2rem;
-  right: 1.2rem;
+  left: 2.4rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0.4rem;
   display: none;
-  width: 140px;
   padding: 0.5rem;
   border-radius: 10px;
-  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   overflow: auto;
-  z-index: 1;
+  z-index: 2;
   font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-height: 80vh;
+  width: 120px;
+  margin: 0 auto;
+
 }
 
 .dropdown button {

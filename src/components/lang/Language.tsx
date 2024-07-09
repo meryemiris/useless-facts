@@ -6,6 +6,7 @@ import styles from "./Language.module.css";
 
 import { useFactContext } from "@/lib/FactContext";
 import useClickOutside from "@/lib/useClickOutside";
+import { IoEarthOutline } from "react-icons/io5";
 
 // import englishImg from "../../../public/en.svg";
 // import deutschImg from "../../../public/de.svg";
@@ -29,13 +30,12 @@ const Language = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className={styles.langButton}
       >
-        <Image
-          className={styles.langImg}
-          src={language === "en" ? englishImg : deutschImg}
-          alt="language change flag"
-          width={40}
-          height={40}
-        />
+        {isMenuOpen ? (
+          <IoEarthOutline className={styles.langImg} />
+        ) : (
+          <IoEarthOutline className={styles.langImg} />
+        )}
+        Language
       </button>
       <div
         ref={menuRef}

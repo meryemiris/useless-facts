@@ -9,7 +9,14 @@ import FactBasket from "../fact/FactBasket";
 import Language from "../lang/Language";
 
 import { FcFolder, FcHome } from "react-icons/fc";
-import { IoLogOut } from "react-icons/io5";
+import {
+  IoArchive,
+  IoArchiveOutline,
+  IoHomeOutline,
+  IoHomeSharp,
+  IoLogInOutline,
+  IoLogOut,
+} from "react-icons/io5";
 
 import { toast } from "sonner";
 
@@ -25,30 +32,29 @@ const Navbar = () => {
   const router = useRouter();
   return (
     <nav className={styles.navbar}>
+      <Link className={styles.navButton} href="/">
+        {router.pathname === "/" ? (
+          <IoHomeSharp className={styles.icon} />
+        ) : (
+          <IoHomeOutline className={styles.icon} />
+        )}
+        Home
+      </Link>
       <FactBasket />
 
-      <button
-        className={`${styles.goPage} ${
-          router.pathname === "/saved" ? styles.onPage : ""
-        }`}
-      >
-        <Link href="/saved">
-          <FcFolder className={styles.icon} />
-        </Link>
-      </button>
-      <button
-        className={`${styles.goPage} ${
-          router.pathname === "/" ? styles.onPage : ""
-        }`}
-      >
-        <Link href="/">
-          <FcHome className={styles.icon} />
-        </Link>
-      </button>
+      <Link className={styles.navButton} href="/saved">
+        {router.pathname === "/saved" ? (
+          <IoArchive className={styles.icon} />
+        ) : (
+          <IoArchiveOutline className={styles.icon} />
+        )}
+        Archive
+      </Link>
 
       <Language />
-      <button onClick={signOut} className={styles.goPage}>
-        <IoLogOut className={styles.logoutIcon} />
+      <button onClick={signOut} className={styles.logoutButton}>
+        <IoLogInOutline className={styles.logoutIcon} />
+        Logout
       </button>
     </nav>
   );

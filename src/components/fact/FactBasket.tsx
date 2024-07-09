@@ -8,7 +8,7 @@ import { useFactContext } from "@/lib/FactContext";
 import { supabase } from "@/lib/supabase";
 
 import { FcFolder } from "react-icons/fc";
-import { IoBasket } from "react-icons/io5";
+import { IoBag, IoBagOutline, IoBasket } from "react-icons/io5";
 import { GrClearOption } from "react-icons/gr";
 
 import { toast } from "sonner";
@@ -51,7 +51,12 @@ const FactBasket = () => {
         className={styles.button}
         onClick={() => setDropdownVisible(!dropdownVisible)}
       >
-        <IoBasket className={styles.icon} />
+        {dropdownVisible ? (
+          <IoBag className={styles.icon} />
+        ) : (
+          <IoBagOutline className={styles.icon} />
+        )}
+        Basket
       </button>
 
       <div

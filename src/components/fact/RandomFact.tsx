@@ -78,8 +78,8 @@ const RandomFact = () => {
             className={styles.owlImg}
             src={readingOwlImg}
             alt="owl reading book"
-            width={120}
-            height={120}
+            width={100}
+            height={100}
             priority
           />
 

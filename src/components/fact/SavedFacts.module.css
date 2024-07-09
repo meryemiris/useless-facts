@@ -4,29 +4,13 @@
   align-items: center;
   justify-content: flex-start;
   overflow-y: auto;
-  height: 75vh;
-  width: 80vw;
+  height: 80dvh;
+  width: 100vw;
   gap: 1rem;
-  margin: 1rem;
   padding: 0 1rem;
 }
 
-.facts::-webkit-scrollbar {
-  width: 0.4rem;
-}
 
-.facts::-webkit-scrollbar-thumb {
-  background-color: rgba(157, 180, 192, 0.5);
-  border-radius: 2rem;
-}
-
-.facts::-webkit-scrollbar-thumb:hover {
-  background-color: #9db4c0;
-}
-
-.facts::-webkit-scrollbar-track {
-  background-color: inherit;
-}
 
 .fact {
   display: grid;
@@ -106,6 +90,16 @@
   animation: throw 0.4s linear;
 }
 
+.noFacts {
+  margin-top: 1rem;
+  font-weight: 500;
+
+}
+
+.facts::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes throw {
   from {
     transform: translate(-400%, -700%);
@@ -119,13 +113,27 @@
 }
 
 
+
 @media screen and (min-width: 768px) {
   .facts {
     height: auto;
   }
-}
 
-.noFacts {
-  margin-top: 1rem;
-  font-weight: 500;
+  .facts::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  .facts::-webkit-scrollbar-thumb {
+    background-color: rgba(157, 180, 192, 0.5);
+    border-radius: 2rem;
+  }
+
+  .facts::-webkit-scrollbar-thumb:hover {
+    background-color: #9db4c0;
+  }
+
+  .facts::-webkit-scrollbar-track {
+    background-color: inherit;
+  }
+
 }

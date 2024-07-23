@@ -2,21 +2,24 @@
   align-self: flex-end;
   display: flex;
   place-items: center;
-  color: #013237;
-  text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
+  color: var(--background-color);
+  text-shadow: -1px 1px rgba(252, 95, 95, 0.5);
+
   text-transform: uppercase;
   cursor: pointer;
   border: none;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   font-weight: 600;
-  font-size: 17px;
-  background-color: #d8e2dc;
+  font-size: 1.5rem;
+  background-color: var(--primary-color);
+
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
   transition: all 0.5s ease;
   margin: 0 1rem;
-  padding: .5rem;
+  padding: 0.8rem;
+
 }
 
 .button:active {

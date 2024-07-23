@@ -9,7 +9,7 @@
   border: none;
   background-color: inherit;
   font-size: 1rem;
-  color: #e76f51;
+  color: var(--icon-color);
   cursor: pointer;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .dropdown {
-  background-color: white;
+  background-color: var(--background-color);
   position: absolute;
   top: 1.2rem;
   left: 2.4rem;

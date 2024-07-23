@@ -12,7 +12,7 @@
   width: 350px;
   font-weight: 600;
   font-size: 1.5rem;
-  color: #013237;
+  color: var(--text-color);
   text-transform: uppercase;
   text-shadow: -1px 1px rgba(97, 155, 138, 0.5);
   padding: 1rem;
@@ -41,7 +41,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #ffe3e2;
+  background: var(--primary-color);
   border-radius: inherit;
   -webkit-transform: translate3d(0, 0.75em, -1em);
   transform: translate3d(0, 0.75em, -1em);
@@ -76,15 +76,15 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: var(--background-color);
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   width: 90vw;
   max-width: 600px;
   height: fit-content;
   border-radius: 0.8rem;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   margin: 1rem;
 }
 
@@ -94,6 +94,9 @@
 }
 
 .addBasket {
+  position: relative;
+  top: -1rem;
+  left: -.5rem;
   align-self: flex-end;
   margin-top: .5rem;
   font-size: 2rem;
@@ -101,7 +104,7 @@
   background-color: inherit;
   border: none;
   cursor: pointer;
-  color: #FE979C;
+  color: var(--secondary-color);
 
 }
 
@@ -114,17 +117,18 @@
   justify-self: flex-end;
   align-items: center;
   gap: 0.5rem;
-  background-color: white;
+  background-color: transparent;
   border-radius: 0.8rem;
   border: none;
   font-size: 1rem;
   padding: 0.8rem;
   align-self: flex-end;
-  color: #013237;
+  color: var(--text-color);
 }
 
 .nextButton:hover {
-  background-color: #FE979C;
-  color: #ffe3e2;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }

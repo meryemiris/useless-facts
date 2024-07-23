@@ -1,5 +1,6 @@
 .navbar {
-  background-color: white;
+  background-color: var(--primary-color);
+  box-shadow: rgba(32, 32, 32, 0.25) 0px 5px 50px -22px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -18,8 +19,8 @@
   place-items: center;
   text-decoration: none;
   font-size: 1rem;
-  color: #e76f51;
   cursor: pointer;
+  color: var(--icon-color);
 }
 
 

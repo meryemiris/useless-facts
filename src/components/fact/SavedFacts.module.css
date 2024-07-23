@@ -11,12 +11,13 @@
 
 .fact {
   display: grid;
-  background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
+  background-color: var(--background-color);
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   width: 100%;
 }
+
 
 .modalImg {
   position: relative;

@@ -6,7 +6,13 @@
   padding: 1rem 0;
 }
 
-.navButton {
+.logoutButton {
+  background-color: inherit;
+  border: none;
+}
+
+.navButton,
+.logoutButton {
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -14,26 +20,9 @@
   font-size: 1rem;
   color: #e76f51;
   cursor: pointer;
-
-
-}
-
-.logoutButton {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  border: none;
-  background-color: transparent;
-  font-size: 1rem;
-  color: #e76f51;
-  gap: 0.2rem;
-  cursor: pointer;
 }
 
 
-.logoutIcon {
-  font-size: 2rem;
-}
 
 .icon {
   font-size: 2rem;
@@ -56,6 +45,7 @@
 @media only screen and (min-width: 768px) {
   .navbar {
     flex-direction: column;
+    padding: 0.8rem;
   }
 
   .goPage {

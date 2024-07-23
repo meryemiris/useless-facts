@@ -8,15 +8,13 @@ import { supabase } from "@/lib/supabase";
 import FactBasket from "../fact/FactBasket";
 import Language from "../lang/Language";
 
-import { FcFolder, FcHome } from "react-icons/fc";
 import {
   IoArchive,
   IoArchiveOutline,
   IoHomeOutline,
   IoHomeSharp,
-  IoLogInOutline,
-  IoLogOut,
 } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
 
 import { toast } from "sonner";
 
@@ -53,7 +51,7 @@ const Navbar = () => {
 
       <Language />
       <button onClick={signOut} className={styles.logoutButton}>
-        <IoLogInOutline className={styles.logoutIcon} />
+        <IoMdLogOut className={styles.icon} />
         Logout
       </button>
     </nav>

@@ -7,7 +7,7 @@
 
 .content {
   max-width: 600px;
-  padding: 2rem;
+  padding: 3rem 2rem;
   border-radius: 1rem;
   background-color: white;
   margin: auto;
@@ -35,4 +35,10 @@
 .readingOwl {
   position: relative;
   left: 3.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    transform: scale(1.2);
+  }
 }

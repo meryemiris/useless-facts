@@ -16,21 +16,18 @@
 
 .userLabel {
   position: absolute;
-  color: #013237;
   left: 0.5rem;
   top: 0.7rem;
   pointer-events: none;
   transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.input:focus,
-.input:valid {
+.input:is(:focus, :valid) {
   outline: none;
   border: 1.5px solid;
 }
 
-.input:focus~.userLabel,
-.input:valid~.userLabel {
+.input:is(:focus, :valid)~.userLabel {
   transform: translateY(-100%) scale(0.8);
   background-color: white;
   padding: 0 0.2em;
@@ -41,10 +38,9 @@
   font-size: 1.2rem;
   width: 100%;
   height: 3rem;
-  background-image: linear-gradient(to right, #FE979C, #FEAE96);
   border: none;
+  background-image: linear-gradient(to right, #FE979C, #FEAE96);
   border-radius: 0.6rem;
-  font-weight: 600;
   cursor: pointer;
   transition-duration: 0.3s;
   margin-top: 0.5rem;
@@ -52,7 +48,7 @@
   font-weight: 500;
 }
 
-.button:hover {
+.button:is(:hover, :focus) {
   transform: scale(1.05);
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 20px -10px;
 
@@ -70,7 +66,6 @@
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
-  color: #013237;
 }
 
 .link a {
@@ -81,4 +76,21 @@
 .link a:hover {
   text-decoration: underline;
   color: inherit;
+}
+
+.passwordVisiblityButton {
+  all: unset;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.passwordVisiblityButton:is(:hover, :focus) {
+  transform: scale(1.2);
+}
+
+.passwordVisiblityButton:active {
+  transform: scale(0.9);
 }

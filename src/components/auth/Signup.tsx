@@ -10,6 +10,8 @@ import styles from "./Login.module.css";
 import Loading from "../utils/Loading";
 import { toast } from "sonner";
 
+import { IoEye, IoEyeOff } from "react-icons/io5";
+
 export default function Signup() {
   const router = useRouter();
 
@@ -17,6 +19,7 @@ export default function Signup() {
   const [password, setPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,6 +60,10 @@ export default function Signup() {
     router.push("/");
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <form onSubmit={handleRegister} className={styles.form}>
       <main className={styles.main}>
@@ -78,7 +85,7 @@ export default function Signup() {
           <input
             value={password}
             className={styles.input}
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             id="password"
             onChange={(e) => setPassword(e.currentTarget.value)}
             required
@@ -86,6 +93,13 @@ export default function Signup() {
           <label className={styles.userLabel} htmlFor="password">
             Password
           </label>
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className={styles.passwordVisiblityButton}
+          >
+            {isPasswordVisible ? <IoEye /> : <IoEyeOff />}
+          </button>
         </div>
         <button className={styles.button} disabled={isLoading}>
           {isLoading ? <Loading size="sm" /> : "Sign Up"}

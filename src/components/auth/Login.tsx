@@ -9,6 +9,7 @@ import styles from "./Login.module.css";
 import Loading from "../utils/Loading";
 
 import { toast } from "sonner";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 export default function Login() {
   const router = useRouter();
@@ -16,6 +17,12 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -83,7 +90,7 @@ export default function Login() {
         <div className={styles.inputGroup}>
           <input
             id="password"
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             name="password"
             className={styles.input}
             value={password}
@@ -94,6 +101,13 @@ export default function Login() {
           <label className={styles.userLabel} htmlFor="password">
             Password
           </label>
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className={styles.passwordVisiblityButton}
+          >
+            {isPasswordVisible ? <IoEye /> : <IoEyeOff />}
+          </button>
         </div>
 
         <button className={styles.button} type="submit" disabled={isLoading}>

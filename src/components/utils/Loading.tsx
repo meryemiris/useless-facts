@@ -45,9 +45,9 @@ export default function Loading({ size = "md" }: { size?: "sm" | "md" }) {
             clipPath="url(#loader-eyes)"
             height="64"
             width="128"
-            fill="#f08080"
+            fill="white"
           ></rect>
-          <g stroke="#f08080" fill="none">
+          <g stroke="white" fill="none">
             <circle
               transform="rotate(180,64,64)"
               r="56"

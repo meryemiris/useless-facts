@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
-import Signup from "@/components/auth/Signup";
 import AuthLayout from "@/components/layout/AuthLayout";
 import { NextPageWithLayout } from "@/components/types";
+import AuthForm from "@/components/auth/AuthForm";
 
 const SignupPage: NextPageWithLayout = () => {
-  return <Signup />;
+  return <AuthForm action="signup" />;
 };
 
 SignupPage.getLayout = function getLayout(page: ReactElement) {

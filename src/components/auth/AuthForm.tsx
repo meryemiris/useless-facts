@@ -27,60 +27,65 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const validateForm = () => {
+    if (!email || !password) {
+      toast.warning("Please fill in both email and password.");
+      return false;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      toast.warning("Please enter a valid email address.");
+      return false;
+    }
+    if (password.length < 6) {
+      toast.warning("Please enter a valid password (at least 6 characters).");
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogin = async () => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) {
+      const errorMessage =
+        error.message === "Invalid login credentials"
+          ? "User not found or incorrect password. Please double-check your credentials."
+          : "Something went wrong while signing in. Please try again later.";
+
+      toast.error(errorMessage);
+      setEmail("");
+      setPassword("");
+    } else {
+      toast.success("Welcome back! You've signed in successfully.");
+      router.push("/");
+    }
+  };
+
+  const handleSignUp = async () => {
+    const { error } = await supabase.auth.signUp({ email, password });
+    if (error) {
+      toast.error("Oops! Registration failed. Please try again.");
+    } else {
+      toast.success("Congratulations! Registration successful. Welcome!");
+      router.push("/");
+    }
+  };
+
   const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     if (action === "login") {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      setIsLoading(false);
-
-      if (error) {
-        const errorMessage =
-          error.message === "Invalid login credentials"
-            ? "User not found or incorrect password. Please double-check your credentials."
-            : "Something went wrong while signing in. Please try again later.";
-
-        toast.error(errorMessage);
-        setEmail("");
-        setPassword("");
-      } else {
-        toast.success("Welcome back! You've signed in successfully.");
-        router.push("/");
-      }
+      await handleLogin();
     } else if (action === "signup") {
-      if (!email || !password) {
-        toast.warning("Please fill in both email and password.");
-        return;
+      if (validateForm()) {
+        await handleSignUp();
       }
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(email)) {
-        toast.warning("Please enter a valid email address.");
-        return;
-      }
-      if (password.length < 6) {
-        toast.warning("Please enter a valid password (at least 6 characters).");
-        return;
-      }
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      setIsLoading(false);
-
-      if (error) {
-        toast.error("Oops! Registration failed. Please try again.");
-        return;
-      }
-
-      toast.success("Congratulations! Registration successful. Welcome!");
-      router.push("/");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -136,12 +141,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
         </button>
 
         <div className={styles.link}>
-          <i>
-            {action === "login" ? "No account?" : "Already have an account?"}
-          </i>
-          <Link href={action === "login" ? "/signup" : "/login"}>
-            {action === "login" ? "Sign Up" : "Login"}
-          </Link>
+          {action === "login" ? (
+            <>
+              <i>No account?</i>
+              <Link href="/signup">Sign Up</Link>
+            </>
+          ) : (
+            <>
+              <i>Already have an account?</i>
+              <Link href="/login">Login</Link>
+            </>
+          )}
         </div>
       </main>
     </form>

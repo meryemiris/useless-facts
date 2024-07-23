@@ -3,15 +3,18 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
 
-  --primary-color: #f28482;
-  --secondary-color: #f6bd60;
+  --primary-color: #e76f51;
+  --secondary-color: #f4a261;
 
   --background-color: #F2F3F4;
-  --icon-color: #fffcf2;
+  --icon-color: #252422;
 
 
   --text-color: #252422;
   --color-danger: #FE979C;
+
+  --light-box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  --intense-box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 

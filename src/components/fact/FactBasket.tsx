@@ -8,7 +8,7 @@ import { useFactContext } from "@/lib/FactContext";
 import { supabase } from "@/lib/supabase";
 
 import { FcFolder } from "react-icons/fc";
-import { IoBag, IoBagOutline, IoBasket } from "react-icons/io5";
+import { IoBagOutline } from "react-icons/io5";
 import { GrClearOption } from "react-icons/gr";
 
 import { toast } from "sonner";

@@ -1,27 +1,18 @@
 import { useState } from "react";
 
-import Image from "next/image";
-
-import styles from "./RandomFact.module.css";
-
 import { fetchFact } from "@/lib/api";
-import { Fact } from "@/pages";
+import { Fact } from "@/components/types";
 import { useFactContext } from "@/lib/FactContext";
-
-import Loading from "../utils/Loading";
-
-import { GrCaretNext } from "react-icons/gr";
-import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 
 import { toast } from "sonner";
 
-import readingOwlImg from "../../../public/readingOwl.png";
+import DisplayRandomFactCard from "./DisplayRandomFactCard";
+import InitRandomFactButton from "./InitRandomFactButton";
 
 const RandomFact = () => {
-  const [randomFact, setRandomFact] = useState<Fact>();
-  const { language, addToBasket, removeFromBasket, factBasket } =
-    useFactContext();
+  const { language } = useFactContext();
 
+  const [randomFact, setRandomFact] = useState<Fact>();
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchRandomFact = async () => {
@@ -43,50 +34,20 @@ const RandomFact = () => {
     }
   };
 
-  const isInBasket = factBasket?.find((fact) => fact.id === randomFact?.id);
-
   return (
-    <div className={styles.scrollable}>
+    <>
       {randomFact ? (
-        <div className={styles.card}>
-          <button
-            className={`${styles.addBasket} ${isInBasket ? styles.inBasket : ""}`}
-            onClick={() => {
-              isInBasket
-                ? removeFromBasket(randomFact.id)
-                : addToBasket(randomFact);
-            }}
-          >
-            {isInBasket ? <IoArchive /> : <IoArchiveOutline />}
-          </button>
-          <span key={randomFact.id} className={styles.fact}>
-            {randomFact.text}
-          </span>
-
-          <button
-            onClick={() => {
-              fetchRandomFact();
-            }}
-            className={styles.nextButton}
-          >
-            Go Next <GrCaretNext className={styles.nextIcon} />
-          </button>
-        </div>
+        <DisplayRandomFactCard
+          onFetchFact={fetchRandomFact}
+          randomFact={randomFact}
+        />
       ) : (
-        <button className={styles.button} onClick={fetchRandomFact}>
-          <Image
-            className={styles.owlImg}
-            src={readingOwlImg}
-            alt="owl reading book"
-            width={100}
-            height={100}
-            priority
-          />
-
-          {isLoading ? <Loading size="md" /> : "Random Fact"}
-        </button>
+        <InitRandomFactButton
+          onFetchFact={fetchRandomFact}
+          loading={isLoading}
+        />
       )}
-    </div>
+    </>
   );
 };
 

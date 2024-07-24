@@ -1,0 +1,59 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  box-shadow: var(--intense-box-shadow);
+  width: 90vw;
+  max-width: 600px;
+  height: fit-content;
+  border-radius: 0.8rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+}
+
+.fact {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.addBasket {
+  position: relative;
+  top: -1rem;
+  left: -.5rem;
+  align-self: flex-end;
+  margin-top: .5rem;
+  font-size: 2rem;
+  transition: all 0.3s ease-in-out;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  color: var(--secondary-color);
+
+}
+
+.addBasket:hover {
+  transform: scale(1.1);
+}
+
+.nextButton {
+  display: flex;
+  justify-self: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  border-radius: 0.8rem;
+  border: none;
+  font-size: 1rem;
+  padding: 0.8rem;
+  align-self: flex-end;
+  color: var(--text-color);
+}
+
+.nextButton:hover {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}

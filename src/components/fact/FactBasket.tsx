@@ -7,9 +7,8 @@ import { useFactContext } from "@/lib/FactContext";
 
 import { supabase } from "@/lib/supabase";
 
-import { FcFolder } from "react-icons/fc";
 import { IoBagOutline } from "react-icons/io5";
-import { GrClearOption } from "react-icons/gr";
+import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
 import { toast } from "sonner";
 import useClickOutside from "@/lib/useClickOutside";
@@ -73,10 +72,10 @@ const FactBasket = () => {
   return (
     <div className={`${styles.factBasket} ${styles.showRight}`}>
       <button
-        className={styles.button}
+        className={styles.basketButton}
         onClick={() => setDropdownVisible(!dropdownVisible)}
       >
-        <IoBagOutline className={styles.icon} />
+        <IoBagOutline className={styles.basketIcon} />
         Basket
       </button>
 
@@ -149,10 +148,11 @@ const FactBasket = () => {
             ))}
             <div className={styles.actionButtons}>
               <button onClick={clearBasket} className={styles.clearButton}>
-                Clear <GrClearOption style={{ color: " rgb(255, 95, 95)" }} />
+                Clear <AiOutlineClear className={styles.icon} />
               </button>
               <button onClick={handleSaveData} className={styles.saveButton}>
-                Save <FcFolder />
+                Save
+                <AiOutlineSave className={styles.icon} />
               </button>
             </div>
           </ul>

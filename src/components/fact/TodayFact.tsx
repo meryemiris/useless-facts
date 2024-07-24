@@ -56,8 +56,8 @@ const TodayFact = () => {
           height={40}
           alt="button's lighbulb"
         />
-        <span className={styles.fact}>fact</span>
-        <span className={styles.daily}>today</span>
+        <span className={styles.factText}>fact</span>
+        <span className={styles.todayText}>today</span>
       </button>
 
       {isModalOpen && (
@@ -72,8 +72,8 @@ const TodayFact = () => {
             <Image
               className={styles.modalImg}
               src={factImg}
-              width={40}
-              height={40}
+              width={50}
+              height={50}
               alt="modal's lightbulb"
             />
 

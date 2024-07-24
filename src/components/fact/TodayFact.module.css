@@ -1,24 +1,25 @@
 .button {
+  all: unset;
+  text-transform: uppercase;
+  cursor: pointer;
+
   align-self: flex-end;
   display: flex;
   place-items: center;
-  color: var(--background-color);
-  text-shadow: -1px 1px rgba(220, 24, 24, 0.5);
 
-  text-transform: uppercase;
-  cursor: pointer;
-  border: none;
+  color: var(--background-color);
+  background-color: var(--primary-color);
+  text-shadow: -1px 1px rgba(220, 24, 24, 0.5);
+  padding: 0.5rem;
+  border-radius: 1rem;
+
   letter-spacing: 1.5px;
   font-weight: 600;
   font-size: 1.5rem;
-  background-color: var(--primary-color);
 
-  border-radius: 1rem;
   position: relative;
   overflow: hidden;
   transition: all 0.5s ease;
-  margin: 0 1rem;
-  padding: 0.8rem;
 
 }
 
@@ -32,7 +33,7 @@
   z-index: 1;
 }
 
-.daily {
+.todayText {
   transition: transform 0.3s ease;
   transform: translateX(0);
 }
@@ -41,23 +42,23 @@
   transform: scale(3) translate(70%);
 }
 
-.fact {
+.factText {
   position: absolute;
   left: -.2rem;
   transform: translateX(-100%);
   transition: all 0.3s ease;
-  z-index: 2;
 }
 
-.button:hover .fact {
+.button:hover .factText {
   transform: translateX(10px);
   transition-delay: 300ms;
 }
 
-.button:hover .daily {
+.button:hover .todayText {
   transform: translateX(200%);
   transition-delay: 100ms;
 }
+
 
 .modal {
   display: block;
@@ -68,21 +69,21 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  font-size: large;
 }
 
 .modalContent {
   position: absolute;
-  top: 35%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: linear-gradient(to right, #d8e2dc 0%, #e8e8e4);
-  padding: 1rem 1.5rem;
+  background-color: var(--background-color);
+  box-shadow: var(--intense-box-shadow);
+  padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  width: 80%;
+  width: 90dvw;
   max-width: 500px;
   z-index: 2;
-  gap: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -90,13 +91,15 @@
 .close {
   position: absolute;
   top: -5px;
-  right: 10px;
-  font-size: 2rem;
+  right: 20px;
+  font-size: 2.5rem;
   cursor: pointer;
 }
 
-.close:hover {
-  color: #FE979C;
+.close:hover,
+.inBasket,
+.addButton:hover {
+  color: var(--secondary-color);
 }
 
 .close:active {
@@ -113,18 +116,21 @@
   border: none;
   cursor: pointer;
   font-size: 2rem;
+  margin-top: 1rem;
 }
 
-.inBasket {
-  color: #FE979C;
-}
 
 .addButton:hover {
-  color: #FE979C;
   transition: all 100ms ease;
 }
 
 .addButton:active {
   transform: scale(0.9);
   transition: all 100ms;
+}
+
+.modalImg {
+  position: relative;
+  right: 1rem;
+  bottom: 1rem;
 }

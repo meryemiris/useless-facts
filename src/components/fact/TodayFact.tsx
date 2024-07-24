@@ -7,7 +7,7 @@ import styles from "./TodayFact.module.css";
 import { fetchFact } from "@/lib/api";
 import { useFactContext } from "@/lib/FactContext";
 
-import { Fact } from "@/pages";
+import { Fact } from "@/components/types";
 
 import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 import useClickOutside from "@/lib/useClickOutside";

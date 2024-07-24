@@ -35,7 +35,7 @@ const Language = () => {
         ) : (
           <IoEarthOutline className={styles.langImg} />
         )}
-        Language
+        {language === "en" ? "English" : "German"}
       </button>
       <div
         ref={menuRef}

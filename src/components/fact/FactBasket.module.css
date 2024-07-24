@@ -1,14 +1,11 @@
 .button {
+  all: unset;
   display: flex;
   flex-direction: column;
   place-items: center;
-  gap: 0.2rem;
-  background-color: inherit;
-  border: none;
   font-size: 1rem;
   color: var(--icon-color);
   cursor: pointer;
-
 }
 
 .icon {

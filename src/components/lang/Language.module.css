@@ -3,11 +3,10 @@
 }
 
 .langButton {
+  all: unset;
   display: flex;
   flex-direction: column;
   place-items: center;
-  border: none;
-  background-color: inherit;
   font-size: 1rem;
   color: var(--icon-color);
   cursor: pointer;

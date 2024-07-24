@@ -7,17 +7,12 @@
   padding: 1rem 0;
 }
 
-.logoutButton {
-  background-color: inherit;
-  border: none;
-}
 
-.navButton,
-.logoutButton {
+.navButton {
+  all: unset;
   display: flex;
   flex-direction: column;
   place-items: center;
-  text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
   color: var(--icon-color);

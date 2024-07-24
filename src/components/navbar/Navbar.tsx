@@ -50,7 +50,7 @@ const Navbar = () => {
       </Link>
 
       <Language />
-      <button onClick={signOut} className={styles.logoutButton}>
+      <button onClick={signOut} className={styles.navButton}>
         <IoMdLogOut className={styles.icon} />
         Logout
       </button>

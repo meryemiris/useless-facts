@@ -23,8 +23,6 @@
   color: var(--icon-color);
 }
 
-
-
 .icon {
   font-size: 2rem;
 }
@@ -38,7 +36,7 @@
 @media only screen and (max-height: 480px) {
   .navbar {
     padding: 0;
-    height: fit-content;
+    height: 100%;
     justify-content: center;
   }
 }
@@ -47,6 +45,8 @@
   .navbar {
     flex-direction: column;
     padding: 0.8rem;
+    box-shadow: var(--intense-box-shadow);
+
   }
 
   .goPage {

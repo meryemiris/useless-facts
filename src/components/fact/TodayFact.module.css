@@ -11,6 +11,7 @@
   background-color: var(--primary-color);
   text-shadow: -1px 1px rgba(220, 24, 24, 0.5);
   padding: 0.5rem;
+  margin: 1rem;
   border-radius: 1rem;
 
   letter-spacing: 1.5px;

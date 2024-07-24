@@ -3,7 +3,7 @@
   display: flex;
   place-items: center;
   color: var(--background-color);
-  text-shadow: -1px 1px rgba(252, 95, 95, 0.5);
+  text-shadow: -1px 1px rgba(220, 24, 24, 0.5);
 
   text-transform: uppercase;
   cursor: pointer;

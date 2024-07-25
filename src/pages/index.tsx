@@ -19,8 +19,8 @@ export default function HomePage() {
 
       {userId ? (
         <Layout>
-          <RandomFact />
           <TodayFact />
+          <RandomFact />
         </Layout>
       ) : (
         <Loading size="md" color="orange" />

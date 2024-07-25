@@ -37,12 +37,12 @@
   border-top-left-radius: 0;
   font-size: 1rem;
   max-height: 80vh;
-  width: 50dvw;
+  width: 70dvw;
   max-width: 500px;
   overflow: auto;
   position: absolute;
   top: 1rem;
-  left: 1.2rem;
+  left: 1rem;
 }
 
 .show {

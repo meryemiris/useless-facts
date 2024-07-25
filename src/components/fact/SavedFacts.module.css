@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 82dvh;
+  height: 85dvh;
   width: 90vw;
   max-width: 600px;
   gap: 1rem;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .fact {

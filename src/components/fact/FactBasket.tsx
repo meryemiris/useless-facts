@@ -77,6 +77,11 @@ const FactBasket = () => {
       >
         <IoBagOutline className={styles.basketIcon} />
         Basket
+        {facts?.length > 0 && (
+          <span className={styles.basketCount}>
+            {facts.length < 10 ? facts.length : "9+"}
+          </span>
+        )}
       </button>
 
       <div

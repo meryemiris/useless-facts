@@ -12,17 +12,12 @@ import Loading from "../utils/Loading";
 import { toast } from "sonner";
 
 import factImg from "../../../public/fact.svg";
-
-type SavedFacts = {
-  id: number;
-  user_id: string;
-  content: string;
-}[];
+import { Fact } from "../types";
 
 const SavedFacts = () => {
   const { userId } = useAuthContext();
 
-  const [savedFacts, setSavedFacts] = useState<SavedFacts>([]);
+  const [savedFacts, setSavedFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +25,12 @@ const SavedFacts = () => {
       const getSavedFacts = async () => {
         const { data, error } = await supabase
           .from("facts")
-          .select("*")
+          .select(
+            `
+            id,
+            text
+          `,
+          )
           .eq("user_id", userId);
 
         if (error) {
@@ -39,7 +39,8 @@ const SavedFacts = () => {
             "Oops! Something went wrong while getting your saved tasks. Please check back in a bit.",
           );
         } else {
-          setSavedFacts(data as SavedFacts);
+          console.log("data", data);
+          setSavedFacts(data);
         }
 
         setIsLoading(false);
@@ -58,10 +59,28 @@ const SavedFacts = () => {
         "Oops! Something went wrong while deleting task. Please try again in a bit",
       );
     } else {
-      setSavedFacts((prev) => prev.filter((fact) => fact.id !== id));
+      setSavedFacts((prev) => prev.filter((fact) => +fact.id !== id));
       toast.success("Fact successfully removed.");
     }
   };
+
+  useEffect(() => {
+    const channels = supabase
+      .channel("custom-insert-channel")
+      .on(
+        "postgres_changes",
+        { event: "INSERT", schema: "public", table: "facts" },
+        (payload) => {
+          setSavedFacts((prev) => [...prev, payload.new as unknown as Fact]);
+        },
+      )
+      .subscribe();
+    return () => {
+      channels.unsubscribe().catch((error) => {
+        console.error("Failed to unsubscribe:", error);
+      });
+    };
+  }, []);
 
   return isLoading ? (
     <Loading />
@@ -76,10 +95,10 @@ const SavedFacts = () => {
             height={40}
             alt="fact modal image"
           />
-          <p> {fact.content}</p>
+          <p> {fact.text}</p>
           <button
             className={styles.binButton}
-            onClick={() => handleDeleteFact(fact.id)}
+            onClick={() => handleDeleteFact(+fact.id)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

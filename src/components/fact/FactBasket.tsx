@@ -28,7 +28,7 @@ const FactBasket = () => {
     // Fetch existing facts from the database
     const { data: existingFacts, error: fetchError } = await supabase
       .from("facts")
-      .select("content")
+      .select("text")
       .eq("user_id", userId);
 
     if (fetchError) {
@@ -38,12 +38,12 @@ const FactBasket = () => {
       return;
     }
 
-    const existingFactsSet = new Set(existingFacts.map((fact) => fact.content));
+    const existingFactsSet = new Set(existingFacts.map((fact) => fact.text));
 
     const newFactsArray = facts
       .filter((fact) => !existingFactsSet.has(fact.text)) // Filter out already existing facts
       .map((fact) => ({
-        content: fact.text,
+        text: fact.text,
         user_id: userId,
       }));
 

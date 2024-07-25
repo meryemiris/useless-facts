@@ -5,7 +5,20 @@ const SIZES = {
   md: "72px",
 };
 
-export default function Loading({ size = "md" }: { size?: "sm" | "md" }) {
+const COLORS = {
+  white: "#FFFFFF",
+  orange: "#FFC9C9",
+};
+
+export default function Loading({
+  size = "md",
+  color = "white",
+}: {
+  size?: keyof typeof SIZES;
+  color?: keyof typeof COLORS;
+}) {
+  const fillColor = COLORS[color];
+
   return (
     <svg height={SIZES[size]} width={SIZES[size]} viewBox="0 0 128 128">
       <defs>
@@ -45,9 +58,9 @@ export default function Loading({ size = "md" }: { size?: "sm" | "md" }) {
             clipPath="url(#loader-eyes)"
             height="64"
             width="128"
-            fill="white"
+            fill={fillColor} // Use the selected color
           ></rect>
-          <g stroke="white" fill="none">
+          <g stroke={fillColor} fill="none">
             <circle
               transform="rotate(180,64,64)"
               r="56"
@@ -69,9 +82,9 @@ export default function Loading({ size = "md" }: { size?: "sm" | "md" }) {
             clipPath="url(#loader-eyes)"
             height="64"
             width="128"
-            fill="rgb(255, 201, 201)"
+            fill={fillColor} // Use the selected color
           ></rect>
-          <g stroke="rgb(255, 201, 201)" fill="none">
+          <g stroke={fillColor} fill="none">
             <circle
               transform="rotate(180,64,64)"
               r="56"

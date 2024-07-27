@@ -14,7 +14,7 @@ import useClickOutside from "@/lib/useClickOutside";
 
 import { toast } from "sonner";
 
-import factImg from "../../../public/fact.svg";
+import factImg from "../../../../public/fact.svg";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =

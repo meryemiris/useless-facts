@@ -1,9 +1,9 @@
 import { Fact } from "@/components/types";
 import Image from "next/image";
-import Loading from "../utils/Loading";
-import readingOwlImg from "../../../public/readingOwl.png";
+import readingOwlImg from "../../../../public/readingOwl.png";
 
 import styles from "./InitRandomFactButton.module.css";
+import Loading from "@/components/utils/Loading";
 
 type Props = {
   onFetchFact: () => void;

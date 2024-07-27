@@ -1,8 +1,8 @@
 import Head from "next/head";
 
-import RandomFact from "../components/fact/RandomFact";
+import RandomFact from "../components/fact/random/RandomFact";
 import Layout from "../components/layout/Layout";
-import TodayFact from "../components/fact/TodayFact";
+import TodayFact from "../components/fact/today/TodayFact";
 import Loading from "@/components/utils/Loading";
 import { useAuthContext } from "@/lib/AuthContext";
 

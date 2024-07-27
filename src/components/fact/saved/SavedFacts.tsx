@@ -7,12 +7,12 @@ import styles from "./SavedFacts.module.css";
 import { supabase } from "@/lib/supabase";
 import { useAuthContext } from "@/lib/AuthContext";
 
-import Loading from "../utils/Loading";
+import Loading from "../../utils/Loading";
 
 import { toast } from "sonner";
 
-import factImg from "../../../public/fact.svg";
-import { Fact } from "../types";
+import factImg from "../../../../public/fact.svg";
+import { Fact } from "../../types";
 
 const SavedFacts = () => {
   const { userId } = useAuthContext();

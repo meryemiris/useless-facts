@@ -1,7 +1,7 @@
 import Head from "next/head";
 
+import SavedFacts from "@/components/fact/saved/SavedFacts";
 import Layout from "@/components/layout/Layout";
-import SavedFacts from "@/components/fact/SavedFacts";
 
 export default function SavedFactsPage() {
   return (

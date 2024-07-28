@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-around;
   padding: 1rem 0;
+
 }
 
 
@@ -41,6 +42,7 @@
     flex-direction: column;
     padding: 0.8rem;
     box-shadow: var(--intense-box-shadow);
+    width: 90px;
 
   }
 

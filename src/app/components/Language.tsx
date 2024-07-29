@@ -7,67 +7,48 @@ import styles from "./Language.module.css";
 import { useFactContext } from "@/app/lib/FactContext";
 import useClickOutside from "@/app/lib/useClickOutside";
 import { IoEarthOutline } from "react-icons/io5";
-
-// import englishImg from "../../../public/en.svg";
-// import deutschImg from "../../../public/de.svg";
+import Dropdown from "./Dropdown";
 
 const englishImg = "/en.svg";
 const deutschImg = "/de.svg";
 
 const Language = () => {
-  const menuRef = useRef<HTMLDivElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const { language, setLanguage } = useFactContext();
 
-  const handleClickOutside = useCallback(() => setIsMenuOpen(false), []);
+  const languageRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(menuRef, handleClickOutside, isMenuOpen);
+  const icon = <IoEarthOutline size={32} />;
+  const label = language === "en" ? "English" : "German";
+
+  // todo: close dropdown when lang selected
 
   return (
-    <div className={`${styles.langMenu} ${styles.showLeft}`}>
+    <Dropdown label={label} icon={icon} dropdownRef={languageRef}>
       <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className={styles.langButton}
+        onClick={() => {
+          setLanguage("en");
+        }}
+        className={styles.languageButton}
       >
-        {isMenuOpen ? (
-          <IoEarthOutline className={styles.langImg} />
-        ) : (
-          <IoEarthOutline className={styles.langImg} />
-        )}
-        {language === "en" ? "English" : "German"}
+        <Image
+          src={englishImg}
+          alt="British flag"
+          width={20}
+          height={20}
+          priority
+        />
+        English
       </button>
-      <div
-        ref={menuRef}
-        id="dropdown"
-        className={`${styles.dropdown} ${isMenuOpen ? styles.show : ""}`}
+      <button
+        onClick={() => {
+          setLanguage("de");
+        }}
+        className={styles.languageButton}
       >
-        <button
-          onClick={() => {
-            setLanguage("en");
-            setIsMenuOpen(false);
-          }}
-        >
-          <Image
-            src={englishImg}
-            alt="British flag"
-            width={20}
-            height={20}
-            priority
-          />
-          English
-        </button>
-        <button
-          onClick={() => {
-            setLanguage("de");
-            setIsMenuOpen(false);
-          }}
-        >
-          <Image src={deutschImg} alt="Germany flag" width={20} height={20} />
-          Deutsch
-        </button>
-      </div>
-    </div>
+        <Image src={deutschImg} alt="Germany flag" width={20} height={20} />
+        Deutsch
+      </button>
+    </Dropdown>
   );
 };
 

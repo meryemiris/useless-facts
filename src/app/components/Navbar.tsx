@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 
 import styles from "./Navbar.module.css";
@@ -44,7 +43,7 @@ const Navbar = () => {
       <FactBasket />
 
       <Link className={styles.navButton} href="/saved">
-        {pathname === "/facts/saved" ? (
+        {pathname === "/saved" ? (
           <IoArchive className={styles.icon} />
         ) : (
           <IoArchiveOutline className={styles.icon} />

@@ -31,62 +31,6 @@
   text-align: left;
 }
 
-.binButton {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-end;
-  justify-self: flex-end;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background-color: #f08080;
-  cursor: pointer;
-  border: 2px solid rgb(255, 201, 201);
-  transition-duration: 0.4s;
-  position: relative;
-  bottom: -.6rem;
-  right: -.6rem;
-  overflow: hidden;
-}
-
-.binBottom {
-  width: 15px;
-  z-index: 2;
-}
-
-.binTop {
-  width: 1rem;
-  transform-origin: right;
-  transition-duration: 0.5s;
-  z-index: 2;
-}
-
-.binButton:hover .bin-top {
-  transform: rotate(45deg);
-}
-
-.binButton:hover {
-  background-color: rgb(255, 95, 95);
-}
-
-.binButton:active {
-  transform: scale(0.9);
-}
-
-.garbage {
-  position: absolute;
-  width: 1rem;
-  height: auto;
-  z-index: 1;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.binButton:hover .garbage {
-  animation: throw 0.4s linear;
-}
 
 .noFacts {
   margin-top: 1rem;

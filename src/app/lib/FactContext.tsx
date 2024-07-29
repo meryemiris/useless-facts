@@ -10,7 +10,7 @@ export type FactContextType = {
   setLanguage: (language: "en" | "de") => void;
   factBasket: Fact[];
   addToBasket: (fact: Fact) => void;
-  removeFromBasket: (factId: string) => void;
+  removeFromBasket: (factId: number | string) => void;
   clearBasket: () => void;
 };
 
@@ -32,7 +32,7 @@ export const FactProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const removeFromBasket = (factId: string) => {
+  const removeFromBasket = (factId: number | string) => {
     setFactBasket((prev) => prev.filter((f) => f.id !== factId));
   };
 

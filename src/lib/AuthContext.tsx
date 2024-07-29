@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import { useRouter } from "next/router";

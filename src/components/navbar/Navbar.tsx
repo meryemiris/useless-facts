@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import styles from "./Navbar.module.css";
 
@@ -17,6 +18,7 @@ import {
 import { IoMdLogOut } from "react-icons/io";
 
 import { toast } from "sonner";
+import { usePathname } from "next/navigation";
 
 async function signOut() {
   const { error } = await supabase.auth.signOut();
@@ -27,11 +29,11 @@ async function signOut() {
 }
 
 const Navbar = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <nav className={styles.navbar}>
       <Link className={styles.navButton} href="/">
-        {router.pathname === "/" ? (
+        {pathname === "/" ? (
           <IoHomeSharp className={styles.icon} />
         ) : (
           <IoHomeOutline className={styles.icon} />
@@ -41,7 +43,7 @@ const Navbar = () => {
       <FactBasket />
 
       <Link className={styles.navButton} href="/saved">
-        {router.pathname === "/saved" ? (
+        {pathname === "/saved" ? (
           <IoArchive className={styles.icon} />
         ) : (
           <IoArchiveOutline className={styles.icon} />

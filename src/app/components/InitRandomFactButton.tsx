@@ -1,6 +1,5 @@
 import { Fact } from "@/components/types";
 import Image from "next/image";
-import readingOwlImg from "../../../../public/readingOwl.png";
 
 import styles from "./InitRandomFactButton.module.css";
 import Loading from "@/components/utils/Loading";
@@ -16,7 +15,7 @@ const InitRandomFactButton: React.FC<Props> = ({ onFetchFact, loading }) => {
     <button className={styles.button} onClick={onFetchFact}>
       <Image
         className={styles.owlImg}
-        src={readingOwlImg}
+        src={"/readingOwl.png"}
         alt="owl reading book"
         width={100}
         height={100}

@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
@@ -13,8 +15,6 @@ import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 import useClickOutside from "@/lib/useClickOutside";
 
 import { toast } from "sonner";
-
-import factImg from "../../../../public/fact.svg";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =
@@ -51,7 +51,7 @@ const TodayFact = () => {
       <button className={styles.button} onClick={() => setIsModalOpen(true)}>
         <Image
           className={styles.image}
-          src={factImg}
+          src={"./fact.svg"}
           width={40}
           height={40}
           alt="button's lighbulb"
@@ -71,7 +71,7 @@ const TodayFact = () => {
             </span>
             <Image
               className={styles.modalImg}
-              src={factImg}
+              src={"./fact.svg"}
               width={50}
               height={50}
               alt="modal's lightbulb"

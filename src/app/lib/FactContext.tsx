@@ -1,9 +1,9 @@
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
 
 "use client";
-import React, { createContext, useState } from "react";
 
-import { Fact } from "@/components/types";
+import React, { createContext, useState } from "react";
+import { Fact } from "./types";
 
 export type FactContextType = {
   language: "de" | "en";

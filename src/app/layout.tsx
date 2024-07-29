@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/app/components/Navbar";
 import "./global.css";
 import { FactProvider } from "./lib/FactContext";
 import { Toaster } from "sonner";
@@ -17,18 +17,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          <FactProvider>
-            <Toaster
-              expand
-              position="top-right"
-              richColors
-              pauseWhenPageIsHidden
-            />
-            <Navbar />
-            {children}
-          </FactProvider>
-        </AuthProvider>
+        <main>
+          <AuthProvider>
+            <FactProvider>
+              <Toaster
+                expand
+                position="top-right"
+                richColors
+                pauseWhenPageIsHidden
+              />
+              <Navbar />
+              {children}
+            </FactProvider>
+          </AuthProvider>
+        </main>
       </body>
     </html>
   );

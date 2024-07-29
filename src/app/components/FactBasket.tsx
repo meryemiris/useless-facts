@@ -2,16 +2,14 @@ import { useCallback, useRef, useState } from "react";
 
 import styles from "./FactBasket.module.css";
 
-import { useAuthContext } from "@/lib/AuthContext";
-import { useFactContext } from "@/lib/FactContext";
-
-import { supabase } from "@/lib/supabase";
-
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
 import { toast } from "sonner";
-import useClickOutside from "@/lib/useClickOutside";
+import { useAuthContext } from "../lib/AuthContext";
+import { useFactContext } from "../lib/FactContext";
+import useClickOutside from "../lib/useClickOutside";
+import { supabase } from "../lib/supabase";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();

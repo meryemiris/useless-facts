@@ -1,18 +1,15 @@
+"use client";
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
 
 import styles from "./SavedFacts.module.css";
 
-import { supabase } from "@/app/lib/supabase";
-import { useAuthContext } from "@/lib/AuthContext";
-
-import Loading from "../../../app/ui/Loading";
-
 import { toast } from "sonner";
-
-import factImg from "../../../../public/fact.svg";
-import { Fact } from "../../types";
+import Loading from "@/app/ui/Loading";
+import { supabase } from "@/app/lib/supabase";
+import { useAuthContext } from "@/app/lib/AuthContext";
+import { Fact } from "@/app/lib/types";
 
 const SavedFacts = () => {
   const { userId } = useAuthContext();
@@ -90,7 +87,7 @@ const SavedFacts = () => {
         <li className={styles.fact} key={fact.id}>
           <Image
             className={styles.modalImg}
-            src={factImg}
+            src={"/fact.svg"}
             width={40}
             height={40}
             alt="fact modal image"

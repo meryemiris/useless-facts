@@ -6,8 +6,8 @@ import styles from "./Navbar.module.css";
 
 import { supabase } from "@/app/lib/supabase";
 
-import FactBasket from "../fact/basket/FactBasket";
-import Language from "../lang/Language";
+import FactBasket from "./FactBasket";
+import Language from "./Language";
 
 import {
   IoArchive,

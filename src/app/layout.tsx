@@ -2,6 +2,7 @@ import "./global.css";
 import { FactProvider } from "./lib/FactContext";
 import { Toaster } from "sonner";
 import { AuthProvider, useAuthContext } from "./lib/AuthContext";
+import Navbar from "./components/Navbar";
 
 export const metadata = {
   title: "Useless Facts",
@@ -25,6 +26,7 @@ export default function RootLayout({
                 richColors
                 pauseWhenPageIsHidden
               />
+              <Navbar />
               {children}
             </FactProvider>
           </AuthProvider>

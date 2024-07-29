@@ -30,6 +30,7 @@ async function signOut() {
 
 const Navbar = () => {
   const pathname = usePathname();
+  if (pathname.includes("/auth")) return null;
   return (
     <nav className={styles.navbar}>
       <Link className={styles.navButton} href="/">

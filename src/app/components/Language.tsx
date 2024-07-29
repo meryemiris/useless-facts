@@ -23,7 +23,12 @@ const Language = () => {
   // todo: close dropdown when lang selected
 
   return (
-    <Dropdown label={label} icon={icon} dropdownRef={languageRef}>
+    <Dropdown
+      label={label}
+      icon={icon}
+      dropdownRef={languageRef}
+      bannerCount={0}
+    >
       <button
         onClick={() => {
           setLanguage("en");

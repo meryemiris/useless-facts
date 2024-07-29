@@ -43,7 +43,7 @@ const Navbar = () => {
       <FactBasket />
 
       <Link className={styles.navButton} href="/saved">
-        {pathname === "/saved" ? (
+        {pathname === "/facts/saved" ? (
           <IoArchive className={styles.icon} />
         ) : (
           <IoArchiveOutline className={styles.icon} />

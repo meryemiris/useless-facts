@@ -22,8 +22,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       setUserId(session?.user?.id || "");
 
-      if (!session && pathname !== "/login" && pathname !== "/signup") {
-        router.push("/login");
+      if (
+        !session &&
+        pathname !== "/auth/login" &&
+        pathname !== "/auth/signup"
+      ) {
+        router.push("/auth/login");
       }
     });
 

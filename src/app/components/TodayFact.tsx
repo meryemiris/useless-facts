@@ -9,12 +9,11 @@ import styles from "./TodayFact.module.css";
 import { fetchFact } from "@/app/lib/api";
 import { useFactContext } from "@/app/lib/FactContext";
 
-import { Fact } from "@/components/types";
-
 import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 import useClickOutside from "@/app/lib/useClickOutside";
 
 import { toast } from "sonner";
+import { Fact } from "@/app/lib/types";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =

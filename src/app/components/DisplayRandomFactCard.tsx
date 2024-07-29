@@ -1,8 +1,8 @@
 import { IoArchive, IoArchiveOutline } from "react-icons/io5";
 import styles from "./DisplayRandomFactCard.module.css";
-import { Fact } from "@/components/types";
 import { useFactContext } from "@/app/lib/FactContext";
 import { GrCaretNext } from "react-icons/gr";
+import { Fact } from "@/app/lib/types";
 
 type Props = {
   onFetchFact: () => void;

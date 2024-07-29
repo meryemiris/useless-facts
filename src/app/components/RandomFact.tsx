@@ -3,13 +3,13 @@
 import { useState } from "react";
 
 import { fetchFact } from "@/app/lib/api";
-import { Fact } from "@/components/types";
 import { useFactContext } from "@/app/lib/FactContext";
 
 import { toast } from "sonner";
 
 import DisplayRandomFactCard from "./DisplayRandomFactCard";
 import InitRandomFactButton from "./InitRandomFactButton";
+import { Fact } from "../lib/types";
 
 const RandomFact = () => {
   const { language } = useFactContext();

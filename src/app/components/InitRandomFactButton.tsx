@@ -1,8 +1,8 @@
-import { Fact } from "@/components/types";
 import Image from "next/image";
 
 import styles from "./InitRandomFactButton.module.css";
 import Loading from "@/app/ui/Loading";
+import { Fact } from "@/app/lib/types";
 
 type Props = {
   onFetchFact: () => void;

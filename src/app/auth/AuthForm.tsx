@@ -1,5 +1,5 @@
+"use client";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { supabase } from "@/app/lib/supabase";
@@ -9,6 +9,7 @@ import styles from "./AuthForm.module.css";
 import Loading from "../../app/ui/Loading";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -144,12 +145,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
           {action === "login" ? (
             <>
               <i>No account?</i>
-              <Link href="/signup">Sign Up</Link>
+              <Link href="/auth/signup">Sign Up</Link>
             </>
           ) : (
             <>
               <i>Already have an account?</i>
-              <Link href="/login">Login</Link>
+              <Link href="/auth/login">Login</Link>
             </>
           )}
         </div>

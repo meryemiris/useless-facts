@@ -6,10 +6,10 @@ import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
 import { toast } from "sonner";
-import { useAuthContext } from "../lib/AuthContext";
-import { useFactContext } from "../lib/FactContext";
-import useClickOutside from "../lib/useClickOutside";
-import { supabase } from "../lib/supabase";
+import { useFactContext } from "@/app/lib/FactContext";
+import { useAuthContext } from "@/app/lib/AuthContext";
+import useClickOutside from "@/app/lib/useClickOutside";
+import { supabase } from "@/app/lib/supabase";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();

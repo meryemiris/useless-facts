@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { fetchFact } from "@/lib/api";
+import { fetchFact } from "@/app/lib/api";
 import { Fact } from "@/components/types";
-import { useFactContext } from "@/lib/FactContext";
+import { useFactContext } from "@/app/lib/FactContext";
 
 import { toast } from "sonner";
 

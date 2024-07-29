@@ -6,13 +6,13 @@ import Image from "next/image";
 
 import styles from "./TodayFact.module.css";
 
-import { fetchFact } from "@/lib/api";
-import { useFactContext } from "@/lib/FactContext";
+import { fetchFact } from "@/app/lib/api";
+import { useFactContext } from "@/app/lib/FactContext";
 
 import { Fact } from "@/components/types";
 
 import { IoArchive, IoArchiveOutline } from "react-icons/io5";
-import useClickOutside from "@/lib/useClickOutside";
+import useClickOutside from "@/app/lib/useClickOutside";
 
 import { toast } from "sonner";
 

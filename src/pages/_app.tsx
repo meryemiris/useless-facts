@@ -1,6 +1,4 @@
-import { ReactElement, ReactNode } from "react";
 import type { AppProps } from "next/app";
-import "@/styles/globals.css";
 
 import { Toaster } from "sonner";
 

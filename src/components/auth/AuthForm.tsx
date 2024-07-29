@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/app/lib/supabase";
 import { toast } from "sonner";
 
 import styles from "./AuthForm.module.css";
-import Loading from "../utils/Loading";
+import Loading from "../../app/ui/Loading";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
 

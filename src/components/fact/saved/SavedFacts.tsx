@@ -4,10 +4,10 @@ import Image from "next/image";
 
 import styles from "./SavedFacts.module.css";
 
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/app/lib/supabase";
 import { useAuthContext } from "@/lib/AuthContext";
 
-import Loading from "../../utils/Loading";
+import Loading from "../../../app/ui/Loading";
 
 import { toast } from "sonner";
 

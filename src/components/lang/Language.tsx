@@ -4,8 +4,8 @@ import Image from "next/image";
 
 import styles from "./Language.module.css";
 
-import { useFactContext } from "@/lib/FactContext";
-import useClickOutside from "@/lib/useClickOutside";
+import { useFactContext } from "@/app/lib/FactContext";
+import useClickOutside from "@/app/lib/useClickOutside";
 import { IoEarthOutline } from "react-icons/io5";
 
 // import englishImg from "../../../public/en.svg";

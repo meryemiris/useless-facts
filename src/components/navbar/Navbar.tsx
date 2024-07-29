@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import styles from "./Navbar.module.css";
 
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/app/lib/supabase";
 
 import FactBasket from "../fact/basket/FactBasket";
 import Language from "../lang/Language";

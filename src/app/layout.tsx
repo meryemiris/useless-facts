@@ -1,5 +1,8 @@
 import Navbar from "@/components/navbar/Navbar";
 import "./global.css";
+import { FactProvider } from "./lib/FactContext";
+import { Toaster } from "sonner";
+import { AuthProvider } from "./lib/AuthContext";
 
 export const metadata = {
   title: "Useless Facts",
@@ -14,8 +17,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <FactProvider>
+            <Toaster
+              expand
+              position="top-right"
+              richColors
+              pauseWhenPageIsHidden
+            />
+            <Navbar />
+            {children}
+          </FactProvider>
+        </AuthProvider>
       </body>
     </html>
   );

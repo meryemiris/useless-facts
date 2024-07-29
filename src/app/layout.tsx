@@ -1,7 +1,7 @@
 import "./global.css";
 import { FactProvider } from "./lib/FactContext";
 import { Toaster } from "sonner";
-import { AuthProvider, useAuthContext } from "./lib/AuthContext";
+import { AuthProvider } from "./lib/AuthContext";
 import Navbar from "./components/Navbar";
 
 export const metadata = {
@@ -17,20 +17,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main>
-          <AuthProvider>
-            <FactProvider>
-              <Toaster
-                expand
-                position="top-right"
-                richColors
-                pauseWhenPageIsHidden
-              />
-              <Navbar />
-              {children}
-            </FactProvider>
-          </AuthProvider>
-        </main>
+        <AuthProvider>
+          <FactProvider>
+            <Toaster
+              expand
+              position="top-right"
+              richColors
+              pauseWhenPageIsHidden
+            />
+
+            <Navbar />
+            {children}
+          </FactProvider>
+        </AuthProvider>
       </body>
     </html>
   );

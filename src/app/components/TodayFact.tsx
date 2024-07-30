@@ -51,7 +51,7 @@ const TodayFact = () => {
       <button className={styles.button} onClick={() => setIsModalOpen(true)}>
         <Image
           className={styles.image}
-          src={"./fact.svg"}
+          src={"/fact.svg"}
           width={40}
           height={40}
           alt="button's lighbulb"
@@ -65,10 +65,9 @@ const TodayFact = () => {
           <div ref={modalRef} className={styles.modalContent}>
             {todayFact ? (
               <CardWithButtons
-                closeIcon
+                isHeader
                 onClose={() => setIsModalOpen(false)}
                 key={todayFact.id}
-                imageSrc="/fact.svg"
                 onPrimaryAction={() => {
                   todayFact && isInBasket
                     ? removeFromBasket(todayFact.id)

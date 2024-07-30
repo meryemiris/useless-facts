@@ -79,10 +79,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--background-color);
-  box-shadow: var(--intense-box-shadow);
   border-radius: 1rem;
-  width: 90dvw;
-  max-width: fit-content;
+  width: fit-content;
   z-index: 2;
   display: flex;
   flex-direction: column;

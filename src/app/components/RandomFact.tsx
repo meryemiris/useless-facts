@@ -47,8 +47,7 @@ const RandomFact = () => {
       {randomFact ? (
         <CardWithButtons
           key={randomFact.id}
-          closeIcon={false}
-          imageSrc="/readingOwl.png"
+          isHeader={false}
           onPrimaryAction={() => {
             randomFact && isInBasket
               ? removeFromBasket(randomFact?.id)

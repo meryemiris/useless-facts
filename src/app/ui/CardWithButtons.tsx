@@ -1,12 +1,10 @@
 import { IoClose } from "react-icons/io5";
 import styles from "./CardWithButtons.module.css";
 import Image from "next/image";
-import { useMemo } from "react";
 
 type Props = {
-  closeIcon: boolean;
+  isHeader: boolean;
   onClose?: () => void;
-  imageSrc: string;
   content?: string;
   primaryLabel: string;
   primaryIcon: React.ReactNode;
@@ -17,9 +15,8 @@ type Props = {
 };
 
 const CardWithButtons: React.FC<Props> = ({
-  closeIcon,
+  isHeader,
   onClose,
-  imageSrc,
   content,
   primaryLabel,
   primaryIcon,
@@ -28,30 +25,25 @@ const CardWithButtons: React.FC<Props> = ({
   onPrimaryAction,
   onSecondaryAction,
 }) => {
-  const memoizedImage = useMemo(
-    () => (
-      <Image
-        className={styles.image}
-        src={imageSrc}
-        width={50}
-        height={50}
-        alt="Card Image"
-      />
-    ),
-    [imageSrc],
-  );
   return (
     <div className={styles.card}>
-      <header className={styles.header}>
-        {memoizedImage}
-        {closeIcon && (
+      {isHeader && (
+        <header className={styles.header}>
+          <Image
+            className={styles.image}
+            src="fact.svg"
+            width={50}
+            height={50}
+            alt="Card Image"
+          />
+
           <button onClick={onClose} className={styles.close}>
             <span>
               <IoClose size={32} />
             </span>
           </button>
-        )}
-      </header>
+        </header>
+      )}
       <main className={styles.fact}>
         <p>{content}</p>
       </main>

@@ -10,7 +10,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
 import AnimatedBinButton from "../ui/AnimatedBinButton";
-import Dropdown from "./Dropdown";
+import Dropdown from "../ui/Dropdown";
 
 const FactBasket = () => {
   const { userId } = useAuthContext();

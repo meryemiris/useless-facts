@@ -80,10 +80,9 @@
   transform: translate(-50%, -50%);
   background-color: var(--background-color);
   box-shadow: var(--intense-box-shadow);
-  padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   width: 90dvw;
-  max-width: 500px;
+  max-width: fit-content;
   z-index: 2;
   display: flex;
   flex-direction: column;

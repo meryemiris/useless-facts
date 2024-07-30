@@ -1,0 +1,121 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--intense-box-shadow);
+  width: 90vw;
+  max-width: 600px;
+  height: fit-content;
+  border-radius: 1rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.card header {
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1rem;
+}
+
+.close {
+  all: unset;
+  color: var(--background-color);
+  cursor: pointer;
+}
+
+.image {
+  position: relative;
+  top: 1rem;
+  left: 1rem;
+}
+
+.fact {
+  margin-bottom: 0.5rem;
+  height: 250px;
+  overflow-y: auto;
+  place-content: center;
+  background-image: linear-gradient(var(--secondary-color), var(--background-color));
+
+}
+
+.fact p {
+  font-size: 1.5rem;
+  padding: 1.5rem;
+  word-wrap: break-word;
+}
+
+.footer {
+  display: flex;
+  gap: 1rem;
+  place-content: space-evenly;
+  margin-block-end: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  align-items: center;
+  border-radius: 0.8rem;
+  border: none;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.primaryButton {
+  min-width: 160px;
+  max-width: 190px;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+}
+
+.secondaryButton {
+  max-width: 130px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  box-shadow: var(--intense-box-shadow);
+}
+
+.icon {
+  display: none;
+
+}
+
+
+
+@media (hover: hover) and (pointer: fine) {
+
+  .secondaryButton:hover,
+  .primaryButton:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .secondaryButton:active,
+  .primaryButton:active {
+    transform: scale(0.95)
+  }
+
+  .close:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+  }
+
+}
+
+
+@media screen and (min-width: 480px) {
+  .icon {
+    display: flex;
+    font-size: 1.5rem;
+  }
+
+  .primaryButton {
+    width: 200px;
+    justify-content: space-between;
+  }
+
+}

@@ -7,7 +7,7 @@ import styles from "./Language.module.css";
 
 import { useFactContext } from "@/app/lib/FactContext";
 import { IoEarthOutline } from "react-icons/io5";
-import Dropdown from "./Dropdown";
+import Dropdown from "../ui/Dropdown";
 
 const englishImg = "/en.svg";
 const deutschImg = "/de.svg";

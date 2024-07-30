@@ -7,16 +7,21 @@ import { useFactContext } from "@/app/lib/FactContext";
 
 import { toast } from "sonner";
 
-import DisplayRandomFactCard from "./DisplayRandomFactCard";
-
 import { Fact } from "../lib/types";
 import PressEffectButton from "../ui/PressEffectButton";
+import { IoBag, IoBagOutline } from "react-icons/io5";
+import { GrCaretNext } from "react-icons/gr";
+import CardWithButtons from "../ui/CardWithButtons";
 
 const RandomFact = () => {
   const { language } = useFactContext();
 
   const [randomFact, setRandomFact] = useState<Fact>();
   const [isLoading, setIsLoading] = useState(false);
+
+  const { addToBasket, removeFromBasket, factBasket } = useFactContext();
+
+  const isInBasket = factBasket?.find((fact) => fact.id === randomFact?.id);
 
   const fetchRandomFact = async () => {
     try {
@@ -40,9 +45,21 @@ const RandomFact = () => {
   return (
     <>
       {randomFact ? (
-        <DisplayRandomFactCard
-          onFetchFact={fetchRandomFact}
-          randomFact={randomFact}
+        <CardWithButtons
+          key={randomFact.id}
+          closeIcon={false}
+          imageSrc="/readingOwl.png"
+          onPrimaryAction={() => {
+            randomFact && isInBasket
+              ? removeFromBasket(randomFact?.id)
+              : addToBasket(randomFact as Fact);
+          }}
+          onSecondaryAction={fetchRandomFact}
+          primaryIcon={isInBasket ? <IoBag /> : <IoBagOutline />}
+          primaryLabel={isInBasket ? "Drop from Basket" : "Add to Basket"}
+          secondaryIcon={<GrCaretNext />}
+          secondaryLabel="Go Next"
+          content={randomFact?.text}
         />
       ) : (
         <PressEffectButton

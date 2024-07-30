@@ -13,9 +13,11 @@ import { useRouter } from "next/navigation";
 
 type AuthFormProps = {
   action: "login" | "signup";
+  header: string;
+  subheader: string;
 };
 
-const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,6 +93,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
 
   return (
     <form className={styles.form} onSubmit={handleAuth}>
+      <header className={styles.header}>
+        <h1>{header}</h1>
+        <h2>{subheader}</h2>
+      </header>
       <main>
         <div className={styles.inputGroup}>
           <input

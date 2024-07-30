@@ -1,34 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import Image from "next/image";
-
 import styles from "./SavedFacts.module.css";
-
 import { toast } from "sonner";
 import Loading from "@/app/ui/Loading";
 import { supabase } from "@/app/lib/supabase";
 import { useAuthContext } from "@/app/lib/AuthContext";
-import { Fact } from "@/app/lib/types";
+import { Fact, Language } from "@/app/lib/types";
 import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
 
 const SavedFacts = () => {
   const { userId } = useAuthContext();
-
   const [savedFacts, setSavedFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filterLanguage, setFilterLanguage] = useState<Language | "all">("all");
 
   useEffect(() => {
     if (userId) {
       const getSavedFacts = async () => {
         const { data, error } = await supabase
           .from("facts")
-          .select(
-            `
-            id,
-            text
-          `,
-          )
+          .select("id, text, language")
           .eq("user_id", userId);
 
         if (error) {
@@ -37,7 +29,6 @@ const SavedFacts = () => {
             "Oops! Something went wrong while getting your saved tasks. Please check back in a bit.",
           );
         } else {
-          console.log("data", data);
           setSavedFacts(data);
         }
 
@@ -80,28 +71,74 @@ const SavedFacts = () => {
     };
   }, []);
 
-  return isLoading ? (
-    <Loading />
-  ) : savedFacts?.length > 0 ? (
-    <ul className={styles.facts}>
-      {savedFacts?.map((fact) => (
-        <li className={styles.fact} key={fact.id}>
-          <Image
-            className={styles.modalImg}
-            src={"lightbulb.svg"}
-            width={40}
-            height={40}
-            alt="fact modal image"
-          />
-          <p> {fact.text}</p>
-          <AnimatedBinButton factId={+fact.id} onDelete={handleDeleteFact} />
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p className={styles.noFacts}>
-      Start saving some facts! You have no saved facts yet.
-    </p>
+  const filteredFacts =
+    filterLanguage === "all"
+      ? savedFacts
+      : savedFacts.filter((fact) => fact.language === filterLanguage);
+
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : filteredFacts.length > 0 ? (
+        <>
+          <div className={styles.filter}>
+            <button
+              className={
+                filterLanguage === "all"
+                  ? styles.filterButtonActive
+                  : styles.filterButton
+              }
+              onClick={() => setFilterLanguage("all")}
+            >
+              All
+            </button>
+            <button
+              className={
+                filterLanguage === "en"
+                  ? styles.filterButtonActive
+                  : styles.filterButton
+              }
+              onClick={() => setFilterLanguage("en")}
+            >
+              English
+            </button>
+            <button
+              className={
+                filterLanguage === "de"
+                  ? styles.filterButtonActive
+                  : styles.filterButton
+              }
+              onClick={() => setFilterLanguage("de")}
+            >
+              German
+            </button>
+          </div>
+          <ul className={styles.facts}>
+            {filteredFacts.map((fact) => (
+              <li className={styles.fact} key={fact.id}>
+                <Image
+                  className={styles.modalImg}
+                  src={"lightbulb.svg"}
+                  width={40}
+                  height={40}
+                  alt="fact modal image"
+                />
+                <p>{fact.text}</p>
+                <AnimatedBinButton
+                  factId={+fact.id}
+                  onDelete={handleDeleteFact}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p className={styles.noFacts}>
+          Start saving some facts! You have no saved facts yet.
+        </p>
+      )}
+    </>
   );
 };
 

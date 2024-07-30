@@ -10,7 +10,7 @@ import { IoEarthOutline } from "react-icons/io5";
 import Dropdown from "../ui/Dropdown";
 
 const englishImg = "/en.svg";
-const deutschImg = "/de.svg";
+const germanImg = "/de.svg";
 
 const Language = () => {
   const { language, setLanguage } = useFactContext();
@@ -51,8 +51,8 @@ const Language = () => {
         onClick={() => handleChangeLanguage("de")}
         className={styles.languageButton}
       >
-        <Image src={deutschImg} alt="Germany flag" width={20} height={20} />
-        Deutsch
+        <Image src={germanImg} alt="Germany flag" width={20} height={20} />
+        German
       </button>
     </Dropdown>
   );

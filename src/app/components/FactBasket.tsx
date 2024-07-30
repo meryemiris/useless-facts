@@ -40,6 +40,7 @@ const FactBasket = () => {
       .filter((fact) => !existingFactsSet.has(fact.text)) // Filter out already existing facts
       .map((fact) => ({
         text: fact.text,
+        language: fact.language,
         user_id: userId,
       }));
 

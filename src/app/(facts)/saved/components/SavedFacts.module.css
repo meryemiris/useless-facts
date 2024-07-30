@@ -3,34 +3,31 @@
   flex-direction: column;
   overflow-y: auto;
   height: 85dvh;
-  width: 90vw;
+  width: 100%;
   max-width: 600px;
   gap: 1rem;
-  padding: 1rem;
+  padding-inline: 1rem;
+  padding-block-end: 3rem;
 }
 
 .fact {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   background-color: var(--background-color);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 8px;
   box-shadow: var(--intense-box-shadow);
   width: 100%;
+  align-items: center;
 }
 
 
 .modalImg {
   position: relative;
-  left: -.6rem;
-  top: -.8rem
-}
+  top: -.5rem;
 
-.fact p {
-  font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: left;
 }
-
 
 .noFacts {
   margin-top: 1rem;
@@ -42,17 +39,6 @@
   display: none;
 }
 
-@keyframes throw {
-  from {
-    transform: translate(-400%, -700%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate(0%, 0%);
-    opacity: 1;
-  }
-}
 
 
 
@@ -78,4 +64,35 @@
     background-color: inherit;
   }
 
+}
+
+.filter {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin-block: 1rem;
+  padding-inline-start: 1rem;
+
+}
+
+.filterButton,
+.filterButtonActive {
+  all: unset;
+  border-radius: 1rem;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.filterButton {
+  background-color: var(--background-color);
+  box-shadow: var(--intense-box-shadow);
+
+}
+
+
+.filterButtonActive {
+  background-color: var(--primary-color);
+  color: var(--background-color);
 }

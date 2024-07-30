@@ -1,14 +1,14 @@
-import { useRef } from "react";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useFactContext } from "@/app/lib/FactContext";
+import { useAuthContext } from "@/app/lib/AuthContext";
+import { supabase } from "@/app/lib/supabase";
 
 import styles from "./FactBasket.module.css";
 
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
-import { toast } from "sonner";
-import { useFactContext } from "@/app/lib/FactContext";
-import { useAuthContext } from "@/app/lib/AuthContext";
-import { supabase } from "@/app/lib/supabase";
 import AnimatedBinButton from "../ui/AnimatedBinButton";
 import Dropdown from "./Dropdown";
 
@@ -16,7 +16,7 @@ const FactBasket = () => {
   const { userId } = useAuthContext();
   const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
-  const basketRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const icon = <IoBagOutline size={32} />;
   const label = "Basket";
 
@@ -61,16 +61,17 @@ const FactBasket = () => {
     }
 
     clearBasket();
-    toast.success("Facts Whave been saved successfully.");
-    // TODO: close dropdown when save or clear
+    toast.success("Saved!");
+    setIsDropdownOpen(false);
   };
 
   return (
     <Dropdown
       label={label}
       icon={icon}
-      dropdownRef={basketRef}
       bannerCount={facts?.length}
+      isOpen={isDropdownOpen}
+      setIsOpen={setIsDropdownOpen}
     >
       {facts?.length > 0 ? (
         <ul className={styles.facts}>

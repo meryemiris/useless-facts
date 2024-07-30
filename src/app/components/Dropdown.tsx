@@ -1,6 +1,4 @@
-"use client";
-
-import { useCallback, useState } from "react";
+import { useCallback, useRef } from "react";
 
 import styles from "./Dropdown.module.css";
 import useClickOutside from "../lib/useClickOutside";
@@ -9,25 +7,27 @@ type Props = {
   children: React.ReactNode;
   label: string;
   icon: React.ReactNode;
-  dropdownRef: React.RefObject<HTMLDivElement>;
   bannerCount: number;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const Dropdown: React.FC<Props> = ({
   children,
   label,
   icon,
-  dropdownRef,
   bannerCount = 0,
+  isOpen,
+  setIsOpen,
 }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const handleClickOutside = useCallback(() => setIsDropdownOpen(false), []);
+  const handleClickOutside = useCallback(() => setIsOpen(false), [setIsOpen]);
+  const ref = useRef<HTMLDivElement>(null);
 
-  useClickOutside(dropdownRef, handleClickOutside, isDropdownOpen);
+  useClickOutside(ref, handleClickOutside, isOpen);
 
   return (
     <div className={`${styles.menu} ${styles.showRight}`}>
       <button
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         className={styles.dropdownButton}
       >
         {bannerCount > 0 && (
@@ -39,9 +39,9 @@ const Dropdown: React.FC<Props> = ({
         <span> {label}</span>
       </button>
       <div
-        ref={dropdownRef}
+        ref={ref}
         id="dropdown"
-        className={`${styles.dropdown} ${isDropdownOpen ? styles.show : ""}`}
+        className={`${styles.dropdown} ${isOpen ? styles.show : ""}`}
       >
         {children}
       </div>

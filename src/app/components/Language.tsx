@@ -1,11 +1,11 @@
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 import Image from "next/image";
 
 import styles from "./Language.module.css";
 
 import { useFactContext } from "@/app/lib/FactContext";
-import useClickOutside from "@/app/lib/useClickOutside";
 import { IoEarthOutline } from "react-icons/io5";
 import Dropdown from "./Dropdown";
 
@@ -15,24 +15,27 @@ const deutschImg = "/de.svg";
 const Language = () => {
   const { language, setLanguage } = useFactContext();
 
-  const languageRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const icon = <IoEarthOutline size={32} />;
   const label = language === "en" ? "English" : "German";
 
-  // todo: close dropdown when lang selected
+  function handleChangeLanguage(lang: "en" | "de") {
+    setLanguage(lang);
+    setIsDropdownOpen(false);
+    toast.success("Language changed!");
+  }
 
   return (
     <Dropdown
       label={label}
       icon={icon}
-      dropdownRef={languageRef}
       bannerCount={0}
+      isOpen={isDropdownOpen}
+      setIsOpen={setIsDropdownOpen}
     >
       <button
-        onClick={() => {
-          setLanguage("en");
-        }}
+        onClick={() => handleChangeLanguage("en")}
         className={styles.languageButton}
       >
         <Image
@@ -45,9 +48,7 @@ const Language = () => {
         English
       </button>
       <button
-        onClick={() => {
-          setLanguage("de");
-        }}
+        onClick={() => handleChangeLanguage("de")}
         className={styles.languageButton}
       >
         <Image src={deutschImg} alt="Germany flag" width={20} height={20} />

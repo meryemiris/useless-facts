@@ -53,3 +53,15 @@
 .binButton:hover .garbage {
   animation: throw 0.4s linear;
 }
+
+@keyframes throw {
+  from {
+    transform: translate(-400%, -700%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+}

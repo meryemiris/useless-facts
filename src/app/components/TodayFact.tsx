@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 
@@ -10,11 +10,11 @@ import { fetchFact } from "@/app/lib/api";
 import { useFactContext } from "@/app/lib/FactContext";
 
 import { IoBag, IoBagOutline, IoClose } from "react-icons/io5";
-import useClickOutside from "@/app/lib/useClickOutside";
 
 import { toast } from "sonner";
 import { Fact } from "@/app/lib/types";
 import CardWithButtons from "../ui/CardWithButtons";
+import Modal from "../ui/Modal";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =
@@ -22,12 +22,6 @@ const TodayFact = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todayFact, setTodayFact] = useState<Fact>();
-
-  const modalRef = useRef<HTMLDivElement>(null);
-
-  const handleClickOutside = useCallback(() => setIsModalOpen(false), []);
-
-  useClickOutside(modalRef, handleClickOutside, isModalOpen);
 
   useEffect(() => {
     fetchFact({
@@ -59,31 +53,26 @@ const TodayFact = () => {
         <span className={styles.factText}>fact</span>
         <span className={styles.todayText}>today</span>
       </button>
-
-      {isModalOpen && (
-        <div className={styles.modal}>
-          <div ref={modalRef} className={styles.modalContent}>
-            {todayFact ? (
-              <CardWithButtons
-                isHeader
-                onClose={() => setIsModalOpen(false)}
-                key={todayFact.id}
-                onPrimaryAction={() => {
-                  todayFact && isInBasket
-                    ? removeFromBasket(todayFact.id)
-                    : addToBasket(todayFact);
-                }}
-                onSecondaryAction={() => setIsModalOpen(false)}
-                primaryIcon={isInBasket ? <IoBag /> : <IoBagOutline />}
-                primaryLabel={isInBasket ? "Drop from Basket" : "Add to Basket"}
-                secondaryIcon={<IoClose />}
-                secondaryLabel="Close"
-                content={todayFact.text}
-              />
-            ) : null}
-          </div>
-        </div>
-      )}
+      <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+        {todayFact && (
+          <CardWithButtons
+            isHeader
+            onClose={() => setIsModalOpen(false)}
+            key={todayFact.id}
+            onPrimaryAction={() => {
+              todayFact && isInBasket
+                ? removeFromBasket(todayFact.id)
+                : addToBasket(todayFact);
+            }}
+            onSecondaryAction={() => setIsModalOpen(false)}
+            primaryIcon={isInBasket ? <IoBag /> : <IoBagOutline />}
+            primaryLabel={isInBasket ? "Drop from Basket" : "Add to Basket"}
+            secondaryIcon={<IoClose />}
+            secondaryLabel="Close"
+            content={todayFact.text}
+          />
+        )}
+      </Modal>
     </>
   );
 };

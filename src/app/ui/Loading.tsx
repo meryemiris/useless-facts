@@ -7,7 +7,7 @@ const SIZES = {
 
 const COLORS = {
   white: "#FFFFFF",
-  orange: "#FFC9C9",
+  orange: "#e76f51",
 };
 
 export default function Loading({

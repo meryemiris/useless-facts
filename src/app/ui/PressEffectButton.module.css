@@ -3,15 +3,14 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 350px;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--text-color);
   text-transform: uppercase;
   text-shadow: -1px 1px rgba(65, 66, 65, 0.5);
-  padding: 1rem;
-  margin: 1rem;
+  padding: 1.5rem;
   background: white;
   border-radius: 1rem;
   border: none;

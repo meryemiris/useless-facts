@@ -8,8 +8,9 @@ import { useFactContext } from "@/app/lib/FactContext";
 import { toast } from "sonner";
 
 import DisplayRandomFactCard from "./DisplayRandomFactCard";
-import InitRandomFactButton from "./InitRandomFactButton";
+
 import { Fact } from "../lib/types";
+import PressEffectButton from "../ui/PressEffectButton";
 
 const RandomFact = () => {
   const { language } = useFactContext();
@@ -44,8 +45,9 @@ const RandomFact = () => {
           randomFact={randomFact}
         />
       ) : (
-        <InitRandomFactButton
-          onFetchFact={fetchRandomFact}
+        <PressEffectButton
+          onPress={fetchRandomFact}
+          label="Random Fact"
           loading={isLoading}
         />
       )}

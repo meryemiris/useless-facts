@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { Fact } from "@/app/lib/types";
 import CardWithButtons from "../ui/CardWithButtons";
 import Modal from "../ui/Modal";
+import SlideEffectButton from "../ui/SlideEffectButton";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =
@@ -42,17 +43,11 @@ const TodayFact = () => {
 
   return (
     <>
-      <button className={styles.button} onClick={() => setIsModalOpen(true)}>
-        <Image
-          className={styles.image}
-          src={"/fact.svg"}
-          width={40}
-          height={40}
-          alt="button's lighbulb"
-        />
-        <span className={styles.factText}>fact</span>
-        <span className={styles.todayText}>today</span>
-      </button>
+      <SlideEffectButton
+        onPress={() => setIsModalOpen(true)}
+        firstLabel="Today"
+        secondLabel="Fact"
+      />
       <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
         {todayFact && (
           <CardWithButtons

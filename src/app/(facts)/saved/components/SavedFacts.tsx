@@ -88,7 +88,7 @@ const SavedFacts = () => {
         <li className={styles.fact} key={fact.id}>
           <Image
             className={styles.modalImg}
-            src={"/fact.svg"}
+            src={"lightbulb.svg"}
             width={40}
             height={40}
             alt="fact modal image"

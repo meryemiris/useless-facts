@@ -34,7 +34,7 @@
   z-index: 1;
 }
 
-.todayText {
+.firstLabel {
   transition: transform 0.3s ease;
   transform: translateX(0);
 }
@@ -43,19 +43,19 @@
   transform: scale(3) translate(70%);
 }
 
-.factText {
+.secondLabel {
   position: absolute;
   left: -.2rem;
   transform: translateX(-100%);
   transition: all 0.3s ease;
 }
 
-.button:hover .factText {
+.button:hover .secondLabel {
   transform: translateX(10px);
   transition-delay: 300ms;
 }
 
-.button:hover .todayText {
+.button:hover .firstLabel {
   transform: translateX(200%);
   transition-delay: 100ms;
 }

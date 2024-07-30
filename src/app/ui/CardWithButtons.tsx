@@ -31,7 +31,7 @@ const CardWithButtons: React.FC<Props> = ({
         <header className={styles.header}>
           <Image
             className={styles.image}
-            src="fact.svg"
+            src="lightbulb.svg"
             width={50}
             height={50}
             alt="Card Image"

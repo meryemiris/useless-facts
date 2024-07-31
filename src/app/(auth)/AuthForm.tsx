@@ -1,14 +1,14 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
-
-import { toast } from "sonner";
-
 import styles from "./AuthForm.module.css";
 
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import { toast } from "sonner";
+import { authenticateUser } from "./action";
+
 import Loading from "@/app/ui/LoadingSpinner";
-import { login, signup } from "./action";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -17,83 +17,31 @@ type AuthFormProps = {
 };
 
 const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
-  // const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () =>
     setIsPasswordVisible(!isPasswordVisible);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    const result = await authenticateUser(formData, action);
+
+    if (result.success) {
+      toast.success(result.message);
+      window.location.href = "/";
+    } else {
+      toast.error(result.message);
+    }
+
+    setIsLoading(false);
   };
 
-  // const validateForm = () => {
-  //   if (!email || !password) {
-  //     toast.warning("Please fill in both email and password.");
-  //     return false;
-  //   }
-  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailPattern.test(email)) {
-  //     toast.warning("Please enter a valid email address.");
-  //     return false;
-  //   }
-  //   if (password.length < 6) {
-  //     toast.warning("Please enter a valid password (at least 6 characters).");
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
-  // const handleLogin = async () => {
-  //   const { error } = await supabase.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   });
-  //   if (error) {
-  //     const errorMessage =
-  //       error.message === "Invalid login credentials"
-  //         ? "User not found or incorrect password. Please double-check your credentials."
-  //         : "Something went wrong while signing in. Please try again later.";
-
-  //     toast.error(errorMessage);
-  //     setEmail("");
-  //     setPassword("");
-  //   } else {
-  //     toast.success("Welcome back! You've signed in successfully.");
-  //     router.push("/");
-  //   }
-  // };
-
-  // const handleSignUp = async () => {
-  //   const { error } = await supabase.auth.signUp({ email, password });
-  //   if (error) {
-  //     toast.error("Oops! Registration failed. Please try again.");
-  //   } else {
-  //     toast.success("Congratulations! Registration successful. Welcome!");
-  //     router.push("/");
-  //   }
-  // };
-
-  // const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-
-  //   if (action === "login") {
-  //     await handleLogin();
-  //   } else if (action === "signup") {
-  //     if (validateForm()) {
-  //       await handleSignUp();
-  //     }
-  //   }
-  //   setIsLoading(false);
-  // };
-
-  const formAction = action === "login" ? login : signup;
-
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <header className={styles.header}>
         <h1>{header}</h1>
         <h2>{subheader}</h2>
@@ -104,25 +52,19 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
             id="email"
             type="text"
             name="email"
-            autoComplete="off"
             className={styles.input}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             required
           />
           <label className={styles.userLabel} htmlFor="email">
             Email
           </label>
         </div>
-
         <div className={styles.inputGroup}>
           <input
             id="password"
             type={isPasswordVisible ? "text" : "password"}
             name="password"
             className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete="current-password"
           />
@@ -137,13 +79,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
             {isPasswordVisible ? <IoEye /> : <IoEyeOff />}
           </button>
         </div>
-
-        <button
-          className={styles.button}
-          type="submit"
-          formAction={formAction}
-          disabled={isLoading}
-        >
+        <button className={styles.button} type="submit" disabled={isLoading}>
           {isLoading ? (
             <Loading size="sm" />
           ) : action === "login" ? (
@@ -152,7 +88,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
             "Sign Up"
           )}
         </button>
-
         <div className={styles.link}>
           {action === "login" ? (
             <>

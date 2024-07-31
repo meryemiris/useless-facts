@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { toast } from "sonner";
-
 import Image from "next/image";
 
 import styles from "./Language.module.css";
 
-import { useFactContext } from "@/app/lib/FactContext";
-import { IoEarthOutline } from "react-icons/io5";
+import { toast } from "sonner";
+
 import Dropdown from "../ui/Dropdown";
+
+import { IoEarthOutline } from "react-icons/io5";
+import { useFactContext } from "@/utils/FactContext";
 
 const englishImg = "/en.svg";
 const germanImg = "/de.svg";

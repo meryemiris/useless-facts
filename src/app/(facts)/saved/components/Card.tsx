@@ -1,8 +1,10 @@
-import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
 import Image from "next/image";
+
 import styles from "./SavedFacts.module.css";
-import { Fact } from "@/app/lib/types";
+
+import { Fact } from "@/utils/types";
 import Loading from "@/app/ui/LoadingSpinner";
+import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
 
 type CardProps = {
   loading: boolean;

@@ -1,17 +1,15 @@
 "use client";
 
 import { useState } from "react";
-
-import { fetchFact } from "@/app/lib/api";
-import { useFactContext } from "@/app/lib/FactContext";
-
 import { toast } from "sonner";
 
-import { Fact } from "../lib/types";
+import { Fact } from "@/utils/types";
 import PressEffectButton from "../ui/PressEffectButton";
 import { IoBag, IoBagOutline } from "react-icons/io5";
 import { GrCaretNext } from "react-icons/gr";
 import CardWithButtons from "../ui/CardWithButtons";
+import { useFactContext } from "@/utils/FactContext";
+import { fetchFact } from "@/utils/api";
 
 const RandomFact = () => {
   const { language } = useFactContext();

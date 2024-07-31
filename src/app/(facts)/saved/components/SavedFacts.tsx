@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { toast } from "sonner";
 
-import { Fact, Language } from "@/app/lib/types";
-
-import { useRouter } from "next/navigation";
-
 import { createClient } from "@/utils/supabase/client";
+import { Fact, Language } from "@/utils/types";
 
 import Filter from "./Filters";
 import Card from "./Card";

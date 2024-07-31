@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import { useFactContext } from "@/app/lib/FactContext";
 
 import styles from "./FactBasket.module.css";
 
-import { IoBagOutline } from "react-icons/io5";
-import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
+import { createClient } from "@/utils/supabase/client";
+import { useFactContext } from "@/utils/FactContext";
 
 import AnimatedBinButton from "../ui/AnimatedBinButton";
 import Dropdown from "../ui/Dropdown";
-import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
+
+import { IoBagOutline } from "react-icons/io5";
+import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
+import { error } from "console";
 
 const FactBasket = () => {
   const supabase = createClient();
@@ -22,13 +23,19 @@ const FactBasket = () => {
 
   const handleSaveData = async () => {
     // Get the user ID
-    const { data: userData, error: userError } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
 
-    if (userError || !userData?.user) {
-      redirect("/login");
+    if (userError) {
+      toast.error(
+        "Oops! Something went wrong while getting your user data. Please try again later.",
+      );
+      return;
     }
 
-    const userId = userData.user.id;
+    const userId = user?.id;
 
     // Fetch existing facts from the database
     const { data: existingFacts, error: fetchError } = await supabase
@@ -46,7 +53,7 @@ const FactBasket = () => {
     const existingFactsSet = new Set(existingFacts.map((fact) => fact.text));
 
     const newFactsArray = facts
-      .filter((fact) => !existingFactsSet.has(fact.text)) // Filter out already existing facts
+      .filter((fact) => !existingFactsSet.has(fact.text))
       .map((fact) => ({
         text: fact.text,
         language: fact.language,

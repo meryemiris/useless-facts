@@ -1,5 +1,6 @@
-import { Language } from "@/app/lib/types";
 import styles from "./SavedFacts.module.css";
+
+import { Language } from "@/utils/types";
 
 type FilterProps = {
   activeLanguage: Language | "all";

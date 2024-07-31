@@ -1,8 +1,7 @@
 import { useCallback, useRef } from "react";
 
 import styles from "./Modal.module.css";
-
-import useClickOutside from "@/app/lib/useClickOutside";
+import useClickOutside from "@/hooks/useClickOutside";
 
 type Props = {
   children: React.ReactNode;

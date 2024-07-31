@@ -1,9 +1,10 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+
 import RandomFact from "../components/RandomFact";
 import TodayFact from "../components/TodayFact";
-import { createClient } from "@/utils/supabase/server";
 
 export default async function HomePage() {
   const supabase = createClient();

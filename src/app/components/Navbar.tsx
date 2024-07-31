@@ -30,7 +30,7 @@ const Navbar = () => {
       toast.error("Unable to sign out at the moment. Please try again later.");
     } else {
       toast.success("Successfully signed out.");
-      router.push("/login"); // Redirect to login page after sign out
+      router.push("/login");
     }
   };
 

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
+import { FactProvider } from "@/utils/FactContext";
+
 import Navbar from "../components/Navbar";
-import { FactProvider } from "../lib/FactContext";
 import styles from "./FactLayout.module.css";
 import Loading from "./loading";
 

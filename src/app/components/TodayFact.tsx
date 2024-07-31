@@ -1,21 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-import Image from "next/image";
-
-import styles from "./TodayFact.module.css";
-
-import { fetchFact } from "@/app/lib/api";
-import { useFactContext } from "@/app/lib/FactContext";
-
-import { IoBag, IoBagOutline, IoClose } from "react-icons/io5";
-
 import { toast } from "sonner";
-import { Fact } from "@/app/lib/types";
+
+import { useFactContext } from "@/utils/FactContext";
+import { fetchFact } from "@/utils/api";
+import { Fact } from "@/utils/types";
+
 import CardWithButtons from "../ui/CardWithButtons";
 import Modal from "../ui/Modal";
 import SlideEffectButton from "../ui/SlideEffectButton";
+
+import { IoBag, IoBagOutline, IoClose } from "react-icons/io5";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =

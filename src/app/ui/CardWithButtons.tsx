@@ -1,6 +1,6 @@
-import { IoClose } from "react-icons/io5";
 import styles from "./CardWithButtons.module.css";
 import Image from "next/image";
+import { IoClose } from "react-icons/io5";
 
 type Props = {
   isHeader: boolean;

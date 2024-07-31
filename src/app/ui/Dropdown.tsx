@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 
 import styles from "./Dropdown.module.css";
-import useClickOutside from "../lib/useClickOutside";
+import useClickOutside from "@/hooks/useClickOutside";
 
 type Props = {
   children: React.ReactNode;

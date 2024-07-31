@@ -22,12 +22,12 @@ export default function FactLayout({
   during initial loading or dynamic imports, displaying a loading
   indicator until the children are ready.
 */}
-      <Suspense fallback={<Loading />}>
-        <main className={styles.container}>
+      <main className={styles.container}>
+        <Suspense fallback={<Loading />}>
           <Navbar />
           <section className={styles.content}>{children}</section>
-        </main>
-      </Suspense>
+        </Suspense>
+      </main>
     </FactProvider>
   );
 }

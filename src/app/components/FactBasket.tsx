@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useFactContext } from "@/app/lib/FactContext";
-import { useAuthContext } from "@/app/lib/AuthContext";
 import { supabase } from "@/app/lib/supabase";
 
 import styles from "./FactBasket.module.css";
@@ -11,9 +10,9 @@ import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 
 import AnimatedBinButton from "../ui/AnimatedBinButton";
 import Dropdown from "../ui/Dropdown";
+import { redirect } from "next/navigation";
 
 const FactBasket = () => {
-  const { userId } = useAuthContext();
   const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -21,6 +20,15 @@ const FactBasket = () => {
   const label = "Basket";
 
   const handleSaveData = async () => {
+    // Get the user ID
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !userData?.user) {
+      redirect("/login");
+    }
+
+    const userId = userData.user.id;
+
     // Fetch existing facts from the database
     const { data: existingFacts, error: fetchError } = await supabase
       .from("facts")

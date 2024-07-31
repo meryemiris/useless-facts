@@ -6,10 +6,10 @@ import { supabase } from "@/app/lib/supabase";
 import { toast } from "sonner";
 
 import styles from "./AuthForm.module.css";
-import Loading from "../../app/ui/Loading";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import Loading from "@/app/ui/Loading";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -151,12 +151,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
           {action === "login" ? (
             <>
               <i>No account?</i>
-              <Link href="/auth/signup">Sign Up</Link>
+              <Link href="/signup">Sign Up</Link>
             </>
           ) : (
             <>
               <i>Already have an account?</i>
-              <Link href="/auth/login">Login</Link>
+              <Link href="/login">Login</Link>
             </>
           )}
         </div>

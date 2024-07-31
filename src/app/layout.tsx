@@ -1,5 +1,4 @@
 import { Toaster } from "sonner";
-import { AuthProvider } from "./lib/AuthContext";
 import "./global.css";
 
 export const metadata = {
@@ -15,16 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          <Toaster
-            expand
-            position="top-right"
-            richColors
-            pauseWhenPageIsHidden
-          />
+        <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
 
-          {children}
-        </AuthProvider>
+        {children}
       </body>
     </html>
   );

@@ -5,19 +5,29 @@ import styles from "./SavedFacts.module.css";
 import { toast } from "sonner";
 import Loading from "@/app/ui/Loading";
 import { supabase } from "@/app/lib/supabase";
-import { useAuthContext } from "@/app/lib/AuthContext";
 import { Fact, Language } from "@/app/lib/types";
 import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
+import { redirect } from "next/navigation";
 
 const SavedFacts = () => {
-  const { userId } = useAuthContext();
   const [savedFacts, setSavedFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filterLanguage, setFilterLanguage] = useState<Language | "all">("all");
 
   useEffect(() => {
-    if (userId) {
-      const getSavedFacts = async () => {
+    const fetchUserDataAndFacts = async () => {
+      // Get the user data
+      const { data: userData, error: userError } =
+        await supabase.auth.getUser();
+
+      if (userError || !userData?.user) {
+        redirect("/login"); // Redirect to login page
+      }
+
+      const userId = userData.user.id;
+
+      if (userId) {
+        // Fetch saved facts
         const { data, error } = await supabase
           .from("facts")
           .select("id, text, language")
@@ -33,11 +43,11 @@ const SavedFacts = () => {
         }
 
         setIsLoading(false);
-      };
+      }
+    };
 
-      getSavedFacts();
-    }
-  }, [userId]);
+    fetchUserDataAndFacts();
+  }, []);
 
   const handleDeleteFact = async (id: number | string) => {
     const { error } = await supabase.from("facts").delete().eq("id", id);

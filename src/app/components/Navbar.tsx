@@ -1,67 +1,34 @@
-"use client";
-import Link from "next/link";
 import styles from "./Navbar.module.css";
+import { createClient } from "@/utils/supabase/server";
 
+import HomeLink from "./HomeLink";
 import FactBasket from "./FactBasket";
+import ArchiveLink from "./ArchiveLink";
 import Language from "./Language";
+import Logout from "./Logout";
 
-import {
-  IoArchive,
-  IoArchiveOutline,
-  IoHomeOutline,
-  IoHomeSharp,
-} from "react-icons/io5";
-import { IoMdLogOut } from "react-icons/io";
+// The Navbar is async and server-side to prevent a flash of unstyled content
+// by checking authentication before rendering. While Suspense and fallback
+// in the layout handle page loading states, making the Navbar async ensures
+// consistent authentication handling across the page. Consider checking for
+// better approaches later.
 
-import { toast } from "sonner";
-import { usePathname } from "next/navigation";
-import { createClient } from "@/utils/supabase/client";
-import { useRouter } from "next/navigation";
-
-const Navbar = () => {
+async function Navbar() {
   const supabase = createClient();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      toast.error("Unable to sign out at the moment. Please try again later.");
-    } else {
-      toast.success("Successfully signed out.");
-      router.push("/login");
-    }
-  };
-
+  const { data, error } = await supabase.auth.getUser();
+  console.log(data);
+  if (error || !data?.user) {
+    return;
+  }
   return (
     <nav className={styles.navbar}>
-      <Link className={styles.navButton} href="/">
-        {pathname === "/" ? (
-          <IoHomeSharp className={styles.icon} />
-        ) : (
-          <IoHomeOutline className={styles.icon} />
-        )}
-        Home
-      </Link>
+      <HomeLink />
       <FactBasket />
-
-      <Link className={styles.navButton} href="/saved">
-        {pathname === "/saved" ? (
-          <IoArchive className={styles.icon} />
-        ) : (
-          <IoArchiveOutline className={styles.icon} />
-        )}
-        Archive
-      </Link>
-
+      <ArchiveLink />
       <Language />
-      <button onClick={handleSignOut} className={styles.navButton}>
-        <IoMdLogOut className={styles.icon} />
-        Logout
-      </button>
+      <Logout />
     </nav>
   );
-};
+}
 
 export default Navbar;

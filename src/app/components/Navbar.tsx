@@ -1,9 +1,6 @@
 "use client";
 import Link from "next/link";
-
 import styles from "./Navbar.module.css";
-
-import { supabase } from "@/app/lib/supabase";
 
 import FactBasket from "./FactBasket";
 import Language from "./Language";
@@ -18,8 +15,10 @@ import { IoMdLogOut } from "react-icons/io";
 
 import { toast } from "sonner";
 import { usePathname } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 async function signOut() {
+  const supabase = createClient();
   const { error } = await supabase.auth.signOut();
 
   if (error) {

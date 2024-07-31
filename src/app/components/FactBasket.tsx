@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useFactContext } from "@/app/lib/FactContext";
-import { supabase } from "@/app/lib/supabase";
 
 import styles from "./FactBasket.module.css";
 
@@ -11,8 +10,10 @@ import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
 import AnimatedBinButton from "../ui/AnimatedBinButton";
 import Dropdown from "../ui/Dropdown";
 import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 const FactBasket = () => {
+  const supabase = createClient();
   const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

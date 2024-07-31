@@ -2,14 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { supabase } from "@/app/lib/supabase";
 import { toast } from "sonner";
 
 import styles from "./AuthForm.module.css";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { useRouter } from "next/navigation";
 import Loading from "@/app/ui/Loading";
+import { login, signup } from "./action";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -18,7 +17,7 @@ type AuthFormProps = {
 };
 
 const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,69 +29,71 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const validateForm = () => {
-    if (!email || !password) {
-      toast.warning("Please fill in both email and password.");
-      return false;
-    }
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      toast.warning("Please enter a valid email address.");
-      return false;
-    }
-    if (password.length < 6) {
-      toast.warning("Please enter a valid password (at least 6 characters).");
-      return false;
-    }
-    return true;
-  };
+  // const validateForm = () => {
+  //   if (!email || !password) {
+  //     toast.warning("Please fill in both email and password.");
+  //     return false;
+  //   }
+  //   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   if (!emailPattern.test(email)) {
+  //     toast.warning("Please enter a valid email address.");
+  //     return false;
+  //   }
+  //   if (password.length < 6) {
+  //     toast.warning("Please enter a valid password (at least 6 characters).");
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
-  const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    if (error) {
-      const errorMessage =
-        error.message === "Invalid login credentials"
-          ? "User not found or incorrect password. Please double-check your credentials."
-          : "Something went wrong while signing in. Please try again later.";
+  // const handleLogin = async () => {
+  //   const { error } = await supabase.auth.signInWithPassword({
+  //     email,
+  //     password,
+  //   });
+  //   if (error) {
+  //     const errorMessage =
+  //       error.message === "Invalid login credentials"
+  //         ? "User not found or incorrect password. Please double-check your credentials."
+  //         : "Something went wrong while signing in. Please try again later.";
 
-      toast.error(errorMessage);
-      setEmail("");
-      setPassword("");
-    } else {
-      toast.success("Welcome back! You've signed in successfully.");
-      router.push("/");
-    }
-  };
+  //     toast.error(errorMessage);
+  //     setEmail("");
+  //     setPassword("");
+  //   } else {
+  //     toast.success("Welcome back! You've signed in successfully.");
+  //     router.push("/");
+  //   }
+  // };
 
-  const handleSignUp = async () => {
-    const { error } = await supabase.auth.signUp({ email, password });
-    if (error) {
-      toast.error("Oops! Registration failed. Please try again.");
-    } else {
-      toast.success("Congratulations! Registration successful. Welcome!");
-      router.push("/");
-    }
-  };
+  // const handleSignUp = async () => {
+  //   const { error } = await supabase.auth.signUp({ email, password });
+  //   if (error) {
+  //     toast.error("Oops! Registration failed. Please try again.");
+  //   } else {
+  //     toast.success("Congratulations! Registration successful. Welcome!");
+  //     router.push("/");
+  //   }
+  // };
 
-  const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // const handleAuth = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
 
-    if (action === "login") {
-      await handleLogin();
-    } else if (action === "signup") {
-      if (validateForm()) {
-        await handleSignUp();
-      }
-    }
-    setIsLoading(false);
-  };
+  //   if (action === "login") {
+  //     await handleLogin();
+  //   } else if (action === "signup") {
+  //     if (validateForm()) {
+  //       await handleSignUp();
+  //     }
+  //   }
+  //   setIsLoading(false);
+  // };
+
+  const formAction = action === "login" ? login : signup;
 
   return (
-    <form className={styles.form} onSubmit={handleAuth}>
+    <form className={styles.form}>
       <header className={styles.header}>
         <h1>{header}</h1>
         <h2>{subheader}</h2>
@@ -137,7 +138,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
           </button>
         </div>
 
-        <button className={styles.button} type="submit" disabled={isLoading}>
+        <button
+          className={styles.button}
+          type="submit"
+          formAction={formAction}
+          disabled={isLoading}
+        >
           {isLoading ? (
             <Loading size="sm" />
           ) : action === "login" ? (

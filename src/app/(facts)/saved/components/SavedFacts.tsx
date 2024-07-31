@@ -4,15 +4,19 @@ import Image from "next/image";
 import styles from "./SavedFacts.module.css";
 import { toast } from "sonner";
 import Loading from "@/app/ui/Loading";
-import { supabase } from "@/app/lib/supabase";
 import { Fact, Language } from "@/app/lib/types";
 import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
 
 const SavedFacts = () => {
   const [savedFacts, setSavedFacts] = useState<Fact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filterLanguage, setFilterLanguage] = useState<Language | "all">("all");
+  const router = useRouter();
+
+  const supabase = createClient();
 
   useEffect(() => {
     const fetchUserDataAndFacts = async () => {
@@ -21,10 +25,10 @@ const SavedFacts = () => {
         await supabase.auth.getUser();
 
       if (userError || !userData?.user) {
-        redirect("/login"); // Redirect to login page
+        router.push("/login");
       }
 
-      const userId = userData.user.id;
+      const userId = userData?.user?.id;
 
       if (userId) {
         // Fetch saved facts
@@ -47,7 +51,7 @@ const SavedFacts = () => {
     };
 
     fetchUserDataAndFacts();
-  }, []);
+  }, [supabase, router]);
 
   const handleDeleteFact = async (id: number | string) => {
     const { error } = await supabase.from("facts").delete().eq("id", id);
@@ -79,7 +83,7 @@ const SavedFacts = () => {
         console.error("Failed to unsubscribe:", error);
       });
     };
-  }, []);
+  }, [supabase]);
 
   const filteredFacts =
     filterLanguage === "all"

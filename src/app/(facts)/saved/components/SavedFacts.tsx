@@ -1,14 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import styles from "./SavedFacts.module.css";
+
 import { toast } from "sonner";
-import Loading from "@/app/ui/Loading";
+
 import { Fact, Language } from "@/app/lib/types";
-import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
-// import { redirect } from "next/navigation";
+
 import { useRouter } from "next/navigation";
+
 import { createClient } from "@/utils/supabase/client";
+
+import Loading from "@/app/ui/Loading";
+import Filter from "./Filters";
+import Card from "./Card";
 
 const SavedFacts = () => {
   const [savedFacts, setSavedFacts] = useState<Fact[]>([]);
@@ -67,6 +70,10 @@ const SavedFacts = () => {
     }
   };
 
+  function onFilter(language: Language | "all") {
+    setFilterLanguage(language);
+  }
+
   useEffect(() => {
     const channels = supabase
       .channel("custom-insert-channel")
@@ -94,63 +101,11 @@ const SavedFacts = () => {
     <>
       {isLoading ? (
         <Loading />
-      ) : filteredFacts.length > 0 ? (
-        <>
-          <div className={styles.filter}>
-            <button
-              className={
-                filterLanguage === "all"
-                  ? styles.filterButtonActive
-                  : styles.filterButton
-              }
-              onClick={() => setFilterLanguage("all")}
-            >
-              All
-            </button>
-            <button
-              className={
-                filterLanguage === "en"
-                  ? styles.filterButtonActive
-                  : styles.filterButton
-              }
-              onClick={() => setFilterLanguage("en")}
-            >
-              English
-            </button>
-            <button
-              className={
-                filterLanguage === "de"
-                  ? styles.filterButtonActive
-                  : styles.filterButton
-              }
-              onClick={() => setFilterLanguage("de")}
-            >
-              German
-            </button>
-          </div>
-          <ul className={styles.facts}>
-            {filteredFacts.map((fact) => (
-              <li className={styles.fact} key={fact.id}>
-                <Image
-                  className={styles.modalImg}
-                  src={"lightbulb.svg"}
-                  width={40}
-                  height={40}
-                  alt="fact modal image"
-                />
-                <p>{fact.text}</p>
-                <AnimatedBinButton
-                  factId={+fact.id}
-                  onDelete={handleDeleteFact}
-                />
-              </li>
-            ))}
-          </ul>
-        </>
       ) : (
-        <p className={styles.noFacts}>
-          Start saving some facts! You have no saved facts yet.
-        </p>
+        <>
+          <Filter onFilter={onFilter} activeLanguage={filterLanguage} />
+          <Card facts={filteredFacts} onDelete={handleDeleteFact} />
+        </>
       )}
     </>
   );

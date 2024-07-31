@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Navbar from "../components/Navbar";
 import { FactProvider } from "../lib/FactContext";
 import styles from "./FactLayout.module.css";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Home Page",
@@ -14,10 +16,17 @@ export default function FactLayout({
 }) {
   return (
     <FactProvider>
-      <main className={styles.container}>
-        <Navbar />
-        <section className={styles.content}>{children}</section>
-      </main>
+      {/*
+  Suspense with a fallback prevents the page from being unresponsive
+  during initial loading or dynamic imports, displaying a loading
+  indicator until the children are ready.
+*/}
+      <Suspense fallback={<Loading />}>
+        <main className={styles.container}>
+          <Navbar />
+          <section className={styles.content}>{children}</section>
+        </main>
+      </Suspense>
     </FactProvider>
   );
 }

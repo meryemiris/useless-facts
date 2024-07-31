@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/client";
 
-import Loading from "@/app/ui/Loading";
 import Filter from "./Filters";
 import Card from "./Card";
 
@@ -99,14 +98,13 @@ const SavedFacts = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <Filter onFilter={onFilter} activeLanguage={filterLanguage} />
-          <Card facts={filteredFacts} onDelete={handleDeleteFact} />
-        </>
-      )}
+      <Filter onFilter={onFilter} activeLanguage={filterLanguage} />
+
+      <Card
+        facts={filteredFacts}
+        onDelete={handleDeleteFact}
+        loading={isLoading}
+      />
     </>
   );
 };

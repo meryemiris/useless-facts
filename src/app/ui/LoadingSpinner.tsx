@@ -1,4 +1,4 @@
-import styles from "./Loading.module.css";
+import styles from "./LoadingSpinner.module.css";
 
 const SIZES = {
   sm: "36px",

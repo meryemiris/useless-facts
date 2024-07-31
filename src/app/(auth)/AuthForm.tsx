@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import styles from "./AuthForm.module.css";
 
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import Loading from "@/app/ui/Loading";
+import Loading from "@/app/ui/LoadingSpinner";
 import { login, signup } from "./action";
 
 type AuthFormProps = {

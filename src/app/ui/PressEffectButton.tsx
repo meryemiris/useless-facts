@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./PressEffectButton.module.css";
-import Loading from "./Loading";
+import Loading from "./LoadingSpinner";
 
 type Props = {
   onPress: () => void;

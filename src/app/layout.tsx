@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Toaster expand position="top-right" richColors pauseWhenPageIsHidden />
+        <Toaster position="bottom-right" richColors pauseWhenPageIsHidden />
 
         {children}
       </body>

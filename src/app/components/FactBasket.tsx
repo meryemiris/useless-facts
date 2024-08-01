@@ -100,10 +100,18 @@ const FactBasket = () => {
             </li>
           ))}
           <div className={styles.actionButtons}>
-            <button onClick={clearBasket} className={styles.clearButton}>
+            <button
+              aria-label="Clear basket"
+              onClick={clearBasket}
+              className={styles.clearButton}
+            >
               Clear <AiOutlineClear className={styles.icon} />
             </button>
-            <button onClick={handleSaveData} className={styles.saveButton}>
+            <button
+              aria-label="Save Basket"
+              onClick={handleSaveData}
+              className={styles.saveButton}
+            >
               Save
               <AiOutlineSave className={styles.icon} />
             </button>

@@ -7,7 +7,11 @@ type Props = {
 
 const AnimatedBinButton: React.FC<Props> = ({ factId, onDelete }) => {
   return (
-    <button className={styles.binButton} onClick={() => onDelete(factId)}>
+    <button
+      aria-label="Delete Fact"
+      className={styles.binButton}
+      onClick={() => onDelete(factId)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

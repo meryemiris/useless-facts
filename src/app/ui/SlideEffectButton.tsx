@@ -15,7 +15,11 @@ const SlideEffectButton: React.FC<Props> = ({
   secondLabel,
 }) => {
   return (
-    <button className={styles.button} onClick={onPress}>
+    <button
+      aria-label={`${firstLabel} ${secondLabel} `}
+      className={styles.button}
+      onClick={onPress}
+    >
       <Image className={styles.image} src={bulbImg} alt="button's lighbulb" />
       <span className={styles.secondLabel}>{secondLabel}</span>
       <span className={styles.firstLabel}>{firstLabel}</span>

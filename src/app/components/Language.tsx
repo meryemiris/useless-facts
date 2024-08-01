@@ -37,6 +37,7 @@ const Language = () => {
       setIsOpen={setIsDropdownOpen}
     >
       <button
+        aria-label="Change language to English"
         onClick={() => handleChangeLanguage("en")}
         className={styles.languageButton}
       >
@@ -49,6 +50,7 @@ const Language = () => {
         English
       </button>
       <button
+        aria-label="Change language to German"
         onClick={() => handleChangeLanguage("de")}
         className={styles.languageButton}
       >

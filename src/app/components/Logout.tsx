@@ -22,7 +22,11 @@ export default function Logout() {
   };
 
   return (
-    <button onClick={handleSignOut} className={styles.navButton}>
+    <button
+      aria-label="Sign out"
+      onClick={handleSignOut}
+      className={styles.navButton}
+    >
       <IoMdLogOut className={styles.icon} />
       Logout
     </button>

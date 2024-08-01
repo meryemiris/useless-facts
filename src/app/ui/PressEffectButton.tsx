@@ -12,7 +12,7 @@ type Props = {
 
 const PressEffectButton: React.FC<Props> = ({ onPress, label, loading }) => {
   return (
-    <button className={styles.button} onClick={onPress}>
+    <button aria-label={label} className={styles.button} onClick={onPress}>
       <Image
         className={styles.image}
         src={owlImg}

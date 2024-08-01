@@ -72,6 +72,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
             Password
           </label>
           <button
+            aria-label="Toggle password visibility"
             type="button"
             onClick={togglePasswordVisibility}
             className={styles.passwordVisiblityButton}
@@ -79,7 +80,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
             {isPasswordVisible ? <IoEye /> : <IoEyeOff />}
           </button>
         </div>
-        <button className={styles.button} type="submit" disabled={isLoading}>
+        <button
+          aria-label="Submit"
+          className={styles.button}
+          type="submit"
+          disabled={isLoading}
+        >
           {isLoading ? (
             <Loading size="sm" />
           ) : action === "login" ? (

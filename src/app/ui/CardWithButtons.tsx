@@ -33,7 +33,7 @@ const CardWithButtons: React.FC<Props> = ({
         <header className={styles.header}>
           <Image className={styles.image} src={bulbImg} alt="Card Image" />
 
-          <button onClick={onClose} className={styles.close}>
+          <button aria-label="Close" onClick={onClose} className={styles.close}>
             <span>
               <IoClose size={32} />
             </span>
@@ -44,11 +44,19 @@ const CardWithButtons: React.FC<Props> = ({
         <p>{content}</p>
       </main>
       <footer className={styles.footer}>
-        <button className={styles.primaryButton} onClick={onPrimaryAction}>
+        <button
+          aria-label={primaryLabel}
+          className={styles.primaryButton}
+          onClick={onPrimaryAction}
+        >
           <span> {primaryLabel}</span>
           <span className={styles.icon}>{primaryIcon}</span>
         </button>
-        <button className={styles.secondaryButton} onClick={onSecondaryAction}>
+        <button
+          aria-label={secondaryLabel}
+          className={styles.secondaryButton}
+          onClick={onSecondaryAction}
+        >
           <span> {secondaryLabel}</span>
           <span className={styles.icon}>{secondaryIcon}</span>
         </button>

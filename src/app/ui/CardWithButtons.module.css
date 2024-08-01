@@ -26,6 +26,8 @@
 .image {
   position: relative;
   top: .5rem;
+  height: 50px;
+  width: 50px;
 }
 
 .fact {

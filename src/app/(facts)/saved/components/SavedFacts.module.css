@@ -26,7 +26,8 @@
 .modalImg {
   position: relative;
   top: -.5rem;
-
+  height: 40px;
+  width: 40px;
 }
 
 .noFacts {

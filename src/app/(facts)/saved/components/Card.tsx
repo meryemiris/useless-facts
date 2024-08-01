@@ -6,6 +6,8 @@ import { Fact } from "@/utils/types";
 import Loading from "@/app/ui/LoadingSpinner";
 import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
 
+import bulbImg from "@/public/lightbulb.svg";
+
 type CardProps = {
   loading: boolean;
   facts: Fact[];
@@ -25,9 +27,7 @@ const Card: React.FC<CardProps> = ({ facts, onDelete, loading }) => {
                 <li className={styles.fact} key={fact.id}>
                   <Image
                     className={styles.modalImg}
-                    src="/lightbulb.svg"
-                    width={40}
-                    height={40}
+                    src={bulbImg}
                     alt="fact modal image"
                   />
                   <p>{fact.text}</p>

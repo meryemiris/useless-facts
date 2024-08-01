@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./PressEffectButton.module.css";
 import Loading from "./LoadingSpinner";
 
+import owlImg from "@/public/readingOwl.png";
+
 type Props = {
   onPress: () => void;
   label: string;
@@ -12,11 +14,9 @@ const PressEffectButton: React.FC<Props> = ({ onPress, label, loading }) => {
   return (
     <button className={styles.button} onClick={onPress}>
       <Image
-        className={styles.owlImg}
-        src={"/readingOwl.png"}
+        className={styles.image}
+        src={owlImg}
         alt="owl reading book"
-        width={100}
-        height={100}
         priority
       />
       {loading ? <Loading color="orange" size="md" /> : label}

@@ -1,6 +1,8 @@
 import styles from "./AuthLayout.module.css";
 import Image from "next/image";
 
+import owlImg from "@/public/readingOwl.png";
+
 export default function AuthLayout({
   children,
 }: {
@@ -11,10 +13,8 @@ export default function AuthLayout({
       <main className={styles.content}>
         <section className={styles.imageContainer}>
           <Image
-            src="/readingOwl.png"
+            src={owlImg}
             alt="owl reading book"
-            width={100}
-            height={100}
             className={styles.image}
             priority
           />

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import styles from "./SlideEffectButton.module.css";
 
+import bulbImg from "@/public/lightbulb.svg";
+
 type Props = {
   onPress: () => void;
   firstLabel: string;
@@ -14,13 +16,7 @@ const SlideEffectButton: React.FC<Props> = ({
 }) => {
   return (
     <button className={styles.button} onClick={onPress}>
-      <Image
-        className={styles.image}
-        src="lightbulb.svg"
-        width={40}
-        height={40}
-        alt="button's lighbulb"
-      />
+      <Image className={styles.image} src={bulbImg} alt="button's lighbulb" />
       <span className={styles.secondLabel}>{secondLabel}</span>
       <span className={styles.firstLabel}>{firstLabel}</span>
     </button>

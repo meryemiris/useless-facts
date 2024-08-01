@@ -2,6 +2,8 @@ import styles from "./CardWithButtons.module.css";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 
+import bulbImg from "@/public/lightbulb.svg";
+
 type Props = {
   isHeader: boolean;
   onClose?: () => void;
@@ -29,13 +31,7 @@ const CardWithButtons: React.FC<Props> = ({
     <div className={styles.card}>
       {isHeader && (
         <header className={styles.header}>
-          <Image
-            className={styles.image}
-            src="lightbulb.svg"
-            width={50}
-            height={50}
-            alt="Card Image"
-          />
+          <Image className={styles.image} src={bulbImg} alt="Card Image" />
 
           <button onClick={onClose} className={styles.close}>
             <span>

@@ -54,8 +54,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-block: .8rem;
-  font-size: 1.5rem;
+  height: 3.2rem;
+  font-size: 1.4rem;
   width: 100%;
 
   background-color: var(--primary-color);

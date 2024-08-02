@@ -9,6 +9,7 @@ import { authenticateUser } from "./action";
 
 import Loading from "@/app/ui/LoadingSpinner";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -19,6 +20,7 @@ type AuthFormProps = {
 const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const router = useRouter();
 
   const togglePasswordVisibility = () =>
     setIsPasswordVisible(!isPasswordVisible);
@@ -32,7 +34,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
 
     if (result.success) {
       toast.success(result.message);
-      window.location.href = "/";
+      router.push("/");
     } else {
       toast.error(result.message);
     }

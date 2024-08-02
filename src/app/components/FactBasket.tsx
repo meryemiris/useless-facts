@@ -12,7 +12,6 @@ import Dropdown from "../ui/Dropdown";
 
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
-import { error } from "console";
 
 const FactBasket = () => {
   const supabase = createClient();

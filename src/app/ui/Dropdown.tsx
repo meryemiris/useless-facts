@@ -35,8 +35,8 @@ const Dropdown: React.FC<Props> = ({
             {bannerCount < 10 ? bannerCount : "9+"}
           </span>
         )}
-        <span> {icon}</span>
-        <span> {label}</span>
+        {icon}
+        {label}
       </button>
       <div
         ref={ref}

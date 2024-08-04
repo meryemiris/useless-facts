@@ -6,13 +6,12 @@ import styles from "./Language.module.css";
 
 import { toast } from "sonner";
 
-import Dropdown from "../ui/Dropdown";
-
 import { IoEarthOutline } from "react-icons/io5";
 import { useFactContext } from "@/utils/FactContext";
 
 import englishImg from "@/public/en.svg";
 import germanImg from "@/public/de.svg";
+import Dropdown from "@/app/ui/Dropdown";
 
 const Language = () => {
   const { language, setLanguage } = useFactContext();

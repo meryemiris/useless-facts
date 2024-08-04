@@ -7,11 +7,10 @@ import styles from "./FactBasket.module.css";
 import { createClient } from "@/utils/supabase/client";
 import { useFactContext } from "@/utils/FactContext";
 
-import AnimatedBinButton from "../ui/AnimatedBinButton";
-import Dropdown from "../ui/Dropdown";
-
 import { IoBagOutline } from "react-icons/io5";
 import { AiOutlineClear, AiOutlineSave } from "react-icons/ai";
+import Dropdown from "@/app/ui/Dropdown";
+import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
 
 const FactBasket = () => {
   const supabase = createClient();

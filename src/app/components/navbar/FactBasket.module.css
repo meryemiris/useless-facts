@@ -15,7 +15,6 @@
 
 .fact {
   display: flex;
-  /* justify-content: space-between; */
   flex-wrap: wrap;
   align-items: center;
   padding: 1rem;
@@ -113,7 +112,5 @@
   .facts::-webkit-scrollbar-track {
     background-color: inherit;
   }
-
-
 
 }

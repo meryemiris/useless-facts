@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { FactProvider } from "@/utils/FactContext";
 
-import Navbar from "../components/Navbar";
 import styles from "./FactLayout.module.css";
 import Loading from "./loading";
+import Navbar from "../components/navbar/Navbar";
 
 export const metadata = {
   title: "Home Page",

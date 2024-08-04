@@ -9,7 +9,6 @@
 
 }
 
-
 .navButton {
   all: unset;
   display: flex;
@@ -18,16 +17,21 @@
   font-size: 1rem;
   cursor: pointer;
   color: var(--icon-color);
+  width: 50px;
+  height: 50px;
 }
 
 .icon {
   font-size: 2rem;
 }
 
-.logoutButton:hover,
-.navButton:hover {
-  transform: scale(1.2);
-  transition: 0.2s;
+
+
+@media (hover: hover) and (pointer: fine) {
+  .navButton:hover {
+    transform: scale(1.2);
+    transition: 0.2s;
+  }
 }
 
 @media only screen and (max-height: 480px) {
@@ -45,10 +49,5 @@
     box-shadow: var(--intense-box-shadow);
     width: 90px;
 
-  }
-
-  .goPage {
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0.4rem;
   }
 }

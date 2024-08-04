@@ -8,17 +8,15 @@ import { toast } from "sonner";
 
 export default function Logout() {
   const router = useRouter();
+  const supabase = createClient();
 
   const handleSignOut = async () => {
-    const supabase = createClient();
     const { error } = await supabase.auth.signOut();
-
     if (error) {
-      toast.error("Unable to sign out at the moment. Please try again later.");
-    } else {
-      toast.success("Successfully signed out.");
-      router.push("/login");
+      toast.error("Something went wrong while signing out. Please try again.");
+      return;
     }
+    router.push("/login");
   };
 
   return (

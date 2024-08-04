@@ -9,7 +9,6 @@ import { authenticateUser } from "./action";
 
 import Loading from "@/app/ui/LoadingSpinner";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { useRouter } from "next/navigation";
 
 type AuthFormProps = {
   action: "login" | "signup";
@@ -20,7 +19,6 @@ type AuthFormProps = {
 const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const router = useRouter();
 
   const togglePasswordVisibility = () =>
     setIsPasswordVisible(!isPasswordVisible);
@@ -30,18 +28,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ action, header, subheader }) => {
     setIsLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const result = await authenticateUser(formData, action);
+    const errorMessage = await authenticateUser(formData, action);
+    const successMessage =
+      action === "login" ? "Login successful!" : "Signup successful!";
 
-    if (result.success) {
-      toast.success(result.message);
-      router.push("/");
+    if (errorMessage) {
+      toast.error(`Authentication failed: ${errorMessage}`);
     } else {
-      toast.error(result.message);
+      toast.success(successMessage);
     }
 
     setIsLoading(false);
   };
-
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <header className={styles.header}>

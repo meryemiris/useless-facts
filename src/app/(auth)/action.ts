@@ -1,6 +1,7 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function authenticateUser(
   formData: FormData,
@@ -19,16 +20,9 @@ export async function authenticateUser(
       : await supabase.auth.signUp(data);
 
   if (error) {
-    console.log(error);
-    return {
-      success: false,
-      message: `Authentication failed: ${error.message}`,
-    };
+    return error.message;
   }
 
   revalidatePath("/", "layout");
-  return {
-    success: true,
-    message: action === "login" ? "Login successful!" : "Signup successful!",
-  };
+  redirect("/");
 }

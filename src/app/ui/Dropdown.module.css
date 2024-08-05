@@ -1,13 +1,17 @@
 .dropdownButton {
   all: unset;
   display: flex;
-  flex-direction: column;
-  place-items: center;
-  font-size: 1rem;
+  justify-content: flex-start;
+  align-items: center;
   cursor: pointer;
-  color: var(--icon-color);
-  width: 50px;
-  height: 50px;
+  gap: .5rem;
+  width: 120px;
+}
+
+.dropdownButton p {
+  font-size: 1.5rem;
+  font-weight: 600;
+
 }
 
 .menu {
@@ -17,25 +21,24 @@
 .showRight {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   position: relative;
 }
 
 .dropdown {
   z-index: 2;
   display: none;
-  background-color: var(--background-color);
+  background-color: white;
   box-shadow: var(--intense-box-shadow);
   border-radius: 0.4rem;
-  border-top-left-radius: 0;
   font-size: 1rem;
-
+  min-width: 120px;
   width: fit-content;
+  max-height: 500px;
+  overflow-y: auto;
   position: absolute;
-
-  top: 1rem;
-  left: 1rem;
-
+  top: 0;
+  left: 7rem;
+  transition: ease-out 0.3s;
 }
 
 .show {
@@ -45,22 +48,31 @@
 .bannerCount {
   position: absolute;
   top: 0;
-  right: 0;
+  left: .7rem;
   background-color: var(--secondary-color);
   color: var(--background-color);
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 50%;
-  font-weight: 600;
+  font-weight: 500;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .dropdownButton:hover {
-    transform: scale(1.2);
+    color: var(--primary-color);
+    transform: scale(1.1);
     transition: 0.2s;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .dropdown {
+    top: 3rem;
+    left: 0;
   }
 }

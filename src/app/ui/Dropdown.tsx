@@ -36,7 +36,7 @@ const Dropdown: React.FC<Props> = ({
           </span>
         )}
         {icon}
-        {label}
+        <p> {label}</p>
       </button>
       <div
         ref={ref}

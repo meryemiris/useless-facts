@@ -17,7 +17,7 @@ const FactBasket = () => {
   const { factBasket: facts, clearBasket, removeFromBasket } = useFactContext();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const icon = <IoBagOutline size={32} />;
+  const icon = <IoBagOutline size={24} />;
   const label = "Basket";
 
   const handleSaveData = async () => {
@@ -94,6 +94,7 @@ const FactBasket = () => {
           {facts.map((fact) => (
             <li className={styles.fact} key={fact.id}>
               <p> {fact.text}</p>
+
               <AnimatedBinButton factId={fact.id} onDelete={removeFromBasket} />
             </li>
           ))}

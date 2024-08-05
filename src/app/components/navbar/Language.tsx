@@ -18,7 +18,7 @@ const Language = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const icon = <IoEarthOutline size={32} />;
+  const icon = <IoEarthOutline size={24} />;
   const label = language === "en" ? "English" : "German";
 
   function handleChangeLanguage(lang: "en" | "de") {
@@ -43,7 +43,7 @@ const Language = () => {
         <Image
           src={englishImg}
           alt="British flag"
-          className={styles.langFlag}
+          className={styles.flag}
           priority
         />
         English
@@ -53,7 +53,7 @@ const Language = () => {
         onClick={() => handleChangeLanguage("de")}
         className={styles.languageButton}
       >
-        <Image className={styles.langFlag} src={germanImg} alt="Germany flag" />
+        <Image className={styles.flag} src={germanImg} alt="Germany flag" />
         German
       </button>
     </Dropdown>

@@ -3,7 +3,7 @@ import { FactProvider } from "@/utils/FactContext";
 
 import styles from "./FactLayout.module.css";
 import Loading from "./loading";
-import Navbar from "../components/navbar/Navbar";
+import HamburgerMenu from "../components/navbar/HamburgerMenu";
 
 export const metadata = {
   title: "Home Page",
@@ -17,17 +17,10 @@ export default async function FactLayout({
 }) {
   return (
     <FactProvider>
-      {/*
-  Suspense with a fallback prevents the page from being unresponsive
-  during initial loading or dynamic imports, displaying a loading
-  indicator until the children are ready.
-*/}
-      <main className={styles.container}>
-        <Suspense fallback={<Loading />}>
-          <Navbar />
-          <section className={styles.content}>{children}</section>
-        </Suspense>
-      </main>
+      <Suspense fallback={<Loading />}>
+        <HamburgerMenu />
+        <main className={styles.content}>{children}</main>
+      </Suspense>
     </FactProvider>
   );
 }

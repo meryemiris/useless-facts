@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoHomeOutline, IoHomeSharp } from "react-icons/io5";
 
-import styles from "./Navbar.module.css";
+import styles from "./HamburgerMenu.module.css";
 
 export default function HomeLink() {
   const pathname = usePathname();

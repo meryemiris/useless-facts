@@ -1,7 +1,9 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./Navbar.module.css";
+
+import styles from "./HamburgerMenu.module.css";
+
 import { IoArchiveOutline, IoArchive } from "react-icons/io5";
 
 export default function ArchiveLink() {

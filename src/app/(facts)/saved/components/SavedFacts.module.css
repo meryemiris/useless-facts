@@ -84,6 +84,7 @@
   padding: .5rem 1rem;
   font-size: 1rem;
   color: var(--text-color);
+  cursor: pointer;
 }
 
 .filterButton {
@@ -96,4 +97,18 @@
 .filterButtonActive {
   background-color: var(--primary-color);
   color: var(--background-color);
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .filterButton:hover {
+
+    background-color: var(--primary-color);
+    transition: 0.2s;
+    color: var(--background-color);
+  }
+
+  .filterButtonActive:hover {
+    background-color: var(--primary-color);
+  }
 }

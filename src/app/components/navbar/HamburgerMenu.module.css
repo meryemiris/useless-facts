@@ -11,7 +11,7 @@
   box-shadow: var(--intense-box-shadow);
   position: fixed;
   width: 100dvw;
-  background-color: white;
+  background-color: var(--background-color);
   opacity: 0.85;
   z-index: 100;
 }
@@ -125,7 +125,7 @@
 
   .navbar .menuItems {
     padding-top: 100px;
-    background: white;
+    background: var(--background-color);
     height: 100vh;
     max-width: 300px;
     transform: translate(-150%);

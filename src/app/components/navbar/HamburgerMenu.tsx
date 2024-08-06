@@ -6,8 +6,11 @@ import HomeLink from "./HomeLink";
 import Language from "./Language";
 import Logout from "./Logout";
 import styles from "./HamburgerMenu.module.css";
+import { useFactContext } from "@/utils/FactContext";
 
 export default function HamburgerMenu() {
+  const { factBasket } = useFactContext();
+
   return (
     <div className={styles.container}>
       <nav className={styles.navbar}>
@@ -18,7 +21,9 @@ export default function HamburgerMenu() {
             <span className={`${styles.line} ${styles.line1}`}></span>
             <span className={`${styles.line} ${styles.line2}`}></span>
             <span className={`${styles.line} ${styles.line3}`}></span>
+            {factBasket.length > 0 && <span className={styles.banner}></span>}
           </div>
+
           <section className={styles.menuItems}>
             <HomeLink />
 

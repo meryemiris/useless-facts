@@ -71,7 +71,7 @@
     opacity: 0;
   }
 
-  .navbarContainer .hamburgerLines {
+  .navbarContainer .hamburgerLines:not(.banner) {
     display: block;
     height: 23px;
     width: 35px;
@@ -153,6 +153,11 @@
     display: block-inline;
 
   }
+
+  .navbarContainer input[type="checkbox"]:checked~.hamburgerLines .banner {
+    display: none;
+  }
+
 }
 
 
@@ -177,6 +182,16 @@
   font-size: 1.5rem;
 }
 
+.banner {
+  position: absolute;
+  top: -.4rem;
+  right: -.2rem;
+  width: 14px;
+  height: 14px;
+  color: var(--primary-color);
+  border-radius: 50%;
+  background-color: var(--primary-color);
+}
 
 
 @media (hover: hover) and (pointer: fine) {

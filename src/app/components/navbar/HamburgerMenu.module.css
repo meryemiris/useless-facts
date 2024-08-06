@@ -3,6 +3,10 @@
   display: none;
 }
 
+.banner {
+  display: none;
+}
+
 .navbar {
   box-shadow: var(--intense-box-shadow);
   position: fixed;
@@ -44,6 +48,19 @@
 
 
 @media (max-width: 1100px) {
+
+  .banner {
+    display: block;
+    position: absolute;
+    top: -.4rem;
+    right: -.2rem;
+    width: 14px;
+    height: 14px;
+    color: var(--primary-color);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+  }
+
   .navbar {
     opacity: 0.95;
   }
@@ -182,16 +199,7 @@
   font-size: 1.5rem;
 }
 
-.banner {
-  position: absolute;
-  top: -.4rem;
-  right: -.2rem;
-  width: 14px;
-  height: 14px;
-  color: var(--primary-color);
-  border-radius: 50%;
-  background-color: var(--primary-color);
-}
+
 
 
 @media (hover: hover) and (pointer: fine) {

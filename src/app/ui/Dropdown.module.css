@@ -27,7 +27,7 @@
 .dropdown {
   z-index: 2;
   display: none;
-  background-color: white;
+  background-color: var(--background-color);
   box-shadow: var(--intense-box-shadow);
   border-radius: 0.4rem;
   font-size: 1rem;

@@ -9,7 +9,6 @@
   display: flex;
   place-items: center;
   background-color: transparent;
-  text-align: left;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s;
@@ -17,11 +16,6 @@
   padding: .5rem 1rem;
 }
 
-.languageButton:hover {
-  transform: scale(1.1);
-}
-
-.languageButton:active {
-  transform: scale(1.05);
-  transition: 0.2s;
+.languageButton:is(:hover, :focus) {
+  color: var(--primary-color);
 }

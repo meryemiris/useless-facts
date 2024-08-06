@@ -180,7 +180,6 @@
 
 /* menu buttons */
 
-
 .navButton {
   all: unset;
   display: flex;
@@ -192,15 +191,17 @@
   gap: .5rem;
   font-weight: 600;
   width: 120px;
-
 }
+
 
 .icon {
   font-size: 1.5rem;
 }
 
-
-
+.navButton:focus {
+  color: var(--primary-color);
+  transition: 0.2s;
+}
 
 @media (hover: hover) and (pointer: fine) {
   .navButton:hover {

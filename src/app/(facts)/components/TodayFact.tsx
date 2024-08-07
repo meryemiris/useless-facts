@@ -7,11 +7,10 @@ import { useFactContext } from "@/utils/FactContext";
 import { fetchFact } from "@/utils/api";
 import { Fact } from "@/utils/types";
 
-import CardWithButtons from "../ui/CardWithButtons";
-import Modal from "../ui/Modal";
-import SlideEffectButton from "../ui/SlideEffectButton";
-
 import { IoBag, IoBagOutline, IoClose } from "react-icons/io5";
+import SlideEffectButton from "@/ui/SlideEffectButton";
+import CardWithButtons from "@/ui/CardWithButtons";
+import Modal from "@/ui/Modal";
 
 const TodayFact = () => {
   const { factBasket, addToBasket, removeFromBasket, language } =

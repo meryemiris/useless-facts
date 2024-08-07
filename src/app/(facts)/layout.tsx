@@ -3,7 +3,7 @@ import { FactProvider } from "@/utils/FactContext";
 
 import styles from "./FactLayout.module.css";
 import Loading from "./loading";
-import HamburgerMenu from "../components/navbar/HamburgerMenu";
+import HamburgerMenu from "./components/navbar/HamburgerMenu";
 
 export const metadata = {
   title: "Home Page",

@@ -1,12 +1,15 @@
 "use client";
 import Link from "next/link";
+
+import { useFactContext } from "@/utils/FactContext";
+
+import styles from "./HamburgerMenu.module.css";
+
 import ArchiveLink from "./ArchiveLink";
 import FactBasket from "./FactBasket";
 import HomeLink from "./HomeLink";
 import Language from "./Language";
 import Logout from "./Logout";
-import styles from "./HamburgerMenu.module.css";
-import { useFactContext } from "@/utils/FactContext";
 
 export default function HamburgerMenu() {
   const { factBasket } = useFactContext();

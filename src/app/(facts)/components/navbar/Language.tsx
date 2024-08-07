@@ -11,7 +11,7 @@ import { useFactContext } from "@/utils/FactContext";
 
 import englishImg from "@/public/en.svg";
 import germanImg from "@/public/de.svg";
-import Dropdown from "@/app/ui/Dropdown";
+import Dropdown from "@/ui/Dropdown";
 
 const Language = () => {
   const { language, setLanguage } = useFactContext();

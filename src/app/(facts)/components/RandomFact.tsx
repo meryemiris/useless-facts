@@ -4,12 +4,12 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { Fact } from "@/utils/types";
-import PressEffectButton from "../ui/PressEffectButton";
 import { IoBag, IoBagOutline } from "react-icons/io5";
 import { GrCaretNext } from "react-icons/gr";
-import CardWithButtons from "../ui/CardWithButtons";
 import { useFactContext } from "@/utils/FactContext";
 import { fetchFact } from "@/utils/api";
+import CardWithButtons from "@/ui/CardWithButtons";
+import PressEffectButton from "@/ui/PressEffectButton";
 
 const RandomFact = () => {
   const { language } = useFactContext();

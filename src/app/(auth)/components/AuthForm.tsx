@@ -5,10 +5,10 @@ import Link from "next/link";
 import styles from "./AuthForm.module.css";
 
 import { toast } from "sonner";
-import { authenticateUser } from "./action";
+import { authenticateUser } from "../action";
 
-import Loading from "@/app/ui/LoadingSpinner";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import Loading from "@/ui/LoadingSpinner";
 
 type AuthFormProps = {
   action: "login" | "signup";

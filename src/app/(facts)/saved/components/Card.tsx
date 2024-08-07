@@ -3,8 +3,8 @@ import Image from "next/image";
 import styles from "./SavedFacts.module.css";
 
 import { Fact } from "@/utils/types";
-import Loading from "@/app/ui/LoadingSpinner";
-import AnimatedBinButton from "@/app/ui/AnimatedBinButton";
+import Loading from "@/ui/LoadingSpinner";
+import AnimatedBinButton from "@/ui/AnimatedBinButton";
 
 import bulbImg from "@/public/lightbulb.svg";
 

@@ -1,11 +1,13 @@
 "use client";
-
-import { IoMdLogOut } from "react-icons/io";
-import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+
 import { toast } from "sonner";
 
+import { createClient } from "@/utils/supabase/client";
+
 import styles from "./HamburgerMenu.module.css";
+
+import { IoMdLogOut } from "react-icons/io";
 
 export default function Logout() {
   const router = useRouter();

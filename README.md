@@ -1,6 +1,6 @@
 # Useless Facts Viewer
 
-A simple single-page application uses Useless Facts API, and built with Next.js, Axios, and Supabase.
+A single-page application uses Useless Facts API, and built with Next.js App Router, Axios, and Supabase.
 
 ## Demo
 
@@ -26,7 +26,7 @@ Fact viewer:
 
 User Authentication:
 
-- Utilizes Supabase Auth for user creation.
+- Utilizes Supabase server-side Auth for user creation, uses cookies.
 
 Save facts:
 
@@ -45,7 +45,7 @@ Save facts:
 ## Key Decisions
 - **Language Change:** Users control language preferences without instant fact updates upon a change. Users decide when to fetch facts, giving a smoother experience without automatic switches. This way, users explore facts at their own pace.
   
-- **Context Usage:** Simplifies state management with React context through FactContext and AuthContext, and removes the prop drilling.
+- **Context Usage:** Simplifies state management with React context through FactContext, and removes the prop drilling.
 For more details on effective usage of React Context, check out [How to Use React Context Effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
 
 - **Axios for Fact Fetching:** This project utilizes Axios with a pre-configured instance, including a base URL and JSON format.
@@ -53,7 +53,7 @@ For more details on effective usage of React Context, check out [How to Use Reac
 
 ## Technologies Used
 
-- [Next.js](https://nextjs.org/)
+- [Next.js App Router](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Supabase](https://supabase.com/)
